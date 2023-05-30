@@ -3,6 +3,10 @@ This plugin integrates your WordPress site with Kinola web app.
 It imports productions and events/screenings from Kinola, displays them on your site and allows customers to buy tickets to events.
 
 ## Getting started
+### Requirements
+- PHP >=7.4 
+- WP >= 6.0
+
 ### Installation
 1. Clone the plugin from here.
 2. Run `composer install` to generate the autoloader. (This requires you to have [Composer](https://getcomposer.org/) installed.)
