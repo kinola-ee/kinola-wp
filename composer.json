@@ -1,0 +1,14 @@
+{
+  "name": "kinola/kinola-wordpress",
+  "type": "wordpress-plugin",
+  "description": "Kinola",
+  "homepage": "https://kinola.ee",
+  "autoload": {
+    "psr-4": {
+      "Kinola\\KinolaWp\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.4"
+  }
+}
