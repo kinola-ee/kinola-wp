@@ -12,7 +12,7 @@ class Bootstrap {
 		add_action( 'init', [ $this, 'register_endpoints' ] );
 		add_action( 'init', [ $this, 'register_shortcodes' ] );
 		add_action( 'template_include', [ $this, 'override_checkout_template' ] );
-		// add_filter( 'single_template', [ $this, 'override_single_film_template' ] );
+		add_filter( 'the_content', [ $this, 'override_single_film_content' ] );
 
 		$scheduler = new Scheduler();
 		$scheduler->schedule_events();
@@ -114,13 +114,13 @@ class Bootstrap {
 		return $template;
 	}
 
-	public function override_single_film_template( $template ) {
+	public function override_single_film_content( $content ) {
 		global $post;
 
-		if ( $post->post_type === Helpers::get_films_post_type() ) {
-			return View::get_template_path( 'film' );
-		}
+        if (is_singular(Helpers::get_films_post_type())) {
+            return (new Film($post))->get_rendered_content();
+        }
 
-		return $template;
+		return $content;
 	}
 }

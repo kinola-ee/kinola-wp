@@ -2,7 +2,7 @@
 
 namespace Kinola\KinolaWp\Admin;
 
-class AdminMessenger {
+class Admin_Messenger {
 	public const FILM_CREATED = 'film_created';
     public const EVENTS_IMPORTED = 'events_imported';
 

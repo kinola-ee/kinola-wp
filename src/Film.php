@@ -59,6 +59,10 @@ class Film {
 		}
 	}
 
+    public function get_rendered_content(): string {
+        return View::get_rendered_template('film', ['film' => $this]);
+    }
+
 	public static function find_by_local_id( int $id ): ?Film {
 		$post = get_post( $id );
 

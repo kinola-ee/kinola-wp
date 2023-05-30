@@ -56,20 +56,20 @@ class Admin {
 
 	public function handle_actions() {
 		if ( $this->should_run_action( self::MESSENGER_ACTION ) ) {
-			( new AdminMessenger )->add_message( $_GET[ self::MESSENGER_ACTION ] );
+			( new Admin_Messenger )->add_message( $_GET[ self::MESSENGER_ACTION ] );
 		}
 
 		if ( $this->should_run_action( self::IMPORT_FILM_ACTION ) ) {
 			$imported_film = $this->import_film();
 			$url           = get_edit_post_link( $imported_film->get_local_id(), 'redirect' );
-			$url           = Router::append_message( $url, AdminMessenger::FILM_CREATED );
+			$url           = Router::append_message( $url, Admin_Messenger::FILM_CREATED );
 			Router::redirect( $url );
 		}
 
 		if ( $this->should_run_action( self::IMPORT_EVENTS_ACTION ) ) {
 			$this->import_events();
 			$url = admin_url( 'edit.php?post_type=' . Helpers::get_events_post_type() );
-			$url = Router::append_message( $url, AdminMessenger::EVENTS_IMPORTED );
+			$url = Router::append_message( $url, Admin_Messenger::EVENTS_IMPORTED );
 			Router::redirect( $url );
 		}
 	}
