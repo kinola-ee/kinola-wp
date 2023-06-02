@@ -73,8 +73,29 @@ class Event {
 
     public function save_api_data( ApiEvent $event ) {
         foreach ( $event->get_data() as $field => $value ) {
-            $this->set_field( $field, $value );
+            switch ( $field ) {
+                case 'venue':
+                    $this->set_venue( $value );
+                    break;
+                default:
+                    $this->set_field( $field, $value );
+            }
         }
+    }
+
+    public function set_venue( $venue ) {
+        wp_insert_term(
+            $venue,
+            Helpers::get_venue_taxonomy_name()
+        );
+
+        $term = get_term_by( 'name', $venue, Helpers::get_venue_taxonomy_name() );
+
+        wp_set_object_terms(
+            $this->get_local_id(),
+            $term->term_id,
+            Helpers::get_venue_taxonomy_name()
+        );
     }
 
     public static function find_by_local_id( int $id ): ?Event {
@@ -105,7 +126,7 @@ class Event {
 
     public static function create( ApiEvent $api_event ): Event {
         $post = wp_insert_post( [
-            'post_title'  => self::format_title( $api_event->get_field( '$production_title' ), $api_event->get_field( 'time' ) ),
+            'post_title'  => self::format_title( $api_event->get_field( 'production_title' ), $api_event->get_field( 'time' ) ),
             'post_status' => 'publish',
             'post_type'   => Helpers::get_events_post_type(),
         ] );
@@ -114,6 +135,35 @@ class Event {
         $event->save_api_data( $api_event );
 
         return $event;
+    }
+
+    public static function get_upcoming_events( array $args = [], array $meta_query = [] ): array {
+        $events = [];
+        $params = [
+                      'post_type'      => Helpers::get_events_post_type(),
+                      'posts_per_page' => - 1,
+                      'meta_key'       => 'time',
+                      'orderby'        => 'meta_value',
+                      'order'          => 'ASC',
+                  ] + $args;
+
+        $params['meta_query'] = [
+                                    [
+                                        'key'     => 'time',
+                                        'value'   => gmdate( "Y-m-d\TH:i:s\Z" ),
+                                        'compare' => '>=',
+                                    ],
+                                ] + $meta_query;
+
+        $query = new \WP_Query( $params );
+
+        if ( $query->have_posts() ) {
+            foreach ( $query->get_posts() as $post ) {
+                $events[] = new Event( $post );
+            }
+        }
+
+        return $events;
     }
 
     public static function format_title( string $production_title, string $date_time ): string {

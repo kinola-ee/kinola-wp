@@ -54,7 +54,14 @@ The plugin is - or _should be_ - fully customizable. If there is something you'd
 All templates used by the plugin are overrideable. To do so, create a folder called `kinola` in your theme and simply copy-paste 
 the template you wish to override from the plugin `templates` folder. Follow the same folder structure as in the plugin's `templates` folder.
 
-### Hooks
+### Actions
+`kinola/checkout/before_content`
+Use this action to display your own custom content before the contents of the Checkout page.
+
+### Filters
+`kinola/checkout/show_title`
+This filter can be used to control whether or not the default title is displayed on Checkout page.
+
 `kinola/post_type/film`  
 This filter allows you to modify the name of the Film post type.
 

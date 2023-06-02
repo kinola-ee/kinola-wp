@@ -1,15 +1,21 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title><?php echo \Kinola\KinolaWp\Checkout::get_title(); ?></title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title><?php echo \Kinola\KinolaWp\Checkout::get_title(); ?></title>
 </head>
 <body>
-<h1 style="font-family: Poppins; text-align: center; padding: 40px 0;">
-	<?php echo \Kinola\KinolaWp\Checkout::get_title(); ?>
-</h1>
+
+<?php if (apply_filters('kinola/checkout/show_title', true)): ?>
+    <h1 style="font-family: Poppins; text-align: center; padding: 40px 0;">
+        <?php echo \Kinola\KinolaWp\Checkout::get_title(); ?>
+    </h1>
+<?php endif; ?>
+
+<?php do_action('kinola/checkout/before_content'); ?>
+
 <div id="kinola-container"></div>
 
 <script src="<?php echo \Kinola\KinolaWp\Checkout::get_kinola_js_url(); ?>"></script>

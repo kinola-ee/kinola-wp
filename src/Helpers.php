@@ -20,6 +20,18 @@ class Helpers {
         return apply_filters( 'kinola/post_type/event', 'event' );
     }
 
+    public static function get_venue_taxonomy_name(): string {
+        return apply_filters( 'kinola/taxonomy/venue', 'venue' );
+    }
+
+    public static function get_date_parameter_slug(): string {
+        return apply_filters( 'kinola/filter/date', 'date' );
+    }
+
+    public static function get_venue_parameter_slug(): string {
+        return apply_filters( 'kinola/filter/date', 'venue' );
+    }
+
     public static function format_datetime( string $date_time_string ): \DateTime {
         $date_time = new \DateTime( $date_time_string, new \DateTimeZone( "UTC" ) );
         $date_time->setTimezone( new \DateTimeZone( wp_timezone_string() ) );

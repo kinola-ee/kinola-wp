@@ -23,7 +23,7 @@ class Films {
 	public function get_films(): array {
 		$query = new \WP_Query( [
 			'post_type'      => Helpers::get_films_post_type(),
-			'posts_per_page' => 20,
+			'posts_per_page' => -1,
 			'orderby'        => 'ID',
 			'order'          => 'ASC',
 		] );

@@ -62,33 +62,11 @@ class Film {
     }
 
     public function get_events(): array {
-        if (!isset($this->events)) {
-            $query = new \WP_Query( [
-                'post_type'      => Helpers::get_events_post_type(),
-                'posts_per_page' => - 1,
-                'meta_key'       => 'time',
-                'orderby'        => 'meta_value',
-                'order'          => 'ASC',
-                'meta_query'     => [
-                    [
-                        'key'     => 'time',
-                        'value'   => gmdate( "Y-m-d\TH:i:s\Z" ),
-                        'compare' => '>=',
-                    ],
-                    [
-                        'key'     => Film::FIELD_ID,
-                        'value'   => $this->get_remote_id(),
-                    ],
-                ],
+        if ( ! isset( $this->events ) ) {
+            $this->events = Event::get_upcoming_events( [], [
+                'key'   => Film::FIELD_ID,
+                'value' => $this->get_remote_id(),
             ] );
-
-            if ($query->have_posts()) {
-                foreach ($query->get_posts() as $post) {
-                    $this->events[] = new Event($post);
-                }
-            } else {
-                $this->events = [];
-            }
         }
 
         return $this->events;
