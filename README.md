@@ -123,6 +123,9 @@ $formatted_date_in_your_timezone = \Kinola\KinolaWp\Helpers::format_datetime( $u
 Use this action to display your own custom content before the contents of the Checkout page.
 
 ### Filters
+`kinola/language`
+This filter allows you to set the site language. Use a 2-letter ISO language code, e.g. 'en' or 'et'.
+
 `kinola/checkout/show_title`
 This filter can be used to control whether or not the default title is displayed on Checkout page.
 

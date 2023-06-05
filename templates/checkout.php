@@ -31,6 +31,8 @@
         apiBaseUrl: '<?php echo \Kinola\KinolaWp\Checkout::get_plugin_api_base_url(); ?>',
         eventId: '<?php echo \Kinola\KinolaWp\Checkout::get_event_id(); ?>',
         scheduleUrl: '<?php echo get_home_url(); ?>',
+        selectedLang: '<?php echo \Kinola\KinolaWp\Helpers::get_language(); ?>',
+        strings: <?php echo json_encode(\Kinola\KinolaWp\Checkout::get_strings()); ?>
     })
 </script>
 </body>

@@ -4,6 +4,10 @@ namespace Kinola\KinolaWp;
 
 class Helpers {
 
+    public static function get_language(): string {
+        return apply_filters( 'kinola/language', 'en' );
+    }
+
     public static function get_assets_url( string $path ): string {
         return trailingslashit( plugins_url( 'kinola/assets' ) ) . $path;
     }
