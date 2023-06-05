@@ -1,3 +1,10 @@
+<?php
+/**
+ * This template is rendered on the Edit Film admin page.
+ * It displays film details.
+ */
+?>
+
 <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
 <table>
     <tr>

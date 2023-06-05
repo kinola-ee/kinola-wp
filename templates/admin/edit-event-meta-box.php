@@ -1,3 +1,10 @@
+<?php
+/**
+ * This template is rendered on the Edit Event admin page.
+ * It displays event details.
+ */
+?>
+
 <?php /* @var $event \Kinola\KinolaWp\Event */ ?>
 <table>
     <tr>

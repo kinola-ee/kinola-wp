@@ -4,23 +4,9 @@ namespace Kinola\KinolaWp;
 
 use Kinola\KinolaWp\Api\Event as ApiEvent;
 
-class Event {
+class Event extends Model {
 
     public const FIELD_ID = 'event_id';
-
-    protected ?\WP_Post $post = null;
-
-    public function __construct( \WP_Post $post ) {
-        $this->post = $post;
-    }
-
-    public function get_post(): ?\WP_Post {
-        return $this->post;
-    }
-
-    public function get_title() {
-        return apply_filters( 'the_title', $this->post->post_title );
-    }
 
     public function get_date(): string {
         $dateTime = Helpers::format_datetime( $this->get_field( 'time' ) );
@@ -34,34 +20,8 @@ class Event {
         return $dateTime->format( get_option( 'time_format' ) );
     }
 
-    public function get_poster_url() {
-        return $this->get_field( 'production', false )['image']['srcset'];
-    }
-
     public function get_checkout_url(): string {
         return Router::get_event_checkout_url( $this->get_remote_id() );
-    }
-
-    public function get_field( string $name, bool $compact = true ) {
-        $value = get_post_meta( $this->post->ID, $name, true );
-
-        if ( is_array( $value ) && $compact ) {
-            return implode( ', ', $value );
-        }
-
-        return $value;
-    }
-
-    public function get_local_id(): int {
-        return $this->post->ID;
-    }
-
-    public function get_remote_id(): string {
-        return $this->get_field( self::FIELD_ID );
-    }
-
-    public function set_field( string $field, $value ) {
-        update_post_meta( $this->post->ID, $field, $value );
     }
 
     public function set_title( string $production_title, string $date_time ) {
@@ -139,21 +99,21 @@ class Event {
 
     public static function get_upcoming_events( array $args = [], array $meta_query = [] ): array {
         $events = [];
-        $params = [
-                      'post_type'      => Helpers::get_events_post_type(),
-                      'posts_per_page' => - 1,
-                      'meta_key'       => 'time',
-                      'orderby'        => 'meta_value',
-                      'order'          => 'ASC',
-                  ] + $args;
+        $params = array_merge( [
+            'post_type'      => Helpers::get_events_post_type(),
+            'posts_per_page' => - 1,
+            'meta_key'       => 'time',
+            'orderby'        => 'meta_value',
+            'order'          => 'ASC',
+        ], $args );
 
-        $params['meta_query'] = [
-                                    [
-                                        'key'     => 'time',
-                                        'value'   => gmdate( "Y-m-d\TH:i:s\Z" ),
-                                        'compare' => '>=',
-                                    ],
-                                ] + $meta_query;
+        $params['meta_query'] = array_merge( [
+            [
+                'key'     => 'time',
+                'value'   => gmdate( "Y-m-d\TH:i:s\Z" ),
+                'compare' => '>=',
+            ],
+        ], $meta_query );
 
         $query = new \WP_Query( $params );
 

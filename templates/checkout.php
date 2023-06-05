@@ -1,4 +1,9 @@
 <!doctype html>
+<?php
+/**
+ * This template loads the React app which is responsible for the whole checkout process.
+ */
+?>
 <html>
 <head>
     <meta charset="UTF-8">

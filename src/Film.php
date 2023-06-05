@@ -5,39 +5,11 @@ namespace Kinola\KinolaWp;
 use Kinola\KinolaWp\Admin\Admin;
 use Kinola\KinolaWp\Api\Film as ApiFilm;
 
-class Film {
+class Film extends Model {
 
     public const FIELD_ID = 'film_id';
 
-    protected ?\WP_Post $post = null;
-
     protected array $events;
-
-    public function __construct( \WP_Post $post ) {
-        $this->post = $post;
-    }
-
-    public function get_poster_url() {
-        return $this->get_field( 'poster' );
-    }
-
-    public function get_field( string $name, bool $compact = true ) {
-        $value = get_post_meta( $this->post->ID, $name, true );
-
-        if ( is_array( $value ) && $compact ) {
-            return implode( ', ', $value );
-        }
-
-        return $value;
-    }
-
-    public function get_local_id(): int {
-        return $this->post->ID;
-    }
-
-    public function get_remote_id(): string {
-        return $this->get_field( self::FIELD_ID );
-    }
 
     public function get_import_link(): string {
         return Router::get_action_url( [ Admin::IMPORT_FILM_ACTION => $this->get_remote_id() ] );
@@ -51,10 +23,6 @@ class Film {
         return Router::get_kinola_film_edit_link( $this->get_remote_id() );
     }
 
-    public function set_field( string $field, $value ) {
-        update_post_meta( $this->post->ID, $field, $value );
-    }
-
     public function save_api_data( ApiFilm $film ) {
         foreach ( $film->get_data() as $field => $value ) {
             $this->set_field( $field, $value );
@@ -63,10 +31,10 @@ class Film {
 
     public function get_events(): array {
         if ( ! isset( $this->events ) ) {
-            $this->events = Event::get_upcoming_events( [], [
+            $this->events = Event::get_upcoming_events( [], [[
                 'key'   => Film::FIELD_ID,
                 'value' => $this->get_remote_id(),
-            ] );
+            ]] );
         }
 
         return $this->events;

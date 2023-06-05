@@ -26,13 +26,19 @@ class Event {
         $unset = [
             'id',
             'freeSeats',
+            'program',
+            'room',
+            'venue',
+            'production',
         ];
 
         $data[ \Kinola\KinolaWp\Event::FIELD_ID ] = $data['id'];
-        $data[ \Kinola\KinolaWp\Film::FIELD_ID ]  = $data['production']['id'];
-        $data['production_title']                 = $data['production']['name'];
-        $data['venue']                            = $data['venue']['name'];
-        $data['room']                             = $data['room']['name'];
+        $data[ \Kinola\KinolaWp\Film::FIELD_ID ]  = $data['production']['id'] ?? null;
+        $data['production_title']                 = $data['production']['name'] ?? null;
+        $data['production_poster']                = $data['production']['image']['srcset'] ?? null;
+        $data['venue']                            = $data['venue']['name'] ?? null;
+        $data['room']                             = $data['room']['name'] ?? null;
+        $data['program']                          = $data['program']['name'] ?? null;
 
         foreach ( $unset as $field ) {
             unset( $data[ $field ] );

@@ -1,3 +1,9 @@
+<?php
+/**
+ * This template is rendered inside the_content of a single Film post type.
+ * It displays the detailed information of a film and all future screenings of that film.
+ */
+?>
 <div>
     <section>
         <?php /* @var $film \Kinola\KinolaWp\Film */ ?>

@@ -44,7 +44,7 @@ Checkout and payments are handled by a custom React component in `checkout.php` 
 The component communicates with Kinola to book seats and process payments, so technically, all payment-related functionality 
 is handled by Kinola itself (and therefore cannot be customized).
 
-### Customization
+### Development & customization
 The plugin is - or _should be_ - fully customizable. If there is something you'd like to change, but cannot do that:
 - open an issue
 - or make a pull request (see details below)
@@ -53,6 +53,11 @@ The plugin is - or _should be_ - fully customizable. If there is something you'd
 ### Templates
 All templates used by the plugin are overrideable. To do so, create a folder called `kinola` in your theme and simply copy-paste 
 the template you wish to override from the plugin `templates` folder. Follow the same folder structure as in the plugin's `templates` folder.
+
+### Data
+All event and film data is stored as postmeta.  
+The `films`, `film` and `events` templates are all passed the corresponding instance(s) of `\Kinola\KinolaWp\Event` or `\Kinola\KinolaWp\Film` objects.
+They contain a number of useful public functions. Some examples:
 
 ### Actions
 `kinola/checkout/before_content`

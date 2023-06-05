@@ -1,3 +1,9 @@
+<?php
+/**
+ * This template displays the location and date filters for events.
+ */
+?>
+
 <div>
     <form>
         <select onchange="this.form.submit()"
