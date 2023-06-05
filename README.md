@@ -1,6 +1,6 @@
 # Kinola WordPress plugin
 This plugin integrates your WordPress site with Kinola web app. 
-It imports productions and events/screenings from Kinola, displays them on your site and allows customers to buy tickets to events.
+It imports films and events from Kinola, displays them on your site and allows customers to buy tickets to events.
 
 ## Getting started
 ### Requirements
@@ -27,8 +27,8 @@ Note: Once the plugin is more or less "done," it will be uploaded to the officia
 4. Ensure your WP site's time and date formats and time zones are set properly.
 
 ### Using the plugin
-The plugin creates two menu items in the admin menu - Films and Events. Neither of them can be created or edited via WordPress - they must be imported
-from Kinola instead. Any changes must be made in Kinola and then re-imported to WP.  
+The plugin creates two menu items in the admin menu - Films and Events. New Film or Event posts cannot be created or edited via WordPress - they must be imported
+from Kinola instead. This way, there is a single source of truth for both. If you need to make any changes to an already imported Film or Event, the changes must be made inside Kinola and then re-imported to WordPress.
 
 Productions must currently be imported manually from the admin - "Films > Import Films"  
 
@@ -44,7 +44,7 @@ Checkout and payments are handled by a custom React component in `checkout.php` 
 The component communicates with Kinola to book seats and process payments, so technically, all payment-related functionality 
 is handled by Kinola itself (and therefore cannot be customized).
 
-### Development & customization
+### Customization
 The plugin is - or _should be_ - fully customizable. If there is something you'd like to change, but cannot do that:
 - open an issue
 - or make a pull request (see details below)
@@ -52,12 +52,71 @@ The plugin is - or _should be_ - fully customizable. If there is something you'd
 
 ### Templates
 All templates used by the plugin are overrideable. To do so, create a folder called `kinola` in your theme and simply copy-paste 
-the template you wish to override from the plugin `templates` folder. Follow the same folder structure as in the plugin's `templates` folder.
+the template you wish to override from the plugin `templates` folder. Follow the same folder structure as in the plugin's `templates` folder.  
 
-### Data
+There are 4 main templates of interest:
+* `films.php` - displays a list of all films
+* `film.php` - displays a single film data
+* `events.php` - displays a list of upcoming events along with a location & date filter
+* `filters.php` - displays the location and date filters
+
+### Development
 All event and film data is stored as postmeta.  
 The `films`, `film` and `events` templates are all passed the corresponding instance(s) of `\Kinola\KinolaWp\Event` or `\Kinola\KinolaWp\Film` objects.
-They contain a number of useful public functions. Some examples:
+You can use the `get_fields()` function of either of those classes to get all data that has been saved from the API, e.g.   
+`$event->get_fields()`  
+
+The Event and Film classes contain a number of useful public functions. Some examples:
+
+```php
+<?php
+
+use Kinola\KinolaWp\Film;
+use Kinola\KinolaWp\Event;
+
+// Get a film by its WP Post ID
+$film = Film::find_by_local_id( $post_id );
+
+// Or get a film by its Kinola ID instead
+$film = Film::find_by_remote_id( 'c8f92b84-cd6f-4c09-a0a9-176d201e2c91' );
+
+// Both Film and Event classes extend the \Kinola\KinolaWp\Model class which provides some useful functions, for example:
+
+// Get a field from post meta:
+$poster = $film->get_field( 'poster' );
+
+// Get ALL fields from post meta:
+$fields = $film->get_fields();
+
+// Get the WP Post object of the Film:
+$film_post = $film->get_post();
+
+// There's more in the Model class.
+
+// Get all upcoming screenings of a film:
+$events = $film->get_events(); // This returns an array of Event objects.
+
+// You can get an Event the same way as with Films:
+$event = Event::find_by_local_id( $post_id );
+$event = Event::find_by_remote_id( 'c8f92b84-cd6f-4c09-a0a9-176d201e2c91' );
+
+// Get the title of an event:
+$title = $event->get_title(); // Uses WP Post's title
+
+// Get the URL to buy a ticket:
+$url = $event->get_checkout_url();
+
+// Working with dates and times:
+$date = $event->get_date()  // Uses the format defined in WP and also corrects the date according to the locally defined time zone
+$time = $event->get_time(); // Same as above
+
+// Keep in mind that the datetime is stored in the database in UTC time zone. 
+// So if you get the `time` field directly from database using `get_field()`, it's UTC.
+// If you need to display an UTC date or time in your locally defined time zone, you can use a helper function:
+$utc_event_time = $event->get_field( 'time' );
+$formatted_date_in_your_timezone = \Kinola\KinolaWp\Helpers::format_datetime( $utc_event_time );
+
+```
 
 ### Actions
 `kinola/checkout/before_content`
@@ -87,6 +146,10 @@ This filter allows you to modify which folders are used to look for Kinola templ
 
 `kinola/template`  
 This filter runs every time a Kinola template is loaded. Using it, you can completely customize which templates are loaded and from where.
+
+### Kinola API
+The plugin uses Kinola public API for fetching film and event data. 
+Should you need to implement something that's not provided by the plugin, you can find the API docs here: https://YOUR_KINOLA_URL/api/public/v1/documentation
 
 ### Advanced
 Technically, further customization (modifying/removing the plugin's own actions, for example) is possible 
