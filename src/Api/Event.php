@@ -28,7 +28,6 @@ class Event {
             'freeSeats',
             'program',
             'room',
-            'venue',
             'production',
         ];
 

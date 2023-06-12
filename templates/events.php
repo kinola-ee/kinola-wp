@@ -14,9 +14,11 @@
                  style="float: left;"/>
             <div style="float:left; margin-left: 20px;">
                 <p>
-                    <strong>
-                        <?php echo $event->get_field( 'production_title' ); ?>
-                    </strong>
+                    <a href="<?php echo $event->get_film_url(); ?>">
+                        <strong>
+                            <?php echo $event->get_field( 'production_title' ); ?>
+                        </strong>
+                    </a>
                     <br>
                     <?php echo $event->get_venue_name(); ?>
                     <br>

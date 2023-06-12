@@ -23,6 +23,10 @@ class Film extends Model {
         return Router::get_kinola_film_edit_link( $this->get_remote_id() );
     }
 
+    public function get_local_url(): string {
+        return get_permalink( $this->post );
+    }
+
     public function save_api_data( ApiFilm $film ) {
         foreach ( $film->get_data() as $field => $value ) {
             $this->set_field( $field, $value );
@@ -31,10 +35,12 @@ class Film extends Model {
 
     public function get_events(): array {
         if ( ! isset( $this->events ) ) {
-            $this->events = Event::get_upcoming_events( [], [[
-                'key'   => Film::FIELD_ID,
-                'value' => $this->get_remote_id(),
-            ]] );
+            $this->events = Event::get_upcoming_events( [], [
+                [
+                    'key'   => Film::FIELD_ID,
+                    'value' => $this->get_remote_id(),
+                ],
+            ] );
         }
 
         return $this->events;
@@ -56,9 +62,10 @@ class Film extends Model {
 
     public static function find_by_remote_id( string $id ): ?Film {
         $results = ( new \WP_Query( [
-            'post_type'  => Helpers::get_films_post_type(),
-            'meta_key'   => self::FIELD_ID,
-            'meta_value' => $id,
+            'post_type'   => Helpers::get_films_post_type(),
+            'post_status' => 'any',
+            'meta_key'    => self::FIELD_ID,
+            'meta_value'  => $id,
         ] ) )->get_posts();
 
         if ( count( $results ) === 1 ) {
