@@ -27,6 +27,8 @@ class Film {
             'id',
             'image',
             'name',
+            'duration',
+            'embeddableVideo',
             'originalName',
             'releaseDate',
             'customFields',
@@ -37,6 +39,8 @@ class Film {
         $data['title']                           = $data['name'];
         $data['title_original']                  = $data['originalName'];
         $data['release_date']                    = $data['releaseDate'];
+        $data['runtime']                         = $data['duration'];
+        $data['embeddable_video']                = $data['embeddableVideo'];
         $data['custom_fields']                   = $data['customFields'];
 
         foreach ( $unset as $field ) {

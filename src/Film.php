@@ -27,6 +27,38 @@ class Film extends Model {
         return get_permalink( $this->post );
     }
 
+    public function get_director(): string {
+        $crew = $this->get_field('crew');
+        $directors = [];
+        if (count($crew)) {
+            foreach ($crew as $crewType) {
+                if ($crewType['type'] === 'director') {
+                    foreach ($crewType['people'] as $director) {
+                        $directors[] = $director['name'];
+                    }
+                }
+            }
+        }
+
+        return implode(', ', $directors);
+    }
+
+    public function get_cast(): string {
+        $crew = $this->get_field('crew');
+        $actors = [];
+        if (count($crew)) {
+            foreach ($crew as $crewType) {
+                if ($crewType['type'] === 'actor') {
+                    foreach ($crewType['people'] as $actor) {
+                        $actors[] = $actor['name'];
+                    }
+                }
+            }
+        }
+
+        return implode(', ', $actors);
+    }
+
     public function save_api_data( ApiFilm $film ) {
         foreach ( $film->get_data() as $field => $value ) {
             $this->set_field( $field, $value );
