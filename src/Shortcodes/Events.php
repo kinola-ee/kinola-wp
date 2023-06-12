@@ -18,7 +18,7 @@ class Events {
             $args['tax_query'] = [
                 [
                     'taxonomy' => Helpers::get_venue_taxonomy_name(),
-                    'field' => 'ID',
+                    'field' => 'slug',
                     'terms' => $filter->get_selected_location(),
                 ],
             ];

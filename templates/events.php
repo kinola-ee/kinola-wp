@@ -18,6 +18,8 @@
                         <?php echo $event->get_field( 'production_title' ); ?>
                     </strong>
                     <br>
+                    <?php echo $event->get_venue_name(); ?>
+                    <br>
                     <?php echo $event->get_date() ?> <?php echo $event->get_time(); ?>
                 </p>
                 <p>

@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:          Kinola
- * Plugin URI:           TODO
- * Description:          Kinola integration for WordPress
+ * Plugin URI:           https://github.com/kinola-ee/kinola-wp
+ * Description:          Kinola integration for WordPress.
  * Version:              1.0
  * Author:               Kinola
- * Author URI:
+ * Author URI:           https://kinola.ee/
  * License:              MIT
  * Text Domain:          kinola
  * Domain Path:          /languages

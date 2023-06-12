@@ -12,6 +12,7 @@ class Bootstrap {
         add_action( 'init', [ $this, 'register_location_taxonomy' ], 1 );
         add_action( 'init', [ $this, 'register_endpoints' ] );
         add_action( 'init', [ $this, 'register_shortcodes' ] );
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
         add_action( 'template_include', [ $this, 'override_checkout_template' ] );
         add_filter( 'the_content', [ $this, 'override_single_film_content' ] );
 
@@ -119,6 +120,10 @@ class Bootstrap {
     public function register_shortcodes() {
         add_shortcode( 'kinola_events', [ $this, 'render_events_page' ] );
         add_shortcode( 'kinola_films', [ $this, 'render_films_page' ] );
+    }
+
+    public function enqueue_scripts() {
+        wp_enqueue_script( 'kinola', Helpers::get_assets_url( 'scripts/kinola.js' ), [ 'jquery' ], 11 );
     }
 
     public function render_events_page(): string {

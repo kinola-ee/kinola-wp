@@ -43,6 +43,21 @@ class Event extends Model {
         }
     }
 
+    public function get_venue_name(): string {
+        $venue = $this->get_venue();
+
+        return $venue ? $venue->name : '';
+    }
+
+    public function get_venue(): ?\WP_Term {
+        $terms = wp_get_object_terms($this->get_local_id(), Helpers::get_venue_taxonomy_name());
+        if (count($terms)) {
+            return $terms[0];
+        }
+
+        return null;
+    }
+
     public function set_venue( $venue ) {
         wp_insert_term(
             $venue,

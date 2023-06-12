@@ -22,7 +22,10 @@ abstract class Model {
         $value = get_post_meta( $this->post->ID, $name, true );
 
         if ( is_array( $value ) && $compact ) {
-            return implode( ', ', $value );
+            // Check if the given array is multidimensional - if yes, do not flatten it
+            if ( ! is_array( $value[ array_key_first( $value ) ] ) ) {
+                return implode( ', ', $value );
+            }
         }
 
         return $value;
