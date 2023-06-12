@@ -23,7 +23,7 @@ abstract class Model {
 
         if ( is_array( $value ) && $compact ) {
             // Check if the given array is multidimensional - if yes, do not flatten it
-            if ( ! is_array( $value[ array_key_first( $value ) ] ) ) {
+            if ( isset( $value[ array_key_first( $value ) ] ) && ! is_array( $value[ array_key_first( $value ) ] ) ) {
                 return implode( ', ', $value );
             }
         }

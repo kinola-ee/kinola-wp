@@ -8,7 +8,7 @@
     <section>
         <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
         <?php echo $film->get_field( 'description' ); ?>
-        <?php if (count($film->get_field('gallery'))): ?>
+        <?php if ($film->get_field('gallery') && count($film->get_field('gallery'))): ?>
             <?php foreach ($film->get_field('gallery') as $image): ?>
                 <a href="<?php echo $image['srcset']; ?>" target="_blank">
                     <img src="<?php echo $image['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
