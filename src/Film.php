@@ -30,7 +30,7 @@ class Film extends Model {
     public function get_director(): string {
         $crew = $this->get_field('crew');
         $directors = [];
-        if (count($crew)) {
+        if ($crew && count($crew)) {
             foreach ($crew as $crewType) {
                 if ($crewType['type'] === 'director') {
                     foreach ($crewType['people'] as $director) {
@@ -46,7 +46,7 @@ class Film extends Model {
     public function get_cast(): string {
         $crew = $this->get_field('crew');
         $actors = [];
-        if (count($crew)) {
+        if ($crew && count($crew)) {
             foreach ($crew as $crewType) {
                 if ($crewType['type'] === 'actor') {
                     foreach ($crewType['people'] as $actor) {

@@ -26,6 +26,10 @@ abstract class Model {
             if ( isset( $value[ array_key_first( $value ) ] ) && ! is_array( $value[ array_key_first( $value ) ] ) ) {
                 return implode( ', ', $value );
             }
+
+            if (empty($value)) {
+                return '';
+            }
         }
 
         return $value;

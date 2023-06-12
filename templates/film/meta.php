@@ -5,9 +5,17 @@
     <br><hr><br>
     <strong><?php echo $film->get_field( 'title' ); ?></strong> <br>
     <em><?php echo $film->get_field( 'title_original' ); ?></em> <br>
-    <?php echo $film->get_field( 'countries' ); ?> <br>
-    <?php echo $film->get_field( 'release_date' ); ?>,
-    <?php echo $film->get_field( 'runtime' ); ?> <?php _ex( 'min', 'minutes', 'kinola' ); ?>
+
+    <?php if ($film->get_field( 'countries' )): ?>
+        <?php echo $film->get_field( 'countries' ); ?> <br>
+    <?php endif; ?>
+
+    <?php if ($film->get_field( 'release_date' )): ?>
+        <?php echo $film->get_field( 'release_date' ); ?>,
+    <?php endif; ?>
+    <?php if ($film->get_field( 'runtime' )): ?>
+        <?php echo $film->get_field( 'runtime' ); ?> <?php _ex( 'min', 'minutes', 'kinola' ); ?>
+    <?php endif; ?>
 
     <br><br>
 
