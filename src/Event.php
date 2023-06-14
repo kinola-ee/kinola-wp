@@ -94,6 +94,7 @@ class Event extends Model {
     public static function find_by_remote_id( string $id ): ?Event {
         $results = ( new \WP_Query( [
             'post_type'  => Helpers::get_events_post_type(),
+            'post_status' => 'any',
             'meta_key'   => self::FIELD_ID,
             'meta_value' => $id,
         ] ) )->get_posts();
