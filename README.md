@@ -126,6 +126,12 @@ Use this action to display your own custom content before the contents of the Ch
 `kinola/language`
 This filter allows you to set the site language. Use a 2-letter ISO language code, e.g. 'en' or 'et'.
 
+`kinola/assets/css`
+Use this filter to disable loading Kinola CSS.
+
+`kinola/assets/photoswipe`
+Use this filter to disable loading PhotoSwipe styles on single film page.
+
 `kinola/checkout/show_title`
 This filter can be used to control whether or not the default title is displayed on Checkout page.
 
