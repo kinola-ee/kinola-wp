@@ -5,7 +5,7 @@
  */
 ?>
 
-<?php echo $filter; ?>
+<?php echo $rendered_filter; ?>
 <?php if ( count( $events ) ): ?>
     <?php foreach ( $events as $event ): ?>
         <?php /* @var $event \Kinola\KinolaWp\Event */ ?>

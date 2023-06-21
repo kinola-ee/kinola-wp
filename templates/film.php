@@ -11,5 +11,9 @@
     <?php echo \Kinola\KinolaWp\View::render( 'film/meta', [ 'film' => $film ] ); ?>
     <?php echo \Kinola\KinolaWp\View::render( 'film/trailer', [ 'film' => $film ] ); ?>
     <?php echo \Kinola\KinolaWp\View::render( 'film/gallery', [ 'film' => $film ] ); ?>
-    <?php echo \Kinola\KinolaWp\View::render( 'film/screenings', [ 'film' => $film ] ); ?>
+    <?php echo \Kinola\KinolaWp\View::render( 'film/screenings', [
+        'film'            => $film,
+        'events'          => $events,
+        'rendered_filter' => $rendered_filter,
+    ] ); ?>
 </div>

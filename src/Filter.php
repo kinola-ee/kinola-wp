@@ -3,6 +3,12 @@
 namespace Kinola\KinolaWp;
 
 class Filter {
+    protected EventQuery $available_dates_query;
+
+    public function __construct(EventQuery $available_dates_query = null) {
+        $this->available_dates_query = $available_dates_query ?? (new EventQuery())->upcoming();
+    }
+
     public function get_rendered_filter(): string {
         return View::get_rendered_template( 'filters', [
             'dates'          => $this->get_dates(),
@@ -12,9 +18,9 @@ class Filter {
         ] );
     }
 
-    public function get_dates( array $args = [], array $meta_query = [] ): array {
+    public function get_dates(): array {
         $dates  = [ __('all', 'kinola') => __( 'All dates', 'kinola' ) ];
-        $events = Event::get_upcoming_events( $args, $meta_query );
+        $events = $this->available_dates_query->get();
         foreach ( $events as $event ) {
             /* @var $event Event */
             $dates[ $event->get_date() ] = $event->get_date();
@@ -38,31 +44,31 @@ class Filter {
         return $venues;
     }
 
-    public function get_selected_date() {
+    public function get_selected_date(): ?string {
         $slug = Helpers::get_date_parameter_slug();
 
         if (!isset($_GET[ $slug ]) || !$_GET[ $slug ]) {
-            return false;
+            return null;
         }
 
         if ($_GET[ $slug ] === __('all', 'kinola')) {
-            return false;
+            return null;
         }
 
-        return $_GET[ $slug ] ?? '';
+        return $_GET[ $slug ] ?? null;
     }
 
-    public function get_selected_location() {
+    public function get_selected_location(): ?string {
         $slug = Helpers::get_venue_parameter_slug();
 
         if (!isset($_GET[ $slug ]) || !$_GET[ $slug ]) {
-            return false;
+            return null;
         }
 
         if ($_GET[ $slug ] === __('all', 'kinola')) {
-            return false;
+            return null;
         }
 
-        return $_GET[ $slug ];
+        return $_GET[ $slug ] ?? null;
     }
 }

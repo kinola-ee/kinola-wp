@@ -28,35 +28,35 @@ class Film extends Model {
     }
 
     public function get_director(): string {
-        $crew = $this->get_field('crew');
+        $crew      = $this->get_field( 'crew' );
         $directors = [];
-        if ($crew && count($crew)) {
-            foreach ($crew as $crewType) {
-                if ($crewType['type'] === 'director') {
-                    foreach ($crewType['people'] as $director) {
+        if ( $crew && count( $crew ) ) {
+            foreach ( $crew as $crewType ) {
+                if ( $crewType['type'] === 'director' ) {
+                    foreach ( $crewType['people'] as $director ) {
                         $directors[] = $director['name'];
                     }
                 }
             }
         }
 
-        return implode(', ', $directors);
+        return implode( ', ', $directors );
     }
 
     public function get_cast(): string {
-        $crew = $this->get_field('crew');
+        $crew   = $this->get_field( 'crew' );
         $actors = [];
-        if ($crew && count($crew)) {
-            foreach ($crew as $crewType) {
-                if ($crewType['type'] === 'actor') {
-                    foreach ($crewType['people'] as $actor) {
+        if ( $crew && count( $crew ) ) {
+            foreach ( $crew as $crewType ) {
+                if ( $crewType['type'] === 'actor' ) {
+                    foreach ( $crewType['people'] as $actor ) {
                         $actors[] = $actor['name'];
                     }
                 }
             }
         }
 
-        return implode(', ', $actors);
+        return implode( ', ', $actors );
     }
 
     public function save_api_data( ApiFilm $film ) {
@@ -67,19 +67,10 @@ class Film extends Model {
 
     public function get_events(): array {
         if ( ! isset( $this->events ) ) {
-            $this->events = Event::get_upcoming_events( [], [
-                [
-                    'key'   => Film::FIELD_ID,
-                    'value' => $this->get_remote_id(),
-                ],
-            ] );
+            $this->events = ( new EventQuery() )->upcoming()->film( $this->get_remote_id() )->get();
         }
 
         return $this->events;
-    }
-
-    public function get_rendered_content(): string {
-        return View::get_rendered_template( 'film', [ 'film' => $this ] );
     }
 
     public static function find_by_local_id( int $id ): ?Film {

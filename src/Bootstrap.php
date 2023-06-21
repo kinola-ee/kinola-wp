@@ -2,8 +2,9 @@
 
 namespace Kinola\KinolaWp;
 
-use Kinola\KinolaWp\Shortcodes\Events;
-use Kinola\KinolaWp\Shortcodes\Films;
+use Kinola\KinolaWp\Pages\Events;
+use Kinola\KinolaWp\Pages\Films;
+use Kinola\KinolaWp\Pages\SingleFilm;
 
 class Bootstrap {
     public function __construct() {
@@ -156,7 +157,7 @@ class Bootstrap {
         global $post;
 
         if ( is_singular( Helpers::get_films_post_type() ) ) {
-            return ( new Film( $post ) )->get_rendered_content();
+            return ( new SingleFilm( new Film($post) ) )->get_rendered_content();
         }
 
         return $content;

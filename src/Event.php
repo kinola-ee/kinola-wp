@@ -29,7 +29,7 @@ class Event extends Model {
     }
 
     public function get_film(): Film {
-        return Film::find_by_remote_id($this->get_field(\Kinola\KinolaWp\Film::FIELD_ID));
+        return Film::find_by_remote_id( $this->get_field( \Kinola\KinolaWp\Film::FIELD_ID ) );
     }
 
     public function set_title( string $production_title, string $date_time ) {
@@ -58,8 +58,8 @@ class Event extends Model {
     }
 
     public function get_venue(): ?\WP_Term {
-        $terms = wp_get_object_terms($this->get_local_id(), Helpers::get_venue_taxonomy_name());
-        if (count($terms)) {
+        $terms = wp_get_object_terms( $this->get_local_id(), Helpers::get_venue_taxonomy_name() );
+        if ( count( $terms ) ) {
             return $terms[0];
         }
 
@@ -93,10 +93,10 @@ class Event extends Model {
 
     public static function find_by_remote_id( string $id ): ?Event {
         $results = ( new \WP_Query( [
-            'post_type'  => Helpers::get_events_post_type(),
+            'post_type'   => Helpers::get_events_post_type(),
             'post_status' => 'any',
-            'meta_key'   => self::FIELD_ID,
-            'meta_value' => $id,
+            'meta_key'    => self::FIELD_ID,
+            'meta_value'  => $id,
         ] ) )->get_posts();
 
         if ( count( $results ) === 1 ) {
@@ -119,35 +119,6 @@ class Event extends Model {
         $event->save_api_data( $api_event );
 
         return $event;
-    }
-
-    public static function get_upcoming_events( array $args = [], array $meta_query = [] ): array {
-        $events = [];
-        $params = array_merge( [
-            'post_type'      => Helpers::get_events_post_type(),
-            'posts_per_page' => - 1,
-            'meta_key'       => 'time',
-            'orderby'        => 'meta_value',
-            'order'          => 'ASC',
-        ], $args );
-
-        $params['meta_query'] = array_merge( [
-            [
-                'key'     => 'time',
-                'value'   => gmdate( "Y-m-d\TH:i:s\Z" ),
-                'compare' => '>=',
-            ],
-        ], $meta_query );
-
-        $query = new \WP_Query( $params );
-
-        if ( $query->have_posts() ) {
-            foreach ( $query->get_posts() as $post ) {
-                $events[] = new Event( $post );
-            }
-        }
-
-        return $events;
     }
 
     public static function format_title( string $production_title, string $date_time ): string {
