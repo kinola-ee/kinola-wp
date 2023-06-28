@@ -126,6 +126,9 @@ Use this action to display your own custom content before the contents of the Ch
 `kinola/language`
 This filter allows you to set the site language. Use a 2-letter ISO language code, e.g. 'en' or 'et'.
 
+`kinola/checkout/show_newsletter_checkbox`
+Controls whether the sign up to newsletter checkbox in checkout is displayed or not. Default false.
+
 `kinola/assets/css`
 Use this filter to disable loading Kinola CSS.
 
