@@ -1,7 +1,6 @@
 # Composer
 composer.phar
 node_modules/
-vendor/
 
 # Numerous always-ignore extensions
 *.diff

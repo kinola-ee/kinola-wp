@@ -5,7 +5,7 @@ namespace Kinola\KinolaWp;
 class Helpers {
 
     public static function get_language(): string {
-        return apply_filters( 'kinola/language', 'en' );
+        return apply_filters( 'kinola/language', self::get_language_from_locale( get_locale() ) );
     }
 
     public static function get_assets_url( string $path ): string {
@@ -41,5 +41,17 @@ class Helpers {
         $date_time->setTimezone( new \DateTimeZone( wp_timezone_string() ) );
 
         return $date_time;
+    }
+
+    public static function get_language_from_locale( string $locale ) {
+        if ( stristr( $locale, '_' ) !== false ) {
+            return explode( '_', $locale )[0];
+        }
+
+        if ( stristr( $locale, '-' ) !== false ) {
+            return explode( '-', $locale )[0];
+        }
+
+        return $locale;
     }
 }

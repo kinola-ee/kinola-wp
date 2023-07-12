@@ -13,6 +13,7 @@ class Bootstrap {
         add_action( 'init', [ $this, 'register_location_taxonomy' ], 1 );
         add_action( 'init', [ $this, 'register_endpoints' ] );
         add_action( 'init', [ $this, 'register_shortcodes' ] );
+
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
         add_action( 'template_include', [ $this, 'override_checkout_template' ] );
         add_filter( 'the_content', [ $this, 'override_single_film_content' ] );
@@ -124,11 +125,11 @@ class Bootstrap {
     }
 
     public function enqueue_scripts() {
-        if (apply_filters('kinola/assets/css', true)) {
+        if ( apply_filters( 'kinola/assets/css', true ) ) {
             wp_enqueue_style( 'kinola', Helpers::get_assets_url( 'styles/kinola.css' ), [], 11 );
         }
 
-        if (is_singular(Helpers::get_films_post_type()) && apply_filters('kinola/assets/photoswipe', true)) {
+        if ( is_singular( Helpers::get_films_post_type() ) && apply_filters( 'kinola/assets/photoswipe', true ) ) {
             wp_enqueue_style( 'kinola-photoswipe', Helpers::get_assets_url( 'styles/photoswipe/photoswipe.css' ), [], 11 );
         }
 
@@ -157,7 +158,7 @@ class Bootstrap {
         global $post;
 
         if ( is_singular( Helpers::get_films_post_type() ) ) {
-            return ( new SingleFilm( new Film($post) ) )->get_rendered_content();
+            return ( new SingleFilm( new Film( $post ) ) )->get_rendered_content();
         }
 
         return $content;
