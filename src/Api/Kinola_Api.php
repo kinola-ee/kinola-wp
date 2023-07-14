@@ -7,7 +7,11 @@ use Kinola\KinolaWp\Api\Exceptions\EmptyResponseException;
 use Kinola\KinolaWp\Api\Exceptions\JsonDecodeException;
 
 class Kinola_Api {
+
+    // Public API for productions, events, etc
 	public const API_PATH = 'api/public/v1';
+
+    // Checkout
 	public const PLUGIN_API_PATH = 'api/plugin/v1';
 
 	/**
@@ -42,7 +46,7 @@ class Kinola_Api {
 	}
 
 	public static function build_url( string $endpoint ): string {
-		return trailingslashit(self::get_api_base_url()) . $endpoint;
+		return trailingslashit(self::get_api_base_url()) . $endpoint. '?lang=all';
 	}
 
 	public static function get_api_base_url(): string {

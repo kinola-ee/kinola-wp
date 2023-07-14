@@ -9,6 +9,15 @@ class Film extends Model {
 
     public const FIELD_ID = 'film_id';
 
+    protected array $translatable = [
+        'title',
+        'description',
+        'countries',
+        'languages',
+        'subtitles',
+        'genres',
+    ];
+
     protected array $events;
 
     public function get_import_link(): string {

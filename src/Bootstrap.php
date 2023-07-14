@@ -18,6 +18,8 @@ class Bootstrap {
         add_action( 'template_include', [ $this, 'override_checkout_template' ] );
         add_filter( 'the_content', [ $this, 'override_single_film_content' ] );
 
+        add_filter( 'the_title', [ $this, 'translate_post_title' ], 10, 2 );
+
         $scheduler = new Scheduler();
         $scheduler->schedule_events();
     }
@@ -162,5 +164,17 @@ class Bootstrap {
         }
 
         return $content;
+    }
+
+    public function translate_post_title( string $title, int $post_id ) {
+        $post = get_post($post_id);
+
+        if ($post->post_type !== Helpers::get_films_post_type()) {
+            return $title;
+        }
+
+        $film = new Film($post);
+
+        return $film->get_field('title');
     }
 }

@@ -6,6 +6,8 @@ abstract class Model {
 
     protected ?\WP_Post $post = null;
 
+    protected array $translatable = [];
+
     public function __construct( \WP_Post $post ) {
         $this->post = $post;
     }
@@ -19,7 +21,21 @@ abstract class Model {
     }
 
     public function get_field( string $name, bool $compact = true ) {
-        $value = get_post_meta( $this->post->ID, $name, true );
+        $value = get_post_meta(
+            $this->post->ID,
+            $name,
+            true
+        );
+
+        // The first level array of these elements should be $language => $value
+        if (in_array($name, $this->translatable)) {
+            if (isset($value[Helpers::get_language()])) {
+                $value = $value[Helpers::get_language()];
+            } else {
+                $value = '';
+                trigger_error("Model post meta {$name} does not have a translation in the current language.", E_USER_WARNING);
+            }
+        }
 
         if ( is_array( $value ) && $compact ) {
             // Check if the given array is multidimensional - if yes, do not flatten it
@@ -27,7 +43,7 @@ abstract class Model {
                 return implode( ', ', $value );
             }
 
-            if (empty($value)) {
+            if ( empty( $value ) ) {
                 return '';
             }
         }
@@ -48,6 +64,10 @@ abstract class Model {
     }
 
     public function set_field( string $field, $value ) {
-        update_post_meta( $this->post->ID, $field, $value );
+        update_post_meta(
+            $this->post->ID,
+            $field,
+            $value
+        );
     }
 }
