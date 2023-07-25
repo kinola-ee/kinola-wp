@@ -36,7 +36,7 @@ class Film_Importer {
 	 */
 	protected function get_films_data( $url = null ) {
 		try {
-			$response = Kinola_Api::get( $url ?: $this->films_endpoint );
+			$response = Kinola_Api::get( $url ?: $this->films_endpoint, false );
 		} catch ( ApiException $e ) {
 			echo $e->getMessage();
 			die;

@@ -18,11 +18,11 @@ class Kinola_Api {
 	 * This function accepts either an endpoint (which is used to build the full URL)
 	 * or a full URL (which is used directly without modifications).
 	 */
-	public static function get( string $endpoint_or_url ): Response {
+	public static function get( string $endpoint_or_url, bool $with_translations = true ): Response {
 		if ( filter_var( $endpoint_or_url, FILTER_VALIDATE_URL ) ) {
 			$full_url = $endpoint_or_url;
 		} else {
-			$full_url = self::build_url( $endpoint_or_url );
+			$full_url = self::build_url( $endpoint_or_url, $with_translations );
 		}
 
 		$result = wp_remote_get( $full_url, [ 'timeout' => 10 ] );
@@ -45,8 +45,18 @@ class Kinola_Api {
 		return new Response( $response_data );
 	}
 
-	public static function build_url( string $endpoint ): string {
-		return trailingslashit(self::get_api_base_url()) . $endpoint. '?lang=all';
+	public static function build_url( string $endpoint, bool $with_translations = true ): string {
+        $url = trailingslashit(self::get_api_base_url()) . $endpoint;
+
+        if ($with_translations) {
+            if (stristr($url, '?') === false) {
+                $url .= '?lang=all';
+            } else {
+                $url .= '&lang=all';
+            }
+        }
+
+		return $url;
 	}
 
 	public static function get_api_base_url(): string {

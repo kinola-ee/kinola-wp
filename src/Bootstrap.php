@@ -175,6 +175,12 @@ class Bootstrap {
 
         $film = new Film($post);
 
-        return $film->get_field('title');
+        $translated_title = $film->get_field('title');
+
+        if ($translated_title) {
+            return $translated_title;
+        }
+
+        return $title;
     }
 }

@@ -14,7 +14,7 @@ class Event_Importer {
 
     public function import() {
         try {
-            $response = Kinola_Api::get( $this->get_endpoint() );
+            $response = Kinola_Api::get( $this->get_endpoint(), false );
         } catch ( ApiException $e ) {
             echo $e->getMessage();
             die;
@@ -36,7 +36,7 @@ class Event_Importer {
         if ( ! $event ) {
             $event = Event::create( $api_event );
         } else {
-            $event->set_title( $api_event->get_field( 'production_title' ), $api_event->get_field( 'time' ) );
+            $event->set_title( $api_event->get_field( 'post_title' ), $api_event->get_field( 'time' ) );
             $event->save_api_data( $api_event );
         }
 

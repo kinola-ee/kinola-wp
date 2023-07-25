@@ -2,24 +2,10 @@
 
 namespace Kinola\KinolaWp\Api;
 
-class Film {
-
-    protected array $data = [];
-
-    public function __construct( array $data ) {
-        $this->data = $this->reformat( $data );
-    }
-
-    public function get_data(): array {
-        return $this->data;
-    }
+class Film extends Api_Model {
 
     public function get_id() {
-        return $this->data[ \Kinola\KinolaWp\Film::FIELD_ID ];
-    }
-
-    public function get_field( string $field ) {
-        return $this->data[ $field ] ?? null;
+        return $this->get_field( \Kinola\KinolaWp\Film::FIELD_ID );
     }
 
     protected function reformat( array $data ): array {
@@ -36,6 +22,7 @@ class Film {
 
         $data[ \Kinola\KinolaWp\Film::FIELD_ID ] = $data['id'];
         $data['poster']                          = $data['image']['srcset'] ?? null;
+        $data['post_title']                      = $this->resolve_post_title( $data['name'] );
         $data['title']                           = $data['name'];
         $data['title_original']                  = $data['originalName'];
         $data['release_date']                    = $data['releaseDate'];

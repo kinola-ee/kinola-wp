@@ -2,24 +2,10 @@
 
 namespace Kinola\KinolaWp\Api;
 
-class Event {
-
-    protected array $data = [];
-
-    public function __construct( array $data ) {
-        $this->data = $this->reformat( $data );
-    }
-
-    public function get_data(): array {
-        return $this->data;
-    }
+class Event extends Api_Model {
 
     public function get_id() {
         return $this->get_field( \Kinola\KinolaWp\Event::FIELD_ID );
-    }
-
-    public function get_field( string $field ) {
-        return $this->data[ $field ] ?? null;
     }
 
     protected function reformat( array $data ): array {
@@ -33,6 +19,7 @@ class Event {
 
         $data[ \Kinola\KinolaWp\Event::FIELD_ID ] = $data['id'];
         $data[ \Kinola\KinolaWp\Film::FIELD_ID ]  = $data['production']['id'] ?? null;
+        $data['post_title']                       = $this->resolve_post_title( $data['name'] );
         $data['production_title']                 = $data['production']['name'] ?? null;
         $data['production_poster']                = $data['production']['image']['srcset'] ?? null;
         $data['venue']                            = $data['venue']['name'] ?? null;
