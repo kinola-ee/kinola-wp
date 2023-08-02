@@ -109,8 +109,10 @@ class Event extends Model {
     }
 
     public static function create( ApiEvent $api_event ): Event {
+        $title = $api_event->get_field( 'production_title' ) ?: '';
+
         $post = wp_insert_post( [
-            'post_title'  => self::format_title( $api_event->get_field( 'production_title' ), $api_event->get_field( 'time' ) ),
+            'post_title'  => self::format_title( $title, $api_event->get_field( 'time' ) ),
             'post_status' => 'publish',
             'post_type'   => Helpers::get_events_post_type(),
         ] );
