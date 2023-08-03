@@ -50,6 +50,7 @@ class Checkout {
             'contact_email_card_mismatch'  => __( 'The e-mail address you entered does not match the e-mail address on your card', 'kinola' ),
             'contact_phone'                => __( 'phone', 'kinola' ),
             'contact_newsletter'           => __( 'Sign up to our newsletter', 'kinola' ),
+            'terms'                        => __( 'By buying I agree with terms and conditions.', 'kinola' ),
             'banks_title'                  => __( 'Choose payment', 'kinola' ),
             'banks_paymentFailed'          => __( 'Your payment was not successful. Please try again.', 'kinola' ),
             'banks_required'               => __( 'Please choose your payment method.', 'kinola' ),

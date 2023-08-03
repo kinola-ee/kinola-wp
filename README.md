@@ -26,7 +26,10 @@ Note: Once the plugin is more or less "done," it will be uploaded to the officia
 
 4. Ensure your WP site's time and date formats and time zones are set properly.
 
-5. (Optional) Add constant to display newsletter checkbox in checkout:  
+5. (Recommended) In your wp-config.php, add link to terms and conditions:  
+`define( 'KINOLA_TERMS_LINK', 'https://[YOUR_URL_HERE]' );`  
+
+6. (Optional) In your wp-config.php, add constant to display newsletter checkbox in checkout:  
 `define( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX', true );`  
 
 ### Using the plugin

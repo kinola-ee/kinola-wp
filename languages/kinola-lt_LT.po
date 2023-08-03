@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
-"POT-Creation-Date: 2023-08-03T13:33:08+00:00\n"
-"PO-Revision-Date: 2023-08-03 16:34+0300\n"
+"POT-Creation-Date: 2023-08-03T18:33:16+00:00\n"
+"PO-Revision-Date: 2023-08-03 21:33+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt_LT\n"
@@ -266,74 +266,78 @@ msgid "Sign up to our newsletter"
 msgstr "Gauti kino teatro naujienlaiškį"
 
 #: src/Checkout.php:53
+msgid "By buying I agree with terms and conditions."
+msgstr "Pirkdamas sutinku su taisyklėmis ir privatumo politika."
+
+#: src/Checkout.php:54
 msgid "Choose payment"
 msgstr "Pasirinkite mokėjimą"
 
-#: src/Checkout.php:54
+#: src/Checkout.php:55
 msgid "Your payment was not successful. Please try again."
 msgstr "Jūsų mokėjimas nebuvo sėkmingas. Prašau, pabandykite dar kartą."
 
-#: src/Checkout.php:55
+#: src/Checkout.php:56
 msgid "Please choose your payment method."
 msgstr "Pasirinkite mokėjimo būdą."
 
-#: src/Checkout.php:56
+#: src/Checkout.php:57
 msgid "Register"
 msgstr "Registruotis"
 
-#: src/Checkout.php:57
+#: src/Checkout.php:58
 msgid "Pay"
 msgstr "Mokėti"
 
-#: src/Checkout.php:58
+#: src/Checkout.php:59
 msgid "Schedule"
 msgstr "Tvarkaraštis"
 
-#: src/Checkout.php:59
+#: src/Checkout.php:60
 msgid "Ticket purchase successful!"
 msgstr "Bilietas nupirktas!"
 
-#: src/Checkout.php:60
+#: src/Checkout.php:61
 msgid "Seats"
 msgstr "Vietos"
 
-#: src/Checkout.php:61
+#: src/Checkout.php:62
 msgid "Tickets"
 msgstr "Bilietai"
 
-#: src/Checkout.php:62
+#: src/Checkout.php:63
 msgid "Buy more tickets"
 msgstr "Pirkite daugiau bilietų"
 
-#: src/Checkout.php:63
+#: src/Checkout.php:64
 msgid "Sold out"
 msgstr "Išparduota!"
 
-#: src/Checkout.php:64
+#: src/Checkout.php:65
 msgid "Sorry, all tickets have been sold out."
 msgstr "Atsiprašome, visi bilietai išparduoti."
 
-#: src/Checkout.php:65
+#: src/Checkout.php:66
 msgid "Sorry, tickets are temporarily unavailable."
 msgstr "Atsiprašome, bilietai laikinai nepasiekiami."
 
-#: src/Checkout.php:66
+#: src/Checkout.php:67
 msgid "Payment pending"
 msgstr "Laukiama apmokėjimo"
 
-#: src/Checkout.php:67
+#: src/Checkout.php:68
 msgid "Please complete your payment."
 msgstr "Užbaikite mokėjimą."
 
-#: src/Checkout.php:70
+#: src/Checkout.php:71
 msgid "You can ask for your tickets from the cashier."
 msgstr "Bilietus galite gauti ir kasoje."
 
-#: src/Checkout.php:71
+#: src/Checkout.php:72
 msgid "You can also download your tickets here:"
 msgstr "Taip pat, galite atsisiųsti savo bilietą čia:"
 
-#: src/Checkout.php:72
+#: src/Checkout.php:73
 msgid "Download tickets"
 msgstr "Atsisiųsti bilietą"
 

@@ -33,7 +33,11 @@
         scheduleUrl: '<?php echo get_home_url(); ?>',
         hasNewsletterCheckbox: <?php echo constant('KINOLA_SHOW_NEWSLETTER_CHECKBOX') ? 'true' : 'false'; ?>,
         selectedLang: '<?php echo \Kinola\KinolaWp\Helpers::get_language(); ?>',
-        strings: <?php echo json_encode(\Kinola\KinolaWp\Checkout::get_strings()); ?>
+        strings: <?php echo json_encode(\Kinola\KinolaWp\Checkout::get_strings()); ?>,
+
+        <?php if (constant('KINOLA_TERMS_LINK')): ?>
+            termsLink: '<?php echo KINOLA_TERMS_LINK; ?>',
+        <?php endif; ?>
     })
 </script>
 </body>

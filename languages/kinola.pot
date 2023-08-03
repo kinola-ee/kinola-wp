@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-03T13:33:08+00:00\n"
+"POT-Creation-Date: 2023-08-03T18:33:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: kinola\n"
@@ -259,74 +259,78 @@ msgid "Sign up to our newsletter"
 msgstr ""
 
 #: src/Checkout.php:53
-msgid "Choose payment"
+msgid "By buying I agree with terms and conditions."
 msgstr ""
 
 #: src/Checkout.php:54
-msgid "Your payment was not successful. Please try again."
+msgid "Choose payment"
 msgstr ""
 
 #: src/Checkout.php:55
-msgid "Please choose your payment method."
+msgid "Your payment was not successful. Please try again."
 msgstr ""
 
 #: src/Checkout.php:56
-msgid "Register"
+msgid "Please choose your payment method."
 msgstr ""
 
 #: src/Checkout.php:57
-msgid "Pay"
+msgid "Register"
 msgstr ""
 
 #: src/Checkout.php:58
-msgid "Schedule"
+msgid "Pay"
 msgstr ""
 
 #: src/Checkout.php:59
-msgid "Ticket purchase successful!"
+msgid "Schedule"
 msgstr ""
 
 #: src/Checkout.php:60
-msgid "Seats"
+msgid "Ticket purchase successful!"
 msgstr ""
 
 #: src/Checkout.php:61
-msgid "Tickets"
+msgid "Seats"
 msgstr ""
 
 #: src/Checkout.php:62
-msgid "Buy more tickets"
+msgid "Tickets"
 msgstr ""
 
 #: src/Checkout.php:63
-msgid "Sold out"
+msgid "Buy more tickets"
 msgstr ""
 
 #: src/Checkout.php:64
-msgid "Sorry, all tickets have been sold out."
+msgid "Sold out"
 msgstr ""
 
 #: src/Checkout.php:65
-msgid "Sorry, tickets are temporarily unavailable."
+msgid "Sorry, all tickets have been sold out."
 msgstr ""
 
 #: src/Checkout.php:66
-msgid "Payment pending"
+msgid "Sorry, tickets are temporarily unavailable."
 msgstr ""
 
 #: src/Checkout.php:67
+msgid "Payment pending"
+msgstr ""
+
+#: src/Checkout.php:68
 msgid "Please complete your payment."
 msgstr ""
 
-#: src/Checkout.php:70
+#: src/Checkout.php:71
 msgid "You can ask for your tickets from the cashier."
 msgstr ""
 
-#: src/Checkout.php:71
+#: src/Checkout.php:72
 msgid "You can also download your tickets here:"
 msgstr ""
 
-#: src/Checkout.php:72
+#: src/Checkout.php:73
 msgid "Download tickets"
 msgstr ""
 
