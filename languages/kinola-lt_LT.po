@@ -4,14 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2023-08-03T13:33:08+00:00\n"
+"PO-Revision-Date: 2023-08-03 16:34+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: lt_LT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-03T13:33:08+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Domain: kinola\n"
 
 #. Plugin Name of the plugin
@@ -58,7 +59,9 @@ msgstr ""
 
 #: kinola.php:59
 msgctxt "Admin"
-msgid "You must define KINOLA_URL in your wp-config file, e.g. <em>https://YOUR_SITE.kinola.ee</em>"
+msgid ""
+"You must define KINOLA_URL in your wp-config file, e.g. <em>https://"
+"YOUR_SITE.kinola.ee</em>"
 msgstr ""
 
 #: kinola.php:60
@@ -68,7 +71,9 @@ msgstr ""
 
 #: kinola.php:69
 msgctxt "Admin"
-msgid "You appear to be running a development version of Kinola. You must run <code>composer install</code> from the plugin directory."
+msgid ""
+"You appear to be running a development version of Kinola. You must run "
+"<code>composer install</code> from the plugin directory."
 msgstr ""
 
 #: kinola.php:74
@@ -81,62 +86,58 @@ msgctxt "Admin"
 msgid "Import from Kinola"
 msgstr ""
 
-#: src/Admin/Admin.php:80
-#: src/Admin/Admin.php:81
+#: src/Admin/Admin.php:80 src/Admin/Admin.php:81
 msgctxt "Admin"
 msgid "Import films"
-msgstr ""
+msgstr "Importuoti filmus"
 
 #: src/Admin/Admin_Messenger.php:38
 msgctxt "Admin"
 msgid "Film data imported successfully!"
-msgstr ""
+msgstr "Filmo duomenys sėkmingai importuoti!"
 
 #: src/Admin/Admin_Messenger.php:47
 msgctxt "Admin"
 msgid "All future events imported successfully!"
-msgstr ""
+msgstr "Visi būsimi seansai sėkmingai importuoti!"
 
-#: src/Admin/Film_Importer_List_Table.php:19
-#: src/Bootstrap.php:29
+#: src/Admin/Film_Importer_List_Table.php:19 src/Bootstrap.php:29
 #: src/Bootstrap.php:53
 msgid "Film"
-msgstr ""
+msgstr "Filmas"
 
-#: src/Admin/Film_Importer_List_Table.php:20
-#: src/Bootstrap.php:52
+#: src/Admin/Film_Importer_List_Table.php:20 src/Bootstrap.php:52
 msgid "Films"
-msgstr ""
+msgstr "Filmai"
 
 #: src/Admin/Film_Importer_List_Table.php:27
 #: templates/admin/edit-film-meta-box.php:12
 msgctxt "Admin"
 msgid "Title"
-msgstr ""
+msgstr "Pavadinimas"
 
 #: src/Admin/Film_Importer_List_Table.php:28
 #: templates/admin/edit-film-meta-box.php:21
 msgctxt "Admin"
 msgid "Original title"
-msgstr ""
+msgstr "Originalus pavadinimas"
 
 #: src/Admin/Film_Importer_List_Table.php:29
 msgctxt "Admin"
 msgid "Actions"
-msgstr ""
+msgstr "Veiksmai"
 
 #: src/Admin/Film_Importer_List_Table.php:38
 msgctxt "Admin"
 msgid "Import"
-msgstr ""
+msgstr "Importuoti"
 
 #: src/Bootstrap.php:54
 msgctxt "Admin"
 msgid "Films"
-msgstr ""
+msgstr "Filmai"
 
-#: src/Bootstrap.php:61
-#: src/Bootstrap.php:85
+#: src/Bootstrap.php:61 src/Bootstrap.php:85
 msgid "Event"
 msgstr ""
 
@@ -149,26 +150,25 @@ msgctxt "Admin"
 msgid "Events"
 msgstr ""
 
-#: src/Bootstrap.php:97
-#: src/Bootstrap.php:99
+#: src/Bootstrap.php:97 src/Bootstrap.php:99
 msgid "Venues"
-msgstr ""
+msgstr "Miestai"
 
 #: src/Bootstrap.php:98
 msgid "Venue"
-msgstr ""
+msgstr "Miestas"
 
 #: src/Checkout.php:28
 msgid "Session expires in:"
-msgstr ""
+msgstr "Sesija baigiasi:"
 
 #: src/Checkout.php:29
 msgid "Session expired"
-msgstr ""
+msgstr "Sesija baigėsi"
 
 #: src/Checkout.php:30
 msgid "Screen"
-msgstr ""
+msgstr "Sesija"
 
 #: src/Checkout.php:31
 msgid "entrance"
@@ -188,254 +188,260 @@ msgstr ""
 
 #: src/Checkout.php:35
 msgid "Free seats"
-msgstr ""
+msgstr "Laisvos vieto"
 
 #: src/Checkout.php:36
 msgid "Choose tickets"
-msgstr ""
+msgstr "Pasirinkite bilietus"
 
 #: src/Checkout.php:37
 msgid "Sorry, the maximum number of tickets is limited"
-msgstr ""
+msgstr "Atsiprašome, maksimalus bilietų skaičius ribotas"
 
 #: src/Checkout.php:38
 msgid "Total"
-msgstr ""
+msgstr "Viso"
 
 #: src/Checkout.php:39
 msgid "Client card and gift cards"
-msgstr ""
+msgstr "Kliento kortelė ir dovanų kortelės"
 
 #: src/Checkout.php:40
 msgid "Client card or gift card number"
-msgstr ""
+msgstr "Kliento kortelės arba dovanų kortelės numeris"
 
 #: src/Checkout.php:41
 msgid "Confirm number"
-msgstr ""
+msgstr "Patvirtinkite numerį"
 
 #: src/Checkout.php:42
 msgid "We couldn't find a card with this number"
-msgstr ""
+msgstr "Nepavyko rasti kortelės su šiuo numeriu"
 
 #: src/Checkout.php:43
 msgid "This card has already been added to this session"
-msgstr ""
+msgstr "Ši kortelė jau pridėta prie šios sesijos"
 
 #: src/Checkout.php:44
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktai"
 
 #: src/Checkout.php:45
-msgid "We'll use your contact info to e-mail you your tickets and contact you in the case of unexpected changes to the screening."
+msgid ""
+"We'll use your contact info to e-mail you your tickets and contact you in "
+"the case of unexpected changes to the screening."
 msgstr ""
+"Naudosime jūsų kontaktinę informaciją, kad atsiųstume jums bilietus el. "
+"paštu ir susisieksime su jumis netikėtų peržiūros pakeitimų atveju."
 
 #: src/Checkout.php:46
 msgid "name"
-msgstr ""
+msgstr "vardas"
 
 #: src/Checkout.php:47
 msgid "Please enter your name"
-msgstr ""
+msgstr "Įveskite savo vardą"
 
 #: src/Checkout.php:48
 msgid "e-mail"
-msgstr ""
+msgstr "el. paštas"
 
 #: src/Checkout.php:49
 msgid "Please enter a valid e-mail address"
-msgstr ""
+msgstr "Prašome įvesti galiojantį elektroninio pašto adresą"
 
 #: src/Checkout.php:50
-msgid "The e-mail address you entered does not match the e-mail address on your card"
+msgid ""
+"The e-mail address you entered does not match the e-mail address on your card"
 msgstr ""
+"Jūsų įvestas el. pašto adresas nesutampa su kortelėje esančiu el. pašto "
+"adresu"
 
 #: src/Checkout.php:51
 msgid "phone"
-msgstr ""
+msgstr "telefonas"
 
 #: src/Checkout.php:52
 msgid "Sign up to our newsletter"
-msgstr ""
+msgstr "Gauti kino teatro naujienlaiškį"
 
 #: src/Checkout.php:53
 msgid "Choose payment"
-msgstr ""
+msgstr "Pasirinkite mokėjimą"
 
 #: src/Checkout.php:54
 msgid "Your payment was not successful. Please try again."
-msgstr ""
+msgstr "Jūsų mokėjimas nebuvo sėkmingas. Prašau, pabandykite dar kartą."
 
 #: src/Checkout.php:55
 msgid "Please choose your payment method."
-msgstr ""
+msgstr "Pasirinkite mokėjimo būdą."
 
 #: src/Checkout.php:56
 msgid "Register"
-msgstr ""
+msgstr "Registruotis"
 
 #: src/Checkout.php:57
 msgid "Pay"
-msgstr ""
+msgstr "Mokėti"
 
 #: src/Checkout.php:58
 msgid "Schedule"
-msgstr ""
+msgstr "Tvarkaraštis"
 
 #: src/Checkout.php:59
 msgid "Ticket purchase successful!"
-msgstr ""
+msgstr "Bilietas nupirktas!"
 
 #: src/Checkout.php:60
 msgid "Seats"
-msgstr ""
+msgstr "Vietos"
 
 #: src/Checkout.php:61
 msgid "Tickets"
-msgstr ""
+msgstr "Bilietai"
 
 #: src/Checkout.php:62
 msgid "Buy more tickets"
-msgstr ""
+msgstr "Pirkite daugiau bilietų"
 
 #: src/Checkout.php:63
 msgid "Sold out"
-msgstr ""
+msgstr "Išparduota!"
 
 #: src/Checkout.php:64
 msgid "Sorry, all tickets have been sold out."
-msgstr ""
+msgstr "Atsiprašome, visi bilietai išparduoti."
 
 #: src/Checkout.php:65
 msgid "Sorry, tickets are temporarily unavailable."
-msgstr ""
+msgstr "Atsiprašome, bilietai laikinai nepasiekiami."
 
 #: src/Checkout.php:66
 msgid "Payment pending"
-msgstr ""
+msgstr "Laukiama apmokėjimo"
 
 #: src/Checkout.php:67
 msgid "Please complete your payment."
-msgstr ""
+msgstr "Užbaikite mokėjimą."
 
 #: src/Checkout.php:70
 msgid "You can ask for your tickets from the cashier."
-msgstr ""
+msgstr "Bilietus galite gauti ir kasoje."
 
 #: src/Checkout.php:71
 msgid "You can also download your tickets here:"
-msgstr ""
+msgstr "Taip pat, galite atsisiųsti savo bilietą čia:"
 
 #: src/Checkout.php:72
 msgid "Download tickets"
-msgstr ""
+msgstr "Atsisiųsti bilietą"
 
-#: src/Filter.php:22
-#: src/Filter.php:33
-#: src/Filter.php:54
-#: src/Filter.php:68
+#: src/Filter.php:22 src/Filter.php:33 src/Filter.php:54 src/Filter.php:68
 msgid "all"
 msgstr ""
 
 #: src/Filter.php:22
 msgid "All dates"
-msgstr ""
+msgstr "Visos datos"
 
 #: src/Filter.php:33
 msgid "All venues"
-msgstr ""
+msgstr "Visi miestai"
 
 #: src/Scheduler.php:21
 msgctxt "Admin"
 msgid "Every 15 minutes"
-msgstr ""
+msgstr "Kas 15 minučių"
 
 #: templates/admin/edit-event-meta-box.php:12
 msgctxt "Admin"
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: templates/admin/edit-event-meta-box.php:20
 msgctxt "Admin"
 msgid "Time"
-msgstr ""
+msgstr "Laikas"
 
 #: templates/admin/edit-event-meta-box.php:28
 msgctxt "Admin"
 msgid "Venue"
-msgstr ""
+msgstr "Miestas"
 
 #: templates/admin/edit-event-meta-box.php:36
 msgctxt "Admin"
 msgid "Room"
-msgstr ""
+msgstr "Kambarys"
 
 #: templates/admin/edit-event-meta-box.php:44
 msgctxt "Admin"
 msgid "Program"
-msgstr ""
+msgstr "Programa"
 
 #: templates/admin/edit-event-meta-box.php:52
 #: templates/admin/edit-film-meta-box.php:61
 msgctxt "Admin"
 msgid "Languages"
-msgstr ""
+msgstr "Kalbos"
 
 #: templates/admin/edit-event-meta-box.php:60
 #: templates/admin/edit-film-meta-box.php:69
 msgctxt "Admin"
 msgid "Subtitles"
-msgstr ""
+msgstr "Subtitrai"
 
 #: templates/admin/edit-event-meta-box.php:74
 #: templates/admin/edit-film-meta-box.php:103
 msgctxt "Admin"
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: templates/admin/edit-event-meta-box.php:82
 msgctxt "Admin"
 msgid "Film ID"
-msgstr ""
+msgstr "Filmo ID"
 
 #: templates/admin/edit-film-meta-box.php:29
 msgctxt "Admin"
 msgid "Duration"
-msgstr ""
+msgstr "Trukmė"
 
 #: templates/admin/edit-film-meta-box.php:32
 msgctxt "Admin"
 msgid "min"
-msgstr ""
+msgstr "min"
 
 #: templates/admin/edit-film-meta-box.php:37
 msgctxt "Admin"
 msgid "Year"
-msgstr ""
+msgstr "Metai"
 
 #: templates/admin/edit-film-meta-box.php:45
 msgctxt "Admin"
 msgid "Rating"
-msgstr ""
+msgstr "Įvertinimas"
 
 #: templates/admin/edit-film-meta-box.php:53
 msgctxt "Admin"
 msgid "Distributor"
-msgstr ""
+msgstr "Platintojas"
 
-#: templates/events.php:29
-#: templates/film/screenings.php:13
+#: templates/events.php:29 templates/film/screenings.php:13
 msgid "Buy ticket"
-msgstr ""
+msgstr "Pirkti bilietą"
 
 #: templates/events.php:37
 msgid "No upcoming events!"
-msgstr ""
+msgstr "Jokių būsimų įvykių!"
 
 #: templates/film/meta.php:17
+#, fuzzy
+#| msgctxt "Admin"
+#| msgid "min"
 msgctxt "minutes"
 msgid "min"
-msgstr ""
+msgstr "min"
 
 #: templates/film/meta.php:23
 msgid "Director"
@@ -446,20 +452,28 @@ msgid "Cast"
 msgstr ""
 
 #: templates/film/meta.php:35
+#, fuzzy
+#| msgctxt "Admin"
+#| msgid "Languages"
 msgid "Language"
-msgstr ""
+msgstr "Kalbos"
 
 #: templates/film/meta.php:41
+#, fuzzy
+#| msgctxt "Admin"
+#| msgid "Subtitles"
 msgid "Subtitles"
-msgstr ""
+msgstr "Subtitrai"
 
 #: templates/film/screenings.php:4
+#, fuzzy
+#| msgid "Screen"
 msgid "Screenings"
-msgstr ""
+msgstr "Sesija"
 
 #: templates/film/screenings.php:18
 msgid "No upcoming screenings"
-msgstr ""
+msgstr "Jokių būsimų seansų"
 
 #: templates/film/trailer.php:9
 msgid "Watch trailer"
@@ -467,4 +481,4 @@ msgstr ""
 
 #: templates/films.php:27
 msgid "No films to display."
-msgstr ""
+msgstr "Nėra filmų, kuriuos būtų galima rodyti."

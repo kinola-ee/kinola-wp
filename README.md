@@ -26,6 +26,9 @@ Note: Once the plugin is more or less "done," it will be uploaded to the officia
 
 4. Ensure your WP site's time and date formats and time zones are set properly.
 
+5. (Optional) Add constant to display newsletter checkbox in checkout:  
+`define( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX', true );`  
+
 ### Using the plugin
 The plugin creates two menu items in the admin menu - Films and Events. New Film or Event posts cannot be created or edited via WordPress - they must be imported
 from Kinola instead. This way, there is a single source of truth for both. If you need to make any changes to an already imported Film or Event, the changes must be made inside Kinola and then re-imported to WordPress.
@@ -125,9 +128,6 @@ Use this action to display your own custom content before the contents of the Ch
 ### Filters
 `kinola/language`
 This filter allows you to set the site language. Use a 2-letter ISO language code, e.g. 'en' or 'et'.
-
-`kinola/checkout/show_newsletter_checkbox`
-Controls whether the sign up to newsletter checkbox in checkout is displayed or not. Default false.
 
 `kinola/assets/css`
 Use this filter to disable loading Kinola CSS.

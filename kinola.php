@@ -84,15 +84,20 @@ require_once $composer;
  * Start the plugin on plugins_loaded at priority 0.
  */
 add_action( 'plugins_loaded', function () {
-	load_plugin_textdomain(
-		'kinola',
-		false,
-		trailingslashit( KINOLA_PATH ) . 'languages/'
-	);
+    $GLOBALS['KINOLA_BOOTSTRAP'] = new \Kinola\KinolaWp\Bootstrap();
+    $GLOBALS['KINOLA_ADMIN']     = new \Kinola\KinolaWp\Admin\Admin();
+}, 0);
 
-	$GLOBALS['KINOLA_BOOTSTRAP'] = new \Kinola\KinolaWp\Bootstrap();
-	$GLOBALS['KINOLA_ADMIN']     = new \Kinola\KinolaWp\Admin\Admin();
-}, 0 );
+/**
+ * Load translations
+ */
+add_action('init', function () {
+    load_plugin_textdomain(
+        'kinola',
+        false,
+        dirname( plugin_basename( __FILE__ ) ) . '/languages'
+    );
+});
 
 /**
  * Flush permalinks on deactivate
