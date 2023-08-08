@@ -19,7 +19,6 @@ class Event extends Api_Model {
 
         $data[ \Kinola\KinolaWp\Event::FIELD_ID ] = $data['id'];
         $data[ \Kinola\KinolaWp\Film::FIELD_ID ]  = $data['production']['id'] ?? null;
-        $data['post_title']                       = $this->resolve_post_title( $data['name'] );
         $data['production_title']                 = $data['production']['name'] ?? null;
         $data['production_poster']                = $data['production']['image']['srcset'] ?? null;
         $data['venue']                            = $data['venue']['name'] ?? null;

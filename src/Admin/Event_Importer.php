@@ -31,23 +31,24 @@ class Event_Importer {
 
     protected function save_event( Api_Event $api_event ): Event {
 
+        // Check if a corresponding film exists. If not, import it.
+        $film = Film::find_by_remote_id( $api_event->get_field( Film::FIELD_ID ) );
+        if ( ! $film ) {
+            $importer = new Film_Importer();
+            $film     = $importer->import_film( $api_event->get_field( Film::FIELD_ID ) );
+            if (!$film) {
+                trigger_error("Failed to import film ID " . $api_event->get_field( Film::FIELD_ID ), E_USER_WARNING);
+            }
+        }
+
+        // Create the event
         $event = Event::find_by_remote_id( $api_event->get_id() );
 
         if ( ! $event ) {
             $event = Event::create( $api_event );
         } else {
-            $event->set_title( $api_event->get_field( 'post_title' ), $api_event->get_field( 'time' ) );
+            $event->set_title( $film->get_title(), $api_event->get_field( 'time' ) );
             $event->save_api_data( $api_event );
-        }
-
-        // Check if a corresponding film exists. If not, import it.
-        $film = Film::find_by_remote_id( $event->get_field( Film::FIELD_ID ) );
-        if ( ! $film ) {
-            $importer = new Film_Importer();
-            $film     = $importer->import_film( $event->get_field( Film::FIELD_ID ) );
-            if (!$film) {
-                trigger_error("Failed to import film ID " . $event->get_field( Film::FIELD_ID ), E_USER_WARNING);
-            }
         }
 
         // If the corresponding film is published, also publish the event.

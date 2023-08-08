@@ -166,7 +166,12 @@ class Bootstrap {
         return $content;
     }
 
-    public function translate_post_title( string $title, int $post_id ) {
+    public function translate_post_title( string $title, int $post_id = null ) {
+        
+        if (!$post_id) {
+            return $title;
+        }
+
         $post = get_post($post_id);
 
         if ($post->post_type !== Helpers::get_films_post_type()) {
