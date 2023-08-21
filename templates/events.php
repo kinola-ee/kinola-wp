@@ -22,12 +22,12 @@
                         </a>
                         <br>
                         <span class="kinola-event-location">
-                        <?php echo $event->get_venue_name(); ?>
-                    </span>
+                            <?php echo $event->get_venue_name(); ?>
+                        </span>
                         <br>
                         <span class="kinola-event-date">
-                        <?php echo $event->get_date() ?><?php echo $event->get_time(); ?>
-                    </span>
+                            <?php echo $event->get_date() . ' ' . $event->get_time(); ?>
+                        </span>
                     </p>
                     <p>
                         <a class="kinola-event-tickets-link" href="<?php echo $event->get_checkout_url(); ?>">

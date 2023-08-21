@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
 "POT-Creation-Date: 2023-08-03T18:33:16+00:00\n"
-"PO-Revision-Date: 2023-08-14 19:32+0300\n"
+"PO-Revision-Date: 2023-08-18 14:05+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt_LT\n"
@@ -204,15 +204,15 @@ msgstr "Viso"
 
 #: src/Checkout.php:39
 msgid "Client card and gift cards"
-msgstr "Kliento kortelė ir dovanų kortelės"
+msgstr "Dovanų kuponas"
 
 #: src/Checkout.php:40
 msgid "Client card or gift card number"
-msgstr "Kliento kortelės arba dovanų kortelės numeris"
+msgstr "Įveskite ddvanų kupono kodą"
 
 #: src/Checkout.php:41
 msgid "Confirm number"
-msgstr "Patvirtinkite numerį"
+msgstr "Taikyti kuponą"
 
 #: src/Checkout.php:42
 msgid "We couldn't find a card with this number"
@@ -231,12 +231,12 @@ msgid ""
 "We'll use your contact info to e-mail you your tickets and contact you in "
 "the case of unexpected changes to the screening."
 msgstr ""
-"Naudosime jūsų kontaktinę informaciją, kad atsiųstume jums bilietus el. "
-"paštu ir susisieksime su jumis netikėtų peržiūros pakeitimų atveju."
+"Jūsų kontaktinė informacija bus naudojama siunčiant bilietus el. paštu, taip "
+"pat esant poreikiui informuoti apie netikėtus peržiūros pakeitimus."
 
 #: src/Checkout.php:46
 msgid "name"
-msgstr "vardas"
+msgstr "Vardas"
 
 #: src/Checkout.php:47
 msgid "Please enter your name"
@@ -244,7 +244,7 @@ msgstr "Įveskite savo vardą"
 
 #: src/Checkout.php:48
 msgid "e-mail"
-msgstr "el. paštas"
+msgstr "El. paštas"
 
 #: src/Checkout.php:49
 msgid "Please enter a valid e-mail address"
@@ -259,7 +259,7 @@ msgstr ""
 
 #: src/Checkout.php:51
 msgid "phone"
-msgstr "telefonas"
+msgstr "Telefono nr."
 
 #: src/Checkout.php:52
 msgid "Sign up to our newsletter"
@@ -267,7 +267,7 @@ msgstr "Gauti kino teatro naujienlaiškį"
 
 #: src/Checkout.php:53
 msgid "By buying I agree with terms and conditions."
-msgstr "Pirkdamas sutinku su taisyklėmis ir privatumo politika."
+msgstr "Sutinku gauti Hexa Cinema naujienlaiškį."
 
 #: src/Checkout.php:54
 msgid "Choose payment"
@@ -287,7 +287,7 @@ msgstr "Registruotis"
 
 #: src/Checkout.php:58
 msgid "Pay"
-msgstr "Mokėti"
+msgstr "Apmokėti"
 
 #: src/Checkout.php:59
 msgid "Schedule"
@@ -295,7 +295,7 @@ msgstr "Tvarkaraštis"
 
 #: src/Checkout.php:60
 msgid "Ticket purchase successful!"
-msgstr "Bilietas nupirktas!"
+msgstr "Jūsų užsakymas patvirtintas!"
 
 #: src/Checkout.php:61
 msgid "Seats"
@@ -335,7 +335,7 @@ msgstr "Bilietus galite gauti ir kasoje."
 
 #: src/Checkout.php:72
 msgid "You can also download your tickets here:"
-msgstr "Taip pat, galite atsisiųsti savo bilietą čia:"
+msgstr "E. bilietą galite atsisiųsti paspaudę žemiau esančią nuorodą."
 
 #: src/Checkout.php:73
 msgid "Download tickets"

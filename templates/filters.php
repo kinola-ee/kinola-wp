@@ -4,7 +4,7 @@
  */
 ?>
 
-<div>
+<div class="kinola-filters">
     <form>
         <select class="js-kinola-date-filter" onchange="this.form.submit()"
                 name="<?php echo \Kinola\KinolaWp\Helpers::get_date_parameter_slug(); ?>">
