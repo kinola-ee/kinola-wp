@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
-"POT-Creation-Date: 2023-08-03T18:33:16+00:00\n"
-"PO-Revision-Date: 2023-08-18 14:05+0300\n"
+"POT-Creation-Date: 2023-08-31T17:26:05+03:00\n"
+"PO-Revision-Date: 2023-08-31 17:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt_LT\n"
@@ -341,15 +341,20 @@ msgstr "E. bilietą galite atsisiųsti paspaudę žemiau esančią nuorodą."
 msgid "Download tickets"
 msgstr "Atsisiųsti bilietą"
 
-#: src/Filter.php:22 src/Filter.php:33 src/Filter.php:54 src/Filter.php:68
+#: src/Filter.php:24 src/Filter.php:44 src/Filter.php:48 src/Filter.php:69
+#: src/Filter.php:83 src/Filter.php:97
 msgid "all"
 msgstr ""
 
-#: src/Filter.php:22
+#: src/Filter.php:24
 msgid "All dates"
 msgstr "Visos datos"
 
-#: src/Filter.php:33
+#: src/Filter.php:44
+msgid "All times"
+msgstr "Pasirinkite laiką"
+
+#: src/Filter.php:48
 msgid "All venues"
 msgstr "Visi miestai"
 
@@ -359,52 +364,58 @@ msgid "Every 15 minutes"
 msgstr "Kas 15 minučių"
 
 #: templates/admin/edit-event-meta-box.php:12
+#, fuzzy
+#| msgid "Film"
+msgctxt "Admin"
+msgid "Film"
+msgstr "Filmas"
+
+#: templates/admin/edit-event-meta-box.php:22
 msgctxt "Admin"
 msgid "Date"
 msgstr "Data"
 
-#: templates/admin/edit-event-meta-box.php:20
+#: templates/admin/edit-event-meta-box.php:30
 msgctxt "Admin"
 msgid "Time"
 msgstr "Laikas"
 
-#: templates/admin/edit-event-meta-box.php:28
+#: templates/admin/edit-event-meta-box.php:38
 msgctxt "Admin"
 msgid "Venue"
 msgstr "Miestas"
 
-#: templates/admin/edit-event-meta-box.php:36
+#: templates/admin/edit-event-meta-box.php:46
 msgctxt "Admin"
 msgid "Room"
 msgstr "Kambarys"
 
-#: templates/admin/edit-event-meta-box.php:44
+#: templates/admin/edit-event-meta-box.php:54
 msgctxt "Admin"
 msgid "Program"
 msgstr "Programa"
 
-#: templates/admin/edit-event-meta-box.php:52
+#: templates/admin/edit-event-meta-box.php:63
 #: templates/admin/edit-film-meta-box.php:61
 msgctxt "Admin"
 msgid "Languages"
 msgstr "Kalbos"
 
-#: templates/admin/edit-event-meta-box.php:60
+#: templates/admin/edit-event-meta-box.php:71
 #: templates/admin/edit-film-meta-box.php:69
 msgctxt "Admin"
 msgid "Subtitles"
 msgstr "Subtitrai"
 
-#: templates/admin/edit-event-meta-box.php:74
-#: templates/admin/edit-film-meta-box.php:103
+#: templates/admin/edit-event-meta-box.php:86
 msgctxt "Admin"
-msgid "ID"
-msgstr "ID"
+msgid "Event ID in Kinola"
+msgstr ""
 
-#: templates/admin/edit-event-meta-box.php:82
+#: templates/admin/edit-event-meta-box.php:96
 msgctxt "Admin"
-msgid "Film ID"
-msgstr "Filmo ID"
+msgid "Film ID in Kinola"
+msgstr ""
 
 #: templates/admin/edit-film-meta-box.php:29
 msgctxt "Admin"
@@ -431,11 +442,16 @@ msgctxt "Admin"
 msgid "Distributor"
 msgstr "Platintojas"
 
-#: templates/events.php:29 templates/film/screenings.php:13
+#: templates/admin/edit-film-meta-box.php:103
+msgctxt "Admin"
+msgid "ID"
+msgstr "ID"
+
+#: templates/events.php:34 templates/film/screenings.php:13
 msgid "Buy ticket"
 msgstr "Pirkti bilietą"
 
-#: templates/events.php:37
+#: templates/events.php:43
 msgid "No upcoming events!"
 msgstr "Jokių būsimų įvykių!"
 
@@ -483,6 +499,10 @@ msgstr "Jokių būsimų seansų"
 msgid "Watch trailer"
 msgstr ""
 
-#: templates/films.php:27
+#: templates/films.php:32
 msgid "No films to display."
 msgstr "Nėra filmų, kuriuos būtų galima rodyti."
+
+#~ msgctxt "Admin"
+#~ msgid "Film ID"
+#~ msgstr "Filmo ID"
