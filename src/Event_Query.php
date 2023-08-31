@@ -2,7 +2,7 @@
 
 namespace Kinola\KinolaWp;
 
-class EventQuery {
+class Event_Query {
     protected array $params;
 
     public function __construct() {
@@ -16,7 +16,7 @@ class EventQuery {
         ];
     }
 
-    public function upcoming(): EventQuery {
+    public function upcoming(): Event_Query {
         $this->params['meta_query'] = array_merge( [
             [
                 'key'     => 'time',
@@ -28,7 +28,7 @@ class EventQuery {
         return $this;
     }
 
-    public function film( $film_remote_id ): EventQuery {
+    public function film( $film_remote_id ): Event_Query {
         $this->params['meta_query'] = array_merge( [
             [
                 'key'   => Film::FIELD_ID,
@@ -39,7 +39,7 @@ class EventQuery {
         return $this;
     }
 
-    public function date( $date ): EventQuery {
+    public function date( $date ): Event_Query {
         // The date in the database is in UTC time zone, so we need to convert it to whatever is configured in WP.
         $selected_date_utc = new \DateTime( $date, new \DateTimeZone( wp_timezone_string() ) );
         $selected_date_utc->setTimezone( new \DateTimeZone( 'UTC' ) );
@@ -58,7 +58,22 @@ class EventQuery {
         return $this;
     }
 
-    public function location( $location ): EventQuery {
+    public function time( $time ): Event_Query {
+        $selected_time_today_utc = new \DateTime( $time, new \DateTimeZone( wp_timezone_string() ) );
+        $selected_time_today_utc->setTimezone( new \DateTimeZone( 'UTC' ) );
+
+        $this->params['meta_query'] = array_merge( [
+            [
+                'key'     => 'time',
+                'value'   => $selected_time_today_utc->format('H:i:s'),
+                'compare' => 'LIKE',
+            ],
+        ], $this->params['meta_query'] ?? [] );
+
+        return $this;
+    }
+
+    public function location( $location ): Event_Query {
         $this->params['tax_query'] = array_merge( [
             [
                 [
@@ -72,13 +87,17 @@ class EventQuery {
         return $this;
     }
 
-    public function filter( $date = null, $location = null ): EventQuery {
+    public function filter( $date = null, $location = null, $time = null ): Event_Query {
         if ( $date ) {
             $this->date( $date );
         }
 
         if ( $location ) {
             $this->location( $location );
+        }
+
+        if ( $time ) {
+            $this->time( $time );
         }
 
         return $this;

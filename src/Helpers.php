@@ -32,6 +32,10 @@ class Helpers {
         return apply_filters( 'kinola/filter/date', 'date' );
     }
 
+    public static function get_time_parameter_slug(): string {
+        return apply_filters( 'kinola/filter/time', 'time' );
+    }
+
     public static function get_venue_parameter_slug(): string {
         return apply_filters( 'kinola/filter/date', 'venue' );
     }

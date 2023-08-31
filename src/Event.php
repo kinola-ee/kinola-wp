@@ -28,6 +28,10 @@ class Event extends Model {
         return $this->get_film()->get_local_url();
     }
 
+    public function get_api_url(): string {
+        return Router::get_kinola_api_events_link();
+    }
+
     public function get_film(): Film {
         return Film::find_by_remote_id( $this->get_field( \Kinola\KinolaWp\Film::FIELD_ID ) );
     }

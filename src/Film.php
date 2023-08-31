@@ -32,6 +32,10 @@ class Film extends Model {
         return Router::get_kinola_film_edit_link( $this->get_remote_id() );
     }
 
+    public function get_api_url(): string {
+        return Router::get_kinola_api_film_link( $this->get_remote_id() );
+    }
+
     public function get_local_url(): string {
         return get_permalink( $this->post );
     }
@@ -76,7 +80,7 @@ class Film extends Model {
 
     public function get_events(): array {
         if ( ! isset( $this->events ) ) {
-            $this->events = ( new EventQuery() )->upcoming()->film( $this->get_remote_id() )->get();
+            $this->events = ( new Event_Query() )->upcoming()->film( $this->get_remote_id() )->get();
         }
 
         return $this->events;

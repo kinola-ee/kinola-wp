@@ -31,6 +31,14 @@ class Router {
 		return trailingslashit( KINOLA_URL ) . 'admin/productions/uuid/' . $id;
 	}
 
+    public static function get_kinola_api_film_link( string $id ): string {
+        return trailingslashit( KINOLA_URL ) . 'api/public/v1/productions/' . $id;
+    }
+
+    public static function get_kinola_api_events_link(): string {
+        return trailingslashit( KINOLA_URL ) . 'api/public/v1/events';
+    }
+
 	public static function get_event_checkout_url( string $id ): string {
 		return home_url( '/checkout/' . $id );
 	}

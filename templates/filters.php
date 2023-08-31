@@ -15,6 +15,15 @@
             <?php endforeach; ?>
         </select>
 
+        <select class="js-kinola-time-filter" onchange="this.form.submit()"
+                name="<?php echo \Kinola\KinolaWp\Helpers::get_time_parameter_slug(); ?>">
+            <?php foreach ( $times as $key => $time ): ?>
+                <option value="<?php echo $key; ?>" <?php selected( $key, $selected_time ); ?>>
+                    <?php echo $time; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
         <?php if ( count( $venues ) ): ?>
             <select class="js-kinola-location-filter" onchange="this.form.submit()"
                     name="<?php echo \Kinola\KinolaWp\Helpers::get_venue_parameter_slug(); ?>">

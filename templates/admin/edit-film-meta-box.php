@@ -103,7 +103,9 @@
                 <?php _ex( 'ID', 'Admin', 'kinola' ); ?>
             </td>
             <td class="kinola-admin__table_field_value">
-                <?php echo $film->get_remote_id(); ?>
+                <a href="<?php echo $film->get_api_url(); ?>" target="_blank">
+                    <?php echo $film->get_remote_id(); ?>
+                </a>
             </td>
         </tr>
     </table>

@@ -3,16 +3,18 @@
 namespace Kinola\KinolaWp;
 
 class Filter {
-    protected EventQuery $available_dates_query;
+    protected Event_Query $available_dates_query;
 
-    public function __construct(EventQuery $available_dates_query = null) {
-        $this->available_dates_query = $available_dates_query ?? (new EventQuery())->upcoming();
+    public function __construct(Event_Query $available_dates_query = null) {
+        $this->available_dates_query = $available_dates_query ?? (new Event_Query())->upcoming();
     }
 
     public function get_rendered_filter(): string {
         return View::get_rendered_template( 'filters', [
             'dates'          => $this->get_dates(),
             'selected_date'  => $this->get_selected_date(),
+            'times'          => $this->get_times(),
+            'selected_time'  => $this->get_selected_time(),
             'venues'         => $this->get_venues(),
             'selected_venue' => $this->get_selected_location(),
         ] );
@@ -27,6 +29,19 @@ class Filter {
         }
 
         return array_unique( $dates );
+    }
+
+    public function get_times(): array {
+        $times = [];
+        $events = $this->available_dates_query->get();
+        foreach ( $events as $event ) {
+            /* @var $event Event */
+            $times[ $event->get_time() ] = $event->get_time();
+        }
+
+        asort($times);
+
+        return array_unique( [ __('all', 'kinola') => __( 'All times', 'kinola' ) ] + $times );
     }
 
     public function get_venues(): array {
@@ -46,6 +61,20 @@ class Filter {
 
     public function get_selected_date(): ?string {
         $slug = Helpers::get_date_parameter_slug();
+
+        if (!isset($_GET[ $slug ]) || !$_GET[ $slug ]) {
+            return null;
+        }
+
+        if ($_GET[ $slug ] === __('all', 'kinola')) {
+            return null;
+        }
+
+        return $_GET[ $slug ] ?? null;
+    }
+
+    public function get_selected_time(): ?string {
+        $slug = Helpers::get_time_parameter_slug();
 
         if (!isset($_GET[ $slug ]) || !$_GET[ $slug ]) {
             return null;

@@ -12,8 +12,6 @@ class Event extends Api_Model {
         $unset = [
             'id',
             'freeSeats',
-            'program',
-            'room',
             'production',
         ];
 
