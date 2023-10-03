@@ -128,14 +128,16 @@ class Bootstrap {
 
     public function enqueue_scripts() {
         if ( apply_filters( 'kinola/assets/css', true ) ) {
-            wp_enqueue_style( 'kinola', Helpers::get_assets_url( 'styles/kinola.css' ), [], 11 );
+            // Temporarily removed - nothing to style
+            // wp_enqueue_style( 'kinola', Helpers::get_assets_url( 'styles/kinola.css' ), [], 11 );
         }
 
         if ( is_singular( Helpers::get_films_post_type() ) && apply_filters( 'kinola/assets/photoswipe', true ) ) {
             wp_enqueue_style( 'kinola-photoswipe', Helpers::get_assets_url( 'styles/photoswipe/photoswipe.css' ), [], 11 );
         }
 
-        wp_enqueue_script( 'kinola', Helpers::get_assets_url( 'scripts/kinola.js' ), [ 'jquery' ], 11 );
+        // Temporarily removed - no JS functionality required
+        // wp_enqueue_script( 'kinola', Helpers::get_assets_url( 'scripts/kinola.js' ), [ 'jquery' ], 11 );
     }
 
     public function render_events_page(): string {
@@ -167,22 +169,22 @@ class Bootstrap {
     }
 
     public function translate_post_title( string $title, int $post_id = null ) {
-        
-        if (!$post_id) {
+
+        if ( ! $post_id ) {
             return $title;
         }
 
-        $post = get_post($post_id);
+        $post = get_post( $post_id );
 
-        if ($post->post_type !== Helpers::get_films_post_type()) {
+        if ( $post->post_type !== Helpers::get_films_post_type() ) {
             return $title;
         }
 
-        $film = new Film($post);
+        $film = new Film( $post );
 
-        $translated_title = $film->get_field('title');
+        $translated_title = $film->get_field( 'title' );
 
-        if ($translated_title) {
+        if ( $translated_title ) {
             return $translated_title;
         }
 

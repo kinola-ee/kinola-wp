@@ -9,7 +9,7 @@ class Helpers {
     }
 
     public static function get_assets_url( string $path ): string {
-        return trailingslashit( plugins_url( 'kinola/assets' ) ) . $path;
+        return trailingslashit( plugins_url( KINOLA_DIRECTORY . '/assets' ) ) . $path;
     }
 
     public static function get_checkout_url_slug(): string {
