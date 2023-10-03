@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'KINOLA_VERSION', '1.0' );
-define( 'KINOLA_PATH', WP_PLUGIN_DIR . '/kinola/' );
+define( 'KINOLA_PATH', WP_PLUGIN_DIR . '/' . basename(__DIR__) . '/' );
 
 /**
  * Helper function for prettying up errors

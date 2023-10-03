@@ -10,8 +10,10 @@
         <?php foreach ( $films as $film ): ?>
             <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
             <div class="kinola-film" style="padding: 10px 20px; border: 1px solid #ccc; overflow: auto;">
-                <img src="<?php echo $film->get_field( 'poster' ); ?>" width="100px" height="150px"
-                     style="float: left;"/>
+                <a href="<?php echo get_permalink( $film->get_local_id() ); ?>">
+                    <img src="<?php echo $film->get_field( 'poster' ); ?>" width="100px" height="150px"
+                         style="float: left;"/>
+                </a>
                 <div class="kinola-film-details" style="float:left; margin-left: 20px;">
                     <p>
                         <strong>
