@@ -12,7 +12,7 @@
             <?php /* @var $event \Kinola\KinolaWp\Event */ ?>
             <div class="kinola-event" style="padding: 10px 20px; border: 1px solid #ccc; overflow: auto;">
                 <img src="<?php echo $event->get_field( 'production_poster' ); ?>" width="100px" height="150px"
-                     style="float: left;"/>
+                     style="float: left;" class="kinola-event-poster"/>
                 <div class="kinola-event-details" style="float:left; margin-left: 20px;">
                     <p>
                         <a class="kinola-event-title" href="<?php echo $event->get_film_url(); ?>">

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
 "POT-Creation-Date: 2023-08-31T17:26:05+03:00\n"
-"PO-Revision-Date: 2023-08-31 17:40+0300\n"
+"PO-Revision-Date: 2023-09-01 13:16+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt_LT\n"
@@ -208,7 +208,7 @@ msgstr "Dovanų kuponas"
 
 #: src/Checkout.php:40
 msgid "Client card or gift card number"
-msgstr "Įveskite ddvanų kupono kodą"
+msgstr "Įveskite dvanų kupono kodą"
 
 #: src/Checkout.php:41
 msgid "Confirm number"
@@ -267,7 +267,9 @@ msgstr "Gauti kino teatro naujienlaiškį"
 
 #: src/Checkout.php:53
 msgid "By buying I agree with terms and conditions."
-msgstr "Sutinku gauti Hexa Cinema naujienlaiškį."
+msgstr ""
+"Įsigydami bilietus sutinkame su Hexa Cinema taisyklėmis ir privatumo "
+"politika."
 
 #: src/Checkout.php:54
 msgid "Choose payment"
