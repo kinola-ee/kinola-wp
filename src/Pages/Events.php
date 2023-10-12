@@ -9,6 +9,7 @@ use Kinola\KinolaWp\Helpers;
 use Kinola\KinolaWp\View;
 
 class Events {
+    protected string $template = 'events';
 
     public function get_rendered_events(): string {
         $filter = new Filter();
@@ -17,8 +18,8 @@ class Events {
             ->filter( $filter->get_selected_date(), $filter->get_selected_location(), $filter->get_selected_time() )
             ->get();
 
-        return View::get_rendered_template( 'events', [
-            'events' => $events,
+        return View::get_rendered_template( $this->template, [
+            'events'          => $events,
             'rendered_filter' => $filter->get_rendered_filter(),
         ] );
     }

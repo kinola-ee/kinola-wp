@@ -7,6 +7,8 @@ use Kinola\KinolaWp\Helpers;
 use Kinola\KinolaWp\View;
 
 class Films {
+    protected string $template = 'films';
+
     public function get_rendered_films(): string {
         $film_posts = $this->get_films();
         $films      = [];
@@ -17,7 +19,7 @@ class Films {
             }
         }
 
-        return View::get_rendered_template( 'films', [ 'films' => $films ] );
+        return View::get_rendered_template( $this->template, [ 'films' => $films ] );
     }
 
     public function get_films(): array {
