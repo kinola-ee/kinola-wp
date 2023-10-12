@@ -85,6 +85,10 @@ class Event extends Model {
         );
     }
 
+    public function delete() {
+        wp_delete_post( $this->post->ID, true );
+    }
+
     public static function find_by_local_id( int $id ): ?Event {
         $post = get_post( $id );
 
@@ -97,16 +101,27 @@ class Event extends Model {
 
     public static function find_by_remote_id( string $id ): ?Event {
         $results = ( new \WP_Query( [
-            'post_type'   => Helpers::get_events_post_type(),
-            'post_status' => 'any',
-            'meta_key'    => self::FIELD_ID,
-            'meta_value'  => $id,
+            'post_type'      => Helpers::get_events_post_type(),
+            'post_status'    => 'any',
+            'meta_key'       => self::FIELD_ID,
+            'meta_value'     => $id,
+            'posts_per_page' => - 1,
         ] ) )->get_posts();
 
         if ( count( $results ) === 1 ) {
             return new Event( $results[0] );
         } else if ( count( $results ) > 1 ) {
-            trigger_error( "More than one WP Post matches event ID {$id}", E_USER_WARNING );
+            // If we have more than one matching event, delete everything except the last (latest) one.
+            trigger_error( "More than one WP Post matches event ID {$id}. Deleting extra posts.", E_USER_NOTICE );
+            error_log( print_r( $results, true ) );
+            $result = array_shift( $results );
+
+            foreach ( $results as $duplicate ) {
+                $event = new Event( $duplicate );
+                $event->delete();
+            }
+
+            return new Event( $result );
         }
 
         return null;
