@@ -3,6 +3,7 @@
 namespace Kinola\KinolaWp;
 
 class Event_Query {
+    public const DATE_FORMAT = "Y-m-d\TH:i:s\Z";
     protected array $params;
 
     public function __construct() {
@@ -13,6 +14,7 @@ class Event_Query {
             'orderby'        => 'meta_value',
             'order'          => 'ASC',
             'meta_query'     => [],
+            'post_status'    => 'publish',
         ];
     }
 
@@ -49,7 +51,7 @@ class Event_Query {
                 'key'     => 'time',
                 'value'   => [
                     $selected_date_utc->format( "Y-m-d\TH:i:s\Z" ),
-                    $selected_date_utc->add( \DateInterval::createFromDateString( '23 hours 59 minutes' ) )->format( "Y-m-d\TH:i:s\Z" ),
+                    $selected_date_utc->add( \DateInterval::createFromDateString( '23 hours 59 minutes' ) )->format( self::DATE_FORMAT ),
                 ],
                 'compare' => 'BETWEEN',
             ],
@@ -59,14 +61,25 @@ class Event_Query {
     }
 
     public function time( $time ): Event_Query {
-        $selected_time_today_utc = new \DateTime( $time, new \DateTimeZone( wp_timezone_string() ) );
-        $selected_time_today_utc->setTimezone( new \DateTimeZone( 'UTC' ) );
 
+        // The time filter needs to take daylight savings time into account.
+        // For example, if a user queries all events with start time 19:00, then this may actually translate into two
+        // different UTC times if DST starts or ends within the time period of the query.
+        // To work around this, we make three OR conditions with different UTC times, set between the next DST changes.
+
+        // Get the upcoming DST transition timestamps
+        $zone        = new \DateTimeZone( wp_timezone_string() );
+        $transitions = $zone->getTransitions( time() );
+
+        // Note the double nested meta query - this is so that we would have an AND relation with the default meta
+        // query that queries only future events.
         $this->params['meta_query'] = array_merge( [
             [
-                'key'     => 'time',
-                'value'   => $selected_time_today_utc->format('H:i:s'),
-                'compare' => 'LIKE',
+                'relation' => 'OR',
+                $this->getTimeMetaQuery( $time, $transitions[0]['time'], $transitions[1]['time'], $transitions[0]['offset'] ),
+                $this->getTimeMetaQuery( $time, $transitions[1]['time'], $transitions[2]['time'], $transitions[1]['offset'] ),
+                $this->getTimeMetaQuery( $time, $transitions[2]['time'], $transitions[3]['time'], $transitions[2]['offset'] ),
+
             ],
         ], $this->params['meta_query'] ?? [] );
 
@@ -88,15 +101,15 @@ class Event_Query {
     }
 
     public function filter( $date = null, $location = null, $time = null ): Event_Query {
-        if ( $date ) {
+        if ( $date && $date !== 'all' ) {
             $this->date( $date );
         }
 
-        if ( $location ) {
+        if ( $location && $location !== 'all' ) {
             $this->location( $location );
         }
 
-        if ( $time ) {
+        if ( $time && $time !== 'all' ) {
             $this->time( $time );
         }
 
@@ -114,5 +127,26 @@ class Event_Query {
         }
 
         return $events;
+    }
+
+    protected function getTimeMetaQuery( string $time, string $start, string $end, int $offsetSeconds ): array {
+        $offsetInterval = \DateInterval::createFromDateString( "{$offsetSeconds} seconds" );
+
+        return [
+            'relation' => 'AND',
+            [
+                'key'     => 'time',
+                'value'   => [
+                    ( new \DateTime( $start ) )->format( self::DATE_FORMAT ),
+                    ( new \DateTime( $end ) )->format( self::DATE_FORMAT ),
+                ],
+                'compare' => 'BETWEEN',
+            ],
+            [
+                'key'     => 'time',
+                'value'   => ( new \DateTime( $time ) )->sub( $offsetInterval )->format( 'H:i:s' ),
+                'compare' => 'LIKE',
+            ],
+        ];
     }
 }

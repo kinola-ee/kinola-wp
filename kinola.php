@@ -15,7 +15,7 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
-define( 'KINOLA_VERSION', '1.0' );
+define( 'KINOLA_VERSION', '1.1' );
 define( 'KINOLA_DIRECTORY', basename( __DIR__ ) );
 define( 'KINOLA_PATH', WP_PLUGIN_DIR . '/' . KINOLA_DIRECTORY . '/' );
 

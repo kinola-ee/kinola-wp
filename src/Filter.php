@@ -100,4 +100,20 @@ class Filter {
 
         return $_GET[ $slug ] ?? null;
     }
+
+    public function get_options() {
+
+    }
+
+    public function get_options_by_venue() {
+
+    }
+
+    public function get_options_by_date() {
+
+    }
+
+    public function get_options_by_time() {
+
+    }
 }

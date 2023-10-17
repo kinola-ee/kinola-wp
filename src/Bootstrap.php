@@ -22,6 +22,9 @@ class Bootstrap {
 
         $scheduler = new Scheduler();
         $scheduler->schedule_events();
+
+        $ajax = new Ajax();
+        $ajax->init();
     }
 
     public function register_films_post_type() {
@@ -128,16 +131,20 @@ class Bootstrap {
 
     public function enqueue_scripts() {
         if ( apply_filters( 'kinola/assets/css', true ) ) {
-            // Temporarily removed - nothing to style
-            // wp_enqueue_style( 'kinola', Helpers::get_assets_url( 'styles/kinola.css' ), [], 11 );
+            wp_enqueue_style( 'kinola', Helpers::get_assets_url( 'styles/kinola.css' ), [], KINOLA_VERSION );
+        }
+
+        if ( apply_filters( 'kinola/assets/select2', true ) ) {
+            wp_enqueue_style( 'kinola-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css', [], KINOLA_VERSION );
+            wp_enqueue_script( 'kinola-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', [ 'jquery' ], KINOLA_VERSION );
         }
 
         if ( is_singular( Helpers::get_films_post_type() ) && apply_filters( 'kinola/assets/photoswipe', true ) ) {
-            wp_enqueue_style( 'kinola-photoswipe', Helpers::get_assets_url( 'styles/photoswipe/photoswipe.css' ), [], 11 );
+            wp_enqueue_style( 'kinola-photoswipe', Helpers::get_assets_url( 'styles/photoswipe/photoswipe.css' ), [], KINOLA_VERSION );
         }
 
-        // Temporarily removed - no JS functionality required
-        // wp_enqueue_script( 'kinola', Helpers::get_assets_url( 'scripts/kinola.js' ), [ 'jquery' ], 11 );
+        wp_enqueue_script( 'kinola', Helpers::get_assets_url( 'scripts/kinola.js' ), [ 'jquery' ], KINOLA_VERSION );
+        wp_localize_script( 'kinola', 'Kinola', [ 'ajaxUrl' => admin_url( 'admin-ajax.php' ) ] );
     }
 
     public function render_events_page(): string {
