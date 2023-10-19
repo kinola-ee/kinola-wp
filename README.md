@@ -128,6 +128,9 @@ $formatted_date_in_your_timezone = \Kinola\KinolaWp\Helpers::format_datetime( $u
 `kinola/checkout/before_content`
 Use this action to display your own custom content before the contents of the Checkout page.
 
+`kinola/checkout/after_content`
+Use this action to display your own custom content after the contents of the Checkout page.
+
 ### Filters
 `kinola/language`
 This filter allows you to set the site language. Use a 2-letter ISO language code, e.g. 'en' or 'et'.
@@ -137,6 +140,9 @@ Use this filter to disable loading Kinola CSS.
 
 `kinola/assets/photoswipe`
 Use this filter to disable loading PhotoSwipe styles on single film page.
+
+`kinola/assets/select2`
+Use this filter to disable loading select2 styles and scripts in case the theme already loads it.
 
 `kinola/checkout/show_title`
 This filter can be used to control whether or not the default title is displayed on Checkout page.

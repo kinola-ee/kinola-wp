@@ -40,5 +40,8 @@
         <?php endif; ?>
     })
 </script>
+
+<?php do_action('kinola/checkout/after_content'); ?>
+
 </body>
 </html>
