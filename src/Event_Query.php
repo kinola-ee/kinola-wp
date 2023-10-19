@@ -122,15 +122,15 @@ class Event_Query {
     }
 
     public function filter( $date = null, $location = null, $time = null ): Event_Query {
-        if ( $date && $date !== 'all' ) {
+        if ( $date && $date !== 'all' && $date !== __( 'all', 'kinola' ) ) {
             $this->date( $date );
         }
 
-        if ( $location && $location !== 'all' ) {
+        if ( $location && $location !== 'all' && $location !== __( 'all', 'kinola' ) ) {
             $this->location( $location );
         }
 
-        if ( $time && $time !== 'all' ) {
+        if ( $time && $time !== 'all' && $time !== __( 'all', 'kinola' ) ) {
             $this->time( $time );
         }
 
