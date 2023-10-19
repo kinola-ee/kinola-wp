@@ -118,6 +118,7 @@ class Event_Query {
 
     public function get(): array {
         $events     = [];
+        var_dump();
         $eventPosts = ( new \WP_Query( $this->params ) )->posts;
 
         if ( count( $eventPosts ) ) {
