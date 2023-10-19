@@ -9,13 +9,19 @@ class Event_Query {
     public function __construct() {
         $this->params = [
             'post_type'      => Helpers::get_events_post_type(),
-            'posts_per_page' => 25,
+            'posts_per_page' => -1,
             'meta_key'       => 'time',
             'orderby'        => 'meta_value',
             'order'          => 'ASC',
             'meta_query'     => [],
             'post_status'    => 'publish',
         ];
+    }
+
+    public function limit(int $limit): Event_Query {
+        $this->params['posts_per_page'] = $limit;
+
+        return $this;
     }
 
     public function upcoming(): Event_Query {
@@ -94,7 +100,6 @@ class Event_Query {
                 'relation' => 'OR',
                 $this->getTimeMetaQuery( $time, $transitions[0]['time'], $transitions[1]['time'], $transitions[0]['offset'] ),
                 $this->getTimeMetaQuery( $time, $transitions[1]['time'], $transitions[2]['time'], $transitions[1]['offset'] ),
-                $this->getTimeMetaQuery( $time, $transitions[2]['time'], $transitions[3]['time'], $transitions[2]['offset'] ),
 
             ],
         ], $this->params['meta_query'] ?? [] );
