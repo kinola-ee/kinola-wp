@@ -27,7 +27,7 @@ class SingleFilm {
         return View::get_rendered_template( $this->template, [
             'film'            => $this->film,
             'events'          => $events,
-            'rendered_filter' => $filter->get_rendered_filter(),
+            'rendered_filter' => $filter->get_rendered_filter( $this->film->get_remote_id() ),
         ] );
     }
 }

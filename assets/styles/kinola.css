@@ -1,7 +1,19 @@
-.kinola-filters select {
+.kinola-location-filter {
   width: 200px;
+}
+
+.kinola-date-filter {
+  width: 180px;
+}
+
+.kinola-time-filter {
+  width: 130px;
 }
 
 .kinola-filters .select2-container .select2-selection--single {
   height: 32px;
+}
+
+.kinola-filter-button {
+  padding: 6px 20px;
 }

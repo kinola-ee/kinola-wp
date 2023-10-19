@@ -11,6 +11,11 @@ class Ajax {
     public function get_filter_options() {
         $query = new Event_Query();
         $query->filter( $_GET['date'], $_GET['venue'], $_GET['time'] );
+
+        if (isset($_GET['film']) && $_GET['film']) {
+            $query->film($_GET['film']);
+        }
+
         $filter = new Filter( $query );
 
         if ( $_GET['field'] === 'date' ) {

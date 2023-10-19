@@ -9,7 +9,7 @@ class Event_Query {
     public function __construct() {
         $this->params = [
             'post_type'      => Helpers::get_events_post_type(),
-            'posts_per_page' => - 1,
+            'posts_per_page' => 25,
             'meta_key'       => 'time',
             'orderby'        => 'meta_value',
             'order'          => 'ASC',
@@ -71,6 +71,22 @@ class Event_Query {
         $zone        = new \DateTimeZone( wp_timezone_string() );
         $transitions = $zone->getTransitions( time() );
 
+        // If the time zone does not have DST, just filter for time
+        if ( ! $transitions ) {
+            $selected_time_today_utc = new \DateTime( $time, new \DateTimeZone( wp_timezone_string() ) );
+            $selected_time_today_utc->setTimezone( new \DateTimeZone( 'UTC' ) );
+
+            $this->params['meta_query'] = array_merge( [
+                [
+                    'key'     => 'time',
+                    'value'   => $selected_time_today_utc->format( 'H:i:s' ),
+                    'compare' => 'LIKE',
+                ],
+            ], $this->params['meta_query'] ?? [] );
+
+            return $this;
+        }
+
         // Note the double nested meta query - this is so that we would have an AND relation with the default meta
         // query that queries only future events.
         $this->params['meta_query'] = array_merge( [
@@ -118,7 +134,6 @@ class Event_Query {
 
     public function get(): array {
         $events     = [];
-        var_dump();
         $eventPosts = ( new \WP_Query( $this->params ) )->posts;
 
         if ( count( $eventPosts ) ) {
