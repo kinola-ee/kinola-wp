@@ -40,6 +40,6 @@
     </div>
 <?php else: ?>
     <div>
-        <?php _e( 'No upcoming events!', 'kinola' ); ?>
+        <?php _e( 'No upcoming events.', 'kinola' ); ?>
     </div>
 <?php endif; ?>

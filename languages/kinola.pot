@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-31T17:26:05+03:00\n"
+"POT-Creation-Date: 2023-10-24T16:03:46+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: kinola\n"
@@ -31,47 +31,47 @@ msgstr ""
 msgid "https://kinola.ee/"
 msgstr ""
 
-#: kinola.php:29
+#: kinola.php:30
 msgctxt "Admin"
 msgid "Kinola error"
 msgstr ""
 
-#: kinola.php:39
+#: kinola.php:40
 msgctxt "Admin"
 msgid "You must be using PHP 7.4 or greater."
 msgstr ""
 
-#: kinola.php:40
+#: kinola.php:41
 msgctxt "Admin"
 msgid "Invalid PHP version"
 msgstr ""
 
-#: kinola.php:49
+#: kinola.php:50
 msgctxt "Admin"
 msgid "You must be using WordPress 6.0 or greater."
 msgstr ""
 
-#: kinola.php:50
+#: kinola.php:51
 msgctxt "Admin"
 msgid "Invalid WordPress version"
 msgstr ""
 
-#: kinola.php:59
+#: kinola.php:60
 msgctxt "Admin"
 msgid "You must define KINOLA_URL in your wp-config file, e.g. <em>https://YOUR_SITE.kinola.ee</em>"
 msgstr ""
 
-#: kinola.php:60
+#: kinola.php:61
 msgctxt "Admin"
 msgid "KINOLA_URL not defined."
 msgstr ""
 
-#: kinola.php:69
+#: kinola.php:70
 msgctxt "Admin"
 msgid "You appear to be running a development version of Kinola. You must run <code>composer install</code> from the plugin directory."
 msgstr ""
 
-#: kinola.php:74
+#: kinola.php:75
 msgctxt "Admin"
 msgid "Autoloader not found."
 msgstr ""
@@ -98,13 +98,13 @@ msgid "All future events imported successfully!"
 msgstr ""
 
 #: src/Admin/Film_Importer_List_Table.php:19
-#: src/Bootstrap.php:29
-#: src/Bootstrap.php:53
+#: src/Bootstrap.php:32
+#: src/Bootstrap.php:56
 msgid "Film"
 msgstr ""
 
 #: src/Admin/Film_Importer_List_Table.php:20
-#: src/Bootstrap.php:52
+#: src/Bootstrap.php:55
 msgid "Films"
 msgstr ""
 
@@ -130,31 +130,31 @@ msgctxt "Admin"
 msgid "Import"
 msgstr ""
 
-#: src/Bootstrap.php:54
+#: src/Bootstrap.php:57
 msgctxt "Admin"
 msgid "Films"
 msgstr ""
 
-#: src/Bootstrap.php:61
-#: src/Bootstrap.php:85
+#: src/Bootstrap.php:64
+#: src/Bootstrap.php:88
 msgid "Event"
 msgstr ""
 
-#: src/Bootstrap.php:84
+#: src/Bootstrap.php:87
 msgid "Events"
 msgstr ""
 
-#: src/Bootstrap.php:86
+#: src/Bootstrap.php:89
 msgctxt "Admin"
 msgid "Events"
 msgstr ""
 
-#: src/Bootstrap.php:97
-#: src/Bootstrap.php:99
+#: src/Bootstrap.php:100
+#: src/Bootstrap.php:102
 msgid "Venues"
 msgstr ""
 
-#: src/Bootstrap.php:98
+#: src/Bootstrap.php:101
 msgid "Venue"
 msgstr ""
 
@@ -334,24 +334,27 @@ msgstr ""
 msgid "Download tickets"
 msgstr ""
 
-#: src/Filter.php:24
-#: src/Filter.php:44
-#: src/Filter.php:48
-#: src/Filter.php:69
-#: src/Filter.php:83
-#: src/Filter.php:97
+#: src/Event_Query.php:125
+#: src/Event_Query.php:129
+#: src/Event_Query.php:133
+#: src/Filter.php:25
+#: src/Filter.php:45
+#: src/Filter.php:49
+#: src/Filter.php:70
+#: src/Filter.php:84
+#: src/Filter.php:98
 msgid "all"
 msgstr ""
 
-#: src/Filter.php:24
+#: src/Filter.php:25
 msgid "All dates"
 msgstr ""
 
-#: src/Filter.php:44
+#: src/Filter.php:45
 msgid "All times"
 msgstr ""
 
-#: src/Filter.php:48
+#: src/Filter.php:49
 msgid "All venues"
 msgstr ""
 
@@ -448,7 +451,7 @@ msgid "Buy ticket"
 msgstr ""
 
 #: templates/events.php:43
-msgid "No upcoming events!"
+msgid "No upcoming events."
 msgstr ""
 
 #: templates/film/meta.php:17
@@ -484,6 +487,10 @@ msgstr ""
 msgid "Watch trailer"
 msgstr ""
 
-#: templates/films.php:32
+#: templates/films.php:34
 msgid "No films to display."
+msgstr ""
+
+#: templates/filters.php:41
+msgid "Filter"
 msgstr ""

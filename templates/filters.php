@@ -38,6 +38,6 @@
             <?php endforeach; ?>
         </select>
 
-        <input type="submit" value="Filter" class="kinola-filter-button" />
+        <input type="submit" value="<?php echo __('Filter', 'kinola'); ?>" class="kinola-filter-button" />
     </form>
 </div>
