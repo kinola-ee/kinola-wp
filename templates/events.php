@@ -1,7 +1,7 @@
 <?php
 /**
  * This template is the output of [kinola_events] shortcode.
- * It displays a list of all upcoming events along with location and date filters.
+ * It displays a list of all upcoming events along with venue, date and time filters.
  */
 ?>
 
@@ -21,7 +21,7 @@
                             </strong>
                         </a>
                         <br>
-                        <span class="kinola-event-location">
+                        <span class="kinola-event-venue">
                             <?php echo $event->get_venue_name(); ?>
                         </span>
                         <br>

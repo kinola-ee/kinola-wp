@@ -9,7 +9,7 @@ class Event_Query {
     public function __construct() {
         $this->params = [
             'post_type'      => Helpers::get_events_post_type(),
-            'posts_per_page' => -1,
+            'posts_per_page' => - 1,
             'meta_key'       => 'time',
             'orderby'        => 'meta_value',
             'order'          => 'ASC',
@@ -18,7 +18,7 @@ class Event_Query {
         ];
     }
 
-    public function limit(int $limit): Event_Query {
+    public function limit( int $limit ): Event_Query {
         $this->params['posts_per_page'] = $limit;
 
         return $this;
@@ -107,13 +107,13 @@ class Event_Query {
         return $this;
     }
 
-    public function location( $location ): Event_Query {
+    public function venue( $venue ): Event_Query {
         $this->params['tax_query'] = array_merge( [
             [
                 [
                     'taxonomy' => Helpers::get_venue_taxonomy_name(),
                     'field'    => 'slug',
-                    'terms'    => $location,
+                    'terms'    => $venue,
                 ],
             ],
         ], $this->params['tax_query'] ?? [] );
@@ -121,13 +121,13 @@ class Event_Query {
         return $this;
     }
 
-    public function filter( $date = null, $location = null, $time = null ): Event_Query {
+    public function filter( $date = null, $venue = null, $time = null ): Event_Query {
         if ( $date && $date !== 'all' && $date !== __( 'all', 'kinola' ) ) {
             $this->date( $date );
         }
 
-        if ( $location && $location !== 'all' && $location !== __( 'all', 'kinola' ) ) {
-            $this->location( $location );
+        if ( $venue && $venue !== 'all' && $venue !== __( 'all', 'kinola' ) ) {
+            $this->venue( $venue );
         }
 
         if ( $time && $time !== 'all' && $time !== __( 'all', 'kinola' ) ) {

@@ -20,7 +20,7 @@ class SingleFilm {
         $events = ( new Event_Query() )
             ->upcoming()
             ->film( $this->film->get_remote_id() )
-            ->filter( $filter->get_selected_date(), $filter->get_selected_location(), $filter->get_selected_time() )
+            ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time() )
             ->get();
 
 

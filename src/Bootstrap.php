@@ -10,7 +10,7 @@ class Bootstrap {
     public function __construct() {
         add_action( 'init', [ $this, 'register_films_post_type' ], 1 );
         add_action( 'init', [ $this, 'register_events_post_type' ], 1 );
-        add_action( 'init', [ $this, 'register_location_taxonomy' ], 1 );
+        add_action( 'init', [ $this, 'register_venue_taxonomy' ], 1 );
         add_action( 'init', [ $this, 'register_endpoints' ] );
         add_action( 'init', [ $this, 'register_shortcodes' ] );
 
@@ -91,7 +91,7 @@ class Bootstrap {
         ] );
     }
 
-    public function register_location_taxonomy() {
+    public function register_venue_taxonomy() {
         register_taxonomy(
             Helpers::get_venue_taxonomy_name(),
             [ Helpers::get_events_post_type() ],

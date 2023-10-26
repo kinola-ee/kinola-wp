@@ -16,7 +16,7 @@ class Filter {
             'times'          => $this->get_times(),
             'selected_time'  => $this->get_selected_time(),
             'venues'         => $this->get_venues(),
-            'selected_venue' => $this->get_selected_location(),
+            'selected_venue' => $this->get_selected_venue(),
             'film_id'        => $film_remote_id,
         ] );
     }
@@ -88,7 +88,7 @@ class Filter {
         return $_GET[ $slug ] ?? null;
     }
 
-    public function get_selected_location(): ?string {
+    public function get_selected_venue(): ?string {
         $slug = Helpers::get_venue_parameter_slug();
 
         if ( ! isset( $_GET[ $slug ] ) || ! $_GET[ $slug ] ) {
@@ -100,21 +100,5 @@ class Filter {
         }
 
         return $_GET[ $slug ] ?? null;
-    }
-
-    public function get_options() {
-
-    }
-
-    public function get_options_by_venue() {
-
-    }
-
-    public function get_options_by_date() {
-
-    }
-
-    public function get_options_by_time() {
-
     }
 }
