@@ -8,6 +8,10 @@ class Film extends Api_Model {
         return $this->get_field( \Kinola\KinolaWp\Film::FIELD_ID );
     }
 
+    public function is_public(): bool {
+        return $this->data['visibility'] === 'public';
+    }
+
     protected function reformat( array $data ): array {
         $unset = [
             'id',

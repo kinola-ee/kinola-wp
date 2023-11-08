@@ -116,7 +116,7 @@ class Film extends Model {
     public static function create( ApiFilm $api_film ): Film {
         $post = wp_insert_post( [
             'post_title'  => $api_film->get_field( 'post_title' ),
-            'post_status' => 'draft',
+            'post_status' => 'publish',
             'post_type'   => Helpers::get_films_post_type(),
         ] );
 

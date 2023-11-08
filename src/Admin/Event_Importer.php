@@ -14,7 +14,7 @@ class Event_Importer {
     protected string $events_endpoint = 'events?limit=500';
 
     public function import() {
-        error_log( "Event import: Fetching events from endpoint " . $this->get_endpoint());
+        error_log( "Event import: Fetching events from endpoint " . $this->get_endpoint() );
 
         try {
             $response = Kinola_Api::get( $this->get_endpoint(), false );
@@ -29,7 +29,10 @@ class Event_Importer {
         error_log( "Event import: API returned a total of " . count( $events ) . " events." );
 
         foreach ( $events as $event ) {
-            $saved_event_ids[] = $this->save_event( new Api_Event( $event ) );
+            $saved_event_id = $this->save_event( new Api_Event( $event ) );
+            if ( $saved_event_id ) {
+                $saved_event_ids[] = $saved_event_id;
+            }
         }
 
         error_log( "Event import: Saved a total of " . count( $saved_event_ids ) . " events." );
@@ -44,15 +47,17 @@ class Event_Importer {
         return $this->events_endpoint . '&time_from=' . gmdate( "Y-m-d\TH:i:s\Z" );
     }
 
-    protected function save_event( Api_Event $api_event ): string {
+    protected function save_event( Api_Event $api_event ): ?string {
 
-        // Check if a corresponding film exists. If not, import it.
+        // Check if a corresponding film exists. If not, check if it's public. If it is, then import it.
         $film = Film::find_by_remote_id( $api_event->get_field( Film::FIELD_ID ) );
         if ( ! $film ) {
             $importer = new Film_Importer();
             $film     = $importer->import_film( $api_event->get_field( Film::FIELD_ID ) );
+
+            // If there's no film, do not import related event either.
             if ( ! $film ) {
-                trigger_error( "Failed to import film ID " . $api_event->get_field( Film::FIELD_ID ), E_USER_WARNING );
+                return null;
             }
         }
 

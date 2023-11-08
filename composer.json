@@ -6,7 +6,10 @@
   "autoload": {
     "psr-4": {
       "Kinola\\KinolaWp\\": "src/"
-    }
+    },
+    "files": [
+      "helpers.php"
+    ]
   },
   "require": {
     "php": ">=7.4"

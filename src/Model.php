@@ -2,6 +2,8 @@
 
 namespace Kinola\KinolaWp;
 
+use Kinola\KinolaWp\Admin\Admin_Messenger;
+
 abstract class Model {
 
     protected ?\WP_Post $post = null;
@@ -27,13 +29,23 @@ abstract class Model {
             true
         );
 
+        if ( empty( $value ) ) {
+            return '';
+        }
+
         // The first level array of these elements should be $language => $value
-        if (in_array($name, $this->translatable)) {
-            if (isset($value[Helpers::get_language()])) {
-                $value = $value[Helpers::get_language()];
+        if ( in_array( $name, $this->translatable ) ) {
+            if ( isset( $value[ Helpers::get_language() ] ) ) {
+                $value = $value[ Helpers::get_language() ];
             } else {
                 $value = '';
-                trigger_error("Model post meta {$name} does not have a translation in the current language.", E_USER_WARNING);
+                ( new Admin_Messenger )->add_message(
+                    sprintf(
+                        __( "The field '%s' does not a have a corresponding translation in Kinola for this website's configured language (%s).", 'kinola' ),
+                        $name,
+                        Helpers::get_language()
+                    )
+                );
             }
         }
 
