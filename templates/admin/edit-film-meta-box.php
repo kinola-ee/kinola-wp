@@ -26,10 +26,10 @@
     </tr>
     <tr>
         <td class="kinola-admin__table_field_name">
-            <?php _ex( 'Duration', 'Admin', 'kinola' ); ?>
+            <?php _ex( 'Runtime', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'duration' ); ?><?php _ex( 'min', 'Admin', 'kinola' ); ?>
+            <?php echo $film->get_field( 'runtime' ); ?> <?php _ex( 'min', 'Admin', 'kinola' ); ?>
         </td>
     </tr>
     <tr>
@@ -37,7 +37,7 @@
             <?php _ex( 'Year', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'year' ); ?>
+            <?php echo $film->get_field( 'year' ) ?: '-'; ?>
         </td>
     </tr>
     <tr>
@@ -45,7 +45,7 @@
             <?php _ex( 'Rating', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'rating' ); ?>
+            <?php echo $film->get_field( 'rating' ) ?: '-'; ?>
         </td>
     </tr>
     <tr>
@@ -53,7 +53,7 @@
             <?php _ex( 'Distributor', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'distributor' ); ?>
+            <?php echo $film->get_field( 'distributor' ) ?: '-'; ?>
         </td>
     </tr>
     <tr>
@@ -61,7 +61,7 @@
             <?php _ex( 'Languages', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'languages' ); ?>
+            <?php echo $film->get_field( 'languages' ) ?: '-'; ?>
         </td>
     </tr>
     <tr>
@@ -69,7 +69,7 @@
             <?php _ex( 'Subtitles', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'subtitles' ); ?>
+            <?php echo $film->get_field( 'subtitles' ) ?: '-'; ?>
         </td>
     </tr>
 </table>

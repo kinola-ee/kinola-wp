@@ -54,7 +54,7 @@
             <?php _ex( 'Program', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $event->get_field( 'program' ); ?>
+            <?php echo $event->get_field( 'program' ) ?: '-'; ?>
         </td>
     </tr>
     <!--

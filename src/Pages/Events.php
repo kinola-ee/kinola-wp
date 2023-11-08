@@ -14,7 +14,7 @@ class Events {
     public function get_rendered_events(): string {
         $filter = new Filter();
         $events = ( new Event_Query() )
-            ->limit(25)
+            ->limit( 25 )
             ->upcoming()
             ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time() )
             ->get();
