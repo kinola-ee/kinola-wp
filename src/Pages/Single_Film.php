@@ -7,12 +7,16 @@ use Kinola\KinolaWp\Film;
 use Kinola\KinolaWp\Filter;
 use Kinola\KinolaWp\View;
 
-class SingleFilm {
+class Single_Film {
     protected Film   $film;
     protected string $template = 'film';
 
     public function __construct( Film $film ) {
         $this->film = $film;
+    }
+
+    public function set_template( string $template ) {
+        $this->template = $template;
     }
 
     public function get_rendered_content(): string {
@@ -22,7 +26,6 @@ class SingleFilm {
             ->film( $this->film->get_remote_id() )
             ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time() )
             ->get();
-
 
         return View::get_rendered_template( $this->template, [
             'film'            => $this->film,

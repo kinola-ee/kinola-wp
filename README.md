@@ -31,10 +31,18 @@ Make sure you replace `your-cinema` with the name of your cinema. It should be t
 The plugin creates two menu items in the admin menu - Films and Events. New Film or Event posts cannot be created or edited via WordPress - they must be imported
 from Kinola instead. This way, there is a single source of truth for both. If you need to make any changes to an already imported Film or Event, the changes must be made inside Kinola and then re-imported to WordPress.
 
-Productions must currently be imported manually from the admin - "Films > Import Films"
-
 Events are imported automatically every 15 minutes using WP's own task scheduling system. Please note that only future events
 are imported; past events are ignored.
+
+Films are imported automatically in two situations:
+1. Every time an event which doesn't already have an existing film in WP is imported,
+2. Every day, all films will be imported/updated which have been changed in Kinola in the last 48 hours.
+
+Films can also be imported manually via Films > Import and also from the individual film's admin page.
+
+### Shortcodes
+`[kinola_film_screenings film=1234]`  
+This shortcode renders the screenings of the film with the given ID.
 
 ## Debugging
 If you run into problems, follow these steps:

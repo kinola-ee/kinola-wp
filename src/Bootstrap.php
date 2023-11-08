@@ -4,7 +4,7 @@ namespace Kinola\KinolaWp;
 
 use Kinola\KinolaWp\Pages\Events;
 use Kinola\KinolaWp\Pages\Films;
-use Kinola\KinolaWp\Pages\SingleFilm;
+use Kinola\KinolaWp\Pages\Single_Film;
 
 class Bootstrap {
     public function __construct() {
@@ -127,6 +127,7 @@ class Bootstrap {
     public function register_shortcodes() {
         add_shortcode( 'kinola_events', [ $this, 'render_events_page' ] );
         add_shortcode( 'kinola_films', [ $this, 'render_films_page' ] );
+        add_shortcode( 'kinola_film_screenings', [ $this, 'render_film_screenings' ] );
     }
 
     public function enqueue_scripts() {
@@ -155,6 +156,31 @@ class Bootstrap {
         return ( new Films() )->get_rendered_films();
     }
 
+    public function render_film_screenings( $atts ) {
+        $atts = shortcode_atts( [
+            'film' => false,
+        ], $atts );
+
+        if ( ! $atts['film'] ) {
+            return __( "This shortcode requires a 'film' parameter.", 'kinola' );
+        }
+
+        $film_post = get_post( $atts['film'] );
+
+        if ( ! $film_post ) {
+            return sprintf(
+                __( "There is no film with ID %s.", 'kinola' ),
+                $atts['film']
+            );
+        }
+
+        $film        = new Film( $film_post );
+        $single_film = new Single_Film( $film );
+        $single_film->set_template( 'film_screenings' );
+
+        return $single_film->get_rendered_content();
+    }
+
     public function override_checkout_template( $template ) {
         global $wp_query;
 
@@ -169,7 +195,7 @@ class Bootstrap {
         global $post;
 
         if ( is_singular( Helpers::get_films_post_type() ) ) {
-            return ( new SingleFilm( new Film( $post ) ) )->get_rendered_content();
+            return ( new Single_Film( new Film( $post ) ) )->get_rendered_content();
         }
 
         return $content;
