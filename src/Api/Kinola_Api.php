@@ -20,7 +20,7 @@ class Kinola_Api {
      */
     public static function get( string $endpoint_or_url, bool $with_translations = true ): Response {
         if ( filter_var( $endpoint_or_url, FILTER_VALIDATE_URL ) ) {
-            $full_url = $endpoint_or_url;
+            $full_url = $with_translations ? self::maybe_add_translations_param($endpoint_or_url) : $endpoint_or_url;
         } else {
             $full_url = self::build_url( $endpoint_or_url, $with_translations );
         }
@@ -59,6 +59,20 @@ class Kinola_Api {
             } else {
                 $url .= '&lang=all';
             }
+        }
+
+        return $url;
+    }
+
+    public static function maybe_add_translations_param( string $url ): string {
+        if ( stristr( $url, 'lang=' ) !== false ) {
+            return $url;
+        }
+
+        if ( stristr( $url, '?' ) === false ) {
+            $url .= '?lang=all';
+        } else {
+            $url .= '&lang=all';
         }
 
         return $url;

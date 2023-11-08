@@ -22,7 +22,8 @@ class Admin {
         add_action( 'add_meta_boxes_' . Helpers::get_events_post_type(), [ $this, 'register_edit_event_meta_box' ] );
         add_action( 'admin_head-edit.php', [ $this, 'add_import_button' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_styles' ] );
-        add_action( Scheduler::EVENT_NAME, [ $this, 'import_events' ] );
+        add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_events' ] );
+        add_action( Scheduler::EVENT_NAME_DAILY, [ $this, 'import_changed_films' ] );
     }
 
     public function add_import_button() {
@@ -133,6 +134,11 @@ class Admin {
     public function import_events() {
         $importer = new Event_Importer();
         $importer->import();
+    }
+
+    public function import_changed_films() {
+        $importer = new Film_Importer();
+        $importer->import_films( date( 'Y-m-d\TH:i:s\Z', strtotime( '-2 days' ) ) );
     }
 
     protected function should_run_action( string $action ): bool {

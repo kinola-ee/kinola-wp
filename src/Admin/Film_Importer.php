@@ -14,17 +14,28 @@ class Film_Importer {
 
     protected array $data = [];
 
-    public function import_film( string $id ): Film {
-        debug_log( "Film import: Importing film with ID {$id}" );
+    public function import_film( string $remote_id ): Film {
+        debug_log( "Film import: Importing film with ID {$remote_id}" );
 
         try {
-            $response = Kinola_Api::get( $this->single_film_endpoint . $id );
+            $response = Kinola_Api::get( $this->single_film_endpoint . $remote_id );
         } catch ( ApiException $e ) {
             echo $e->getMessage();
             die;
         }
 
         return $this->save_film( new Api_Film( $response->get_data() ) );
+    }
+
+    public function import_films( string $last_modified_since ) {
+        debug_log( "Film import: Importing films changed since {$last_modified_since}" );
+        $this->get_films_data( $this->films_endpoint . '&last_modified_since=' . $last_modified_since, true );
+
+        foreach ( $this->data as $film ) {
+            $this->save_film( new Api_Film( $film ) );
+        }
+
+        debug_log( "Film import: Finished importing changed films." );
     }
 
     public function get_films(): array {
@@ -36,9 +47,9 @@ class Film_Importer {
     /**
      * Recursively get all films from Kinola public API.
      */
-    protected function get_films_data( $url = null ) {
+    protected function get_films_data( $url = null, $with_translations = false ) {
         try {
-            $response = Kinola_Api::get( $url ?: $this->films_endpoint, false );
+            $response = Kinola_Api::get( $url ?: $this->films_endpoint, $with_translations );
         } catch ( ApiException $e ) {
             echo $e->getMessage();
             die;
