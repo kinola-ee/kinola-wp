@@ -1,5 +1,5 @@
 # Kinola WordPress plugin
-This plugin integrates your WordPress site with Kinola web app.
+This plugin integrates your WordPress site with [Kinola](https://kinola.ee) web app.
 It imports films and events from Kinola, displays them on your site and allows customers to buy tickets to events.
 
 ## Getting started
@@ -7,16 +7,11 @@ It imports films and events from Kinola, displays them on your site and allows c
 - PHP >=7.4
 - WP >= 6.0
 
-### Installation
-1. Clone the plugin from here.
-2. Run `composer install` to generate the autoloader. (This requires you to have [Composer](https://getcomposer.org/) installed.)
-3. Upload the plugin (including the newly generated `vendor` folder) to WP as you would with a regular plugin.
-
-Note: Once the plugin is more or less "done," it will be uploaded to the official WordPress plugin repo.
-
 ### Setup
 1. In your wp-config.php, add the following constant:
 `define( 'KINOLA_URL', 'https://your-cinema.kinola.ee' );`
+
+Make sure you replace `your-cinema` with the name of your cinema. It should be the same as in the URL you're using to access Kinola.
 
 2. Create a Page for Films. In the content, add the following shortcode:
 `[kinola_films]`
@@ -24,7 +19,7 @@ Note: Once the plugin is more or less "done," it will be uploaded to the officia
 3. Create a Page for Events. In the content, add the following shortcode:
 `[kinola_events]`
 
-4. Ensure your WP site's time and date formats and time zones are set properly.
+4. Ensure your WP site's language, time and date formats and time zones are set properly.
 
 5. (Recommended) In your wp-config.php, add link to terms and conditions:
 `define( 'KINOLA_TERMS_LINK', 'https://[YOUR_URL_HERE]' );`
@@ -40,6 +35,19 @@ Productions must currently be imported manually from the admin - "Films > Import
 
 Events are imported automatically every 15 minutes using WP's own task scheduling system. Please note that only future events
 are imported; past events are ignored.
+
+## Debugging
+If you run into problems, follow these steps:
+1. Ensure you've followed all steps outlined above under the big heading that says "Setup"
+2. Double-check your WP site's language, time and date format and time zone settings.
+3. In wp-config.php, add the following:  
+`define( 'WP_DEBUG_LOG', true );`
+`define( 'KINOLA_DEBUG_LOG', true );`
+
+NB! KINOLA_DEBUG_LOG will log a _ton_ of information in your debug.log file. **Remove it after debugging is completed.**
+
+4. Delete all events and films from WP. Empty both trashes. Run import again.
+5. Send an email to andres at elektriteater.ee, describe the problem and attach the log file.
 
 ## Technical stuff
 The plugin creates two custom post types - `production` and `event`. `create_posts` capability on these posts has been disabled.

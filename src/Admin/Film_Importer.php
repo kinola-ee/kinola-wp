@@ -15,6 +15,8 @@ class Film_Importer {
     protected array $data = [];
 
     public function import_film( string $id ): Film {
+        debug_log( "Film import: Importing film with ID {$id}" );
+
         try {
             $response = Kinola_Api::get( $this->single_film_endpoint . $id );
         } catch ( ApiException $e ) {
@@ -52,6 +54,8 @@ class Film_Importer {
     protected function save_film( Api_Film $api_film ): ?Film {
 
         if ( ! $api_film->is_public() ) {
+            debug_log( "Film import: Film ID {$api_film->get_id()} is not public, skip import." );
+
             return null;
         }
 
@@ -59,8 +63,10 @@ class Film_Importer {
 
         if ( ! $film ) {
             $film = Film::create( $api_film );
+            debug_log( "Film import: Created new post #{$film->get_local_id()} for film ID {$api_film->get_id()}." );
         } else {
             $film->save_api_data( $api_film );
+            debug_log( "Film import: Updated post #{$film->get_local_id()} for film ID {$api_film->get_id()}." );
         }
 
         return $film;

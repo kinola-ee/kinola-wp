@@ -112,8 +112,8 @@ class Event extends Model {
             return new Event( $results[0] );
         } else if ( count( $results ) > 1 ) {
             // If we have more than one matching event, delete everything except the last (latest) one.
-            trigger_error( "More than one WP Post matches event ID {$id}. Deleting extra posts.", E_USER_NOTICE );
-            error_log( print_r( $results, true ) );
+            debug_log( "More than one WP Post matches event ID {$id}. Deleting extra posts." );
+            debug_log( $results );
             $result = array_shift( $results );
 
             foreach ( $results as $duplicate ) {

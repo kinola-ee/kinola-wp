@@ -25,6 +25,8 @@ class Kinola_Api {
             $full_url = self::build_url( $endpoint_or_url, $with_translations );
         }
 
+        debug_log( "API: Making request to {$full_url}" );
+
         $result = wp_remote_get( $full_url, [ 'timeout' => 10 ] );
 
         if ( is_wp_error( $result ) ) {
@@ -37,6 +39,9 @@ class Kinola_Api {
         }
 
         $response_data = json_decode( $result['body'], true );
+
+        debug_log( "API: response data: " );
+        debug_log( $response_data );
 
         if ( is_null( $response_data ) ) {
             throw new JsonDecodeException();

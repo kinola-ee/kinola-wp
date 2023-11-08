@@ -14,7 +14,7 @@ class Event_Importer {
     protected string $events_endpoint = 'events?limit=500';
 
     public function import() {
-        error_log( "Event import: Fetching events from endpoint " . $this->get_endpoint() );
+        debug_log( "Event import: Fetching events from endpoint " . $this->get_endpoint() );
 
         try {
             $response = Kinola_Api::get( $this->get_endpoint(), false );
@@ -26,7 +26,7 @@ class Event_Importer {
         $saved_event_ids = [];
         $events          = $response->get_data();
 
-        error_log( "Event import: API returned a total of " . count( $events ) . " events." );
+        debug_log( "Event import: API returned a total of " . count( $events ) . " events." );
 
         foreach ( $events as $event ) {
             $saved_event_id = $this->save_event( new Api_Event( $event ) );
@@ -35,12 +35,12 @@ class Event_Importer {
             }
         }
 
-        error_log( "Event import: Saved a total of " . count( $saved_event_ids ) . " events." );
+        debug_log( "Event import: Saved a total of " . count( $saved_event_ids ) . " events." );
 
         $this->deleted_event_cleanup( $saved_event_ids );
         $this->past_event_cleanup();
 
-        error_log( "Event import: Completed successfully." );
+        debug_log( "Event import: Completed successfully." );
     }
 
     protected function get_endpoint(): string {
@@ -57,6 +57,8 @@ class Event_Importer {
 
             // If there's no film, do not import related event either.
             if ( ! $film ) {
+                debug_log( "Event import: No matching film for Event ID {$api_event->get_id()}, skipping import." );
+
                 return null;
             }
         }
@@ -66,9 +68,11 @@ class Event_Importer {
 
         if ( ! $event ) {
             $event = Event::create( $api_event );
+            debug_log( "Event import: Created event #{$event->get_local_id()} ID {$event->get_remote_id()}." );
         } else {
             $event->set_title( $film->get_title(), $api_event->get_field( 'time' ) );
             $event->save_api_data( $api_event );
+            debug_log( "Event import: Updated event #{$event->get_local_id()} ID {$event->get_remote_id()}." );
         }
 
         // If the corresponding film is published, also publish the event.
@@ -98,7 +102,7 @@ class Event_Importer {
 
         foreach ( $deleted_events as $event_post ) {
             $event = new Event( $event_post );
-            error_log( "Event import: Event " . $event->get_remote_id() . " deleted in Kinola. Removing event from WP." );
+            debug_log( "Event import: Event #{$event->get_local_id()} ID {$event->get_remote_id()} deleted in Kinola. Removing event from WP." );
             $event->delete();
         }
     }
@@ -126,6 +130,6 @@ class Event_Importer {
             $event->delete();
         }
 
-        error_log( "Event import: Deleted a total of " . count( $events ) . " past events." );
+        debug_log( "Event import: Deleted a total of " . count( $events ) . " past events." );
     }
 }
