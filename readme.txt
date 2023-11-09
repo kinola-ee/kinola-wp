@@ -14,11 +14,13 @@ Integrate Kinola cinema management service into your WordPress site.
 
 View the plugin's official readme on [GitHub](https://github.com/kinola-ee/kinola-wp).
 
+== Installation ==
+
+Please follow the installation instructions on [GitHub](https://github.com/kinola-ee/kinola-wp).
+
 == Frequently Asked Questions ==
 = Where do I report issues? =
 
 Please contact Kinola customer service. This is the fastest way to ensure your problem gets solved.
 
-== Installation ==
 
-Please follow the installation instructions on [GitHub](https://github.com/kinola-ee/kinola-wp).

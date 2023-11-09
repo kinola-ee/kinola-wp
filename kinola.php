@@ -6,7 +6,7 @@
  * Version:              1.0
  * Author:               Kinola
  * Author URI:           https://kinola.ee/
- * License:              MIT
+ * License:              GPLv3
  * Text Domain:          kinola
  * Domain Path:          /languages
  */
