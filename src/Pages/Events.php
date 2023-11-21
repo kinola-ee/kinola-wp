@@ -16,7 +16,7 @@ class Events {
         $events = ( new Event_Query() )
             ->limit( 25 )
             ->upcoming()
-            ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time() )
+            ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time(), $filter->get_selected_film() )
             ->get();
 
         return View::get_rendered_template( $this->template, [

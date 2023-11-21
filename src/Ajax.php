@@ -23,10 +23,12 @@ class Ajax {
 
         $filter = new Filter( $query );
 
-        if ( $_GET['field'] === self::PARAM_DATE ) {
-            $result = $this->format_for_select2( $filter->get_dates() );
+        if ( $_GET['field'] === self::PARAM_FILM ) {
+            $result = $this->format_for_select2( $filter->get_films() );
         } else if ( $_GET['field'] === self::PARAM_VENUE ) {
             $result = $this->format_for_select2( $filter->get_venues() );
+        } else if ( $_GET['field'] === self::PARAM_DATE ) {
+            $result = $this->format_for_select2( $filter->get_dates() );
         } else if ( $_GET['field'] === self::PARAM_TIME ) {
             $result = $this->format_for_select2( $filter->get_times() );
         } else {
@@ -34,6 +36,8 @@ class Ajax {
                 'status'  => 'error',
                 'message' => 'Invalid field',
             ] );
+
+            wp_die();
         }
 
         echo json_encode( [

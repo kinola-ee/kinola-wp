@@ -28,16 +28,28 @@ class Helpers {
         return apply_filters( 'kinola/taxonomy/venue', 'venue' );
     }
 
-    public static function get_date_parameter_slug(): string {
-        return apply_filters( 'kinola/filter/date', 'date' );
-    }
-
-    public static function get_time_parameter_slug(): string {
-        return apply_filters( 'kinola/filter/time', 'time' );
+    public static function get_film_parameter_slug(): string {
+        return apply_filters( 'kinola/filter/film/slug', 'selected_film' );
     }
 
     public static function get_venue_parameter_slug(): string {
-        return apply_filters( 'kinola/filter/date', 'venue' );
+        return apply_filters( 'kinola/filter/venue/slug', 'venue' );
+    }
+
+    public static function get_date_parameter_slug(): string {
+        return apply_filters( 'kinola/filter/date/slug', 'date' );
+    }
+
+    public static function get_time_parameter_slug(): string {
+        return apply_filters( 'kinola/filter/time/slug', 'time' );
+    }
+
+    public static function get_filter_parameter_value( string $slug ): ?string {
+        if ( ! isset( $_GET[ $slug ] ) || ! $_GET[ $slug ] || $_GET[ $slug ] === 'all' ) {
+            return null;
+        }
+
+        return $_GET[ $slug ] ?? null;
     }
 
     public static function format_datetime( string $date_time_string ): \DateTime {

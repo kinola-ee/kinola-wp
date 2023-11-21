@@ -5,6 +5,7 @@ namespace Kinola\KinolaWp;
 class Event_Query {
     public const DATE_FORMAT = "Y-m-d\TH:i:s\Z";
     protected array $params;
+    protected array $events;
 
     public function __construct() {
         $this->params = [
@@ -37,6 +38,10 @@ class Event_Query {
     }
 
     public function film( $film_remote_id ): Event_Query {
+        if ($film_remote_id === 'all') {
+            return $this;
+        }
+
         $this->params['meta_query'] = array_merge( [
             [
                 'key'   => Film::FIELD_ID,
@@ -121,33 +126,41 @@ class Event_Query {
         return $this;
     }
 
-    public function filter( $date = null, $venue = null, $time = null ): Event_Query {
-        if ( $date && $date !== 'all' && $date !== __( 'all', 'kinola' ) ) {
+    public function filter( $date = null, $venue = null, $time = null, $film = null ): Event_Query {
+        if ( $date && $date !== 'all' ) {
             $this->date( $date );
         }
 
-        if ( $venue && $venue !== 'all' && $venue !== __( 'all', 'kinola' ) ) {
+        if ( $venue && $venue !== 'all' ) {
             $this->venue( $venue );
         }
 
-        if ( $time && $time !== 'all' && $time !== __( 'all', 'kinola' ) ) {
+        if ( $time && $time !== 'all' ) {
             $this->time( $time );
+        }
+
+        if ( $film && $film !== 'all' ) {
+            $this->film( $film );
         }
 
         return $this;
     }
 
     public function get(): array {
-        $events     = [];
-        $eventPosts = ( new \WP_Query( $this->params ) )->posts;
+        if ( isset( $this->events ) && ! is_null( $this->events ) ) {
+            return $this->events;
+        }
+
+        $this->events = [];
+        $eventPosts   = ( new \WP_Query( $this->params ) )->posts;
 
         if ( count( $eventPosts ) ) {
             foreach ( $eventPosts as $eventPost ) {
-                $events[] = new Event( $eventPost );
+                $this->events[] = new Event( $eventPost );
             }
         }
 
-        return $events;
+        return $this->events;
     }
 
     protected function getTimeMetaQuery( string $time, string $start, string $end, int $offsetSeconds ): array {
