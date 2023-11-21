@@ -22,6 +22,7 @@ class Single_Film {
     public function get_rendered_content(): string {
         $filter = new Filter( ( new Event_Query() )->upcoming()->film( $this->film->get_remote_id() ) );
         $events = ( new Event_Query() )
+            ->limit( 25 )
             ->upcoming()
             ->film( $this->film->get_remote_id() )
             ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time() )
