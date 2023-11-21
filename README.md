@@ -21,10 +21,12 @@ Make sure you replace `your-cinema` with the name of your cinema. It should be t
 
 4. Ensure your WP site's language, time and date formats and time zones are set properly.
 
-5. (Recommended) In your wp-config.php, add link to terms and conditions:
+5. Flush permalinks: Go to Settings > Permalinks and click "Save."
+
+6. (Recommended) In your wp-config.php, add link to terms and conditions:
 `define( 'KINOLA_TERMS_LINK', 'https://[YOUR_URL_HERE]' );`
 
-6. (Optional) In your wp-config.php, add constant to display newsletter checkbox in checkout:
+7. (Optional) In your wp-config.php, add constant to display newsletter checkbox in checkout:
 `define( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX', true );`
 
 ### Using the plugin
@@ -46,7 +48,7 @@ This shortcode renders the screenings of the film with the given ID.
 
 ## Debugging
 If you run into problems, follow these steps:
-1. Ensure you've followed all steps outlined above under the big heading that says "Setup"
+1. Ensure you've followed *all* steps outlined above under the big heading that says "Setup"
 2. Double-check your WP site's language, time and date format and time zone settings.
 3. In wp-config.php, add the following:  
 `define( 'WP_DEBUG_LOG', true );`
