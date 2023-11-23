@@ -4,7 +4,7 @@
     <section class="kinola-film-gallery" id="kinola-film-gallery">
         <?php foreach ( $film->get_field( 'gallery' ) as $image ): ?>
             <a
-                href="<?php echo $image['srcset']; ?>"
+                href="<?php echo $image['src']; ?>"
                 data-pswp-width="<?php echo $image['width']; ?>"
                 data-pswp-height="<?php echo $image['height']; ?>"
                 target="_blank"

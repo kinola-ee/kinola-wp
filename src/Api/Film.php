@@ -25,7 +25,7 @@ class Film extends Api_Model {
         ];
 
         $data[ \Kinola\KinolaWp\Film::FIELD_ID ] = $data['id'];
-        $data['poster']                          = $data['image']['srcset'] ?? null;
+        $data['poster']                          = $data['image']['src'] ?? null;
         $data['post_title']                      = $this->resolve_post_title( $data['name'] );
         $data['title']                           = $data['name'];
         $data['title_original']                  = $data['originalName'];
