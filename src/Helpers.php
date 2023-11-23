@@ -4,6 +4,14 @@ namespace Kinola\KinolaWp;
 
 class Helpers {
 
+    public static function has_newsletter_checkbox(): bool {
+        return defined( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX' ) && KINOLA_SHOW_NEWSLETTER_CHECKBOX;
+    }
+
+    public static function get_checkout_terms_link(): string {
+        return defined( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX' ) ? KINOLA_SHOW_NEWSLETTER_CHECKBOX : '';
+    }
+
     public static function get_language(): string {
         return apply_filters( 'kinola/language', self::get_language_from_locale( get_locale() ) );
     }

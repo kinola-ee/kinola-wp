@@ -31,12 +31,12 @@
         apiBaseUrl: '<?php echo \Kinola\KinolaWp\Checkout::get_plugin_api_base_url(); ?>',
         eventId: '<?php echo \Kinola\KinolaWp\Checkout::get_event_id(); ?>',
         scheduleUrl: '<?php echo get_home_url(); ?>',
-        hasNewsletterCheckbox: <?php echo constant('KINOLA_SHOW_NEWSLETTER_CHECKBOX') ? 'true' : 'false'; ?>,
+        hasNewsletterCheckbox: <?php echo \Kinola\KinolaWp\Helpers::has_newsletter_checkbox() ? 'true' : 'false'; ?>,
         selectedLang: '<?php echo \Kinola\KinolaWp\Helpers::get_language(); ?>',
         strings: <?php echo json_encode(\Kinola\KinolaWp\Checkout::get_strings()); ?>,
 
-        <?php if (constant('KINOLA_TERMS_LINK')): ?>
-            termsLink: '<?php echo KINOLA_TERMS_LINK; ?>',
+        <?php if (\Kinola\KinolaWp\Helpers::get_checkout_terms_link()): ?>
+            termsLink: '<?php echo \Kinola\KinolaWp\Helpers::get_checkout_terms_link(); ?>',
         <?php endif; ?>
     })
 </script>
