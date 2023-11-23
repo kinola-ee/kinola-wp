@@ -1,3 +1,7 @@
+.kinola-film-filter {
+  width: 200px;
+}
+
 .kinola-venue-filter {
   width: 200px;
 }
@@ -16,4 +20,8 @@
 
 .kinola-filter-button {
   padding: 6px 20px;
+}
+
+.kinola-film-gallery img {
+  max-width: 100%;
 }
