@@ -44,7 +44,7 @@ Films can also be imported manually via Films > Import and also from the individ
 
 ### Shortcodes
 `[kinola_film_screenings film=1234]`  
-This shortcode renders the screenings of the film with the given ID.
+This shortcode renders the screenings of the film with the given WordPress post ID. You can find the post ID by opening up the edit view of a film in WordPress and checking your browser's address bar.
 
 ## Debugging
 If you run into problems, follow these steps:
