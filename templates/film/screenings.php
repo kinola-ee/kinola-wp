@@ -6,7 +6,7 @@
     <?php if ( count( $events ) ): ?>
         <?php foreach ( $events as $event ): ?>
             <?php /* @var $event \Kinola\KinolaWp\Event */ ?>
-            <div style="padding: 10px 20px; border: 1px solid #ccc;">
+            <div class="kinola-film-screening">
                 <p><?php echo $event->get_venue_name(); ?></p>
                 <p><?php echo $event->get_date(); ?> <?php echo $event->get_time(); ?></p>
                 <a href="<?php echo $event->get_checkout_url(); ?>">
