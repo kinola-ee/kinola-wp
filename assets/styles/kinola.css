@@ -25,3 +25,8 @@
 .kinola-film-gallery img {
   max-width: 100%;
 }
+
+ .kinola-film-screening {
+   padding: 10px 20px; 
+   border: 1px solid #ccc;
+ }
