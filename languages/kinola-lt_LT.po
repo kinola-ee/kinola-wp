@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
-"POT-Creation-Date: 2023-10-24T16:03:46+03:00\n"
-"PO-Revision-Date: 2023-11-09 21:13+0200\n"
+"POT-Creation-Date: 2024-01-02T17:08:19+02:00\n"
+"PO-Revision-Date: 2024-01-02 17:11+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt_LT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Domain: kinola\n"
 
 #. Plugin Name of the plugin
@@ -81,22 +81,22 @@ msgctxt "Admin"
 msgid "Autoloader not found."
 msgstr ""
 
-#: src/Admin/Admin.php:40
+#: src/Admin/Admin.php:41
 msgctxt "Admin"
 msgid "Import from Kinola"
 msgstr ""
 
-#: src/Admin/Admin.php:80 src/Admin/Admin.php:81
+#: src/Admin/Admin.php:81 src/Admin/Admin.php:82
 msgctxt "Admin"
 msgid "Import films"
 msgstr "Importuoti filmus"
 
-#: src/Admin/Admin_Messenger.php:38
+#: src/Admin/Admin_Messenger.php:39
 msgctxt "Admin"
 msgid "Film data imported successfully!"
 msgstr "Filmo duomenys sėkmingai importuoti!"
 
-#: src/Admin/Admin_Messenger.php:47
+#: src/Admin/Admin_Messenger.php:49
 msgctxt "Admin"
 msgid "All future events imported successfully!"
 msgstr "Visi būsimi seansai sėkmingai importuoti!"
@@ -157,6 +157,14 @@ msgstr "Miestai"
 #: src/Bootstrap.php:101
 msgid "Venue"
 msgstr "Miestas"
+
+#: src/Bootstrap.php:170
+msgid "This shortcode requires a 'film' parameter."
+msgstr ""
+
+#: src/Bootstrap.php:177
+msgid "There is no film with ID %s."
+msgstr ""
 
 #: src/Checkout.php:28
 msgid "Session expires in:"
@@ -343,25 +351,29 @@ msgstr "E. bilietą galite atsisiųsti paspaudę žemiau esančią nuorodą."
 msgid "Download tickets"
 msgstr "Atsisiųsti bilietą"
 
-#: src/Event_Query.php:125 src/Event_Query.php:129 src/Event_Query.php:133
-#: src/Filter.php:25 src/Filter.php:45 src/Filter.php:49 src/Filter.php:70
-#: src/Filter.php:84 src/Filter.php:98
-msgid "all"
-msgstr ""
+#: src/Filter.php:35
+msgid "All films"
+msgstr "Visi filmai"
 
-#: src/Filter.php:25
-msgid "All dates"
-msgstr "Visos datos"
-
-#: src/Filter.php:45
-msgid "All times"
-msgstr "Pasirinkti laiką"
-
-#: src/Filter.php:49
+#: src/Filter.php:47
 msgid "All venues"
 msgstr "Visi miestai"
 
-#: src/Scheduler.php:21
+#: src/Filter.php:62
+msgid "All dates"
+msgstr "Visos datos"
+
+#: src/Filter.php:82
+msgid "All times"
+msgstr "Pasirinkti laiką"
+
+#: src/Model.php:44
+msgid ""
+"The field '%s' does not a have a corresponding translation in Kinola for "
+"this website's configured language (%s)."
+msgstr ""
+
+#: src/Scheduler.php:26
 msgctxt "Admin"
 msgid "Every 15 minutes"
 msgstr "Kas 15 minučių"
@@ -422,8 +434,8 @@ msgstr ""
 
 #: templates/admin/edit-film-meta-box.php:29
 msgctxt "Admin"
-msgid "Duration"
-msgstr "Trukmė"
+msgid "Runtime"
+msgstr ""
 
 #: templates/admin/edit-film-meta-box.php:32
 msgctxt "Admin"
@@ -506,9 +518,13 @@ msgstr ""
 msgid "No films to display."
 msgstr "Bilietų nėra"
 
-#: templates/filters.php:41
+#: templates/filters.php:59
 msgid "Filter"
 msgstr "Ieškoti"
+
+#~ msgctxt "Admin"
+#~ msgid "Duration"
+#~ msgstr "Trukmė"
 
 #~ msgctxt "Admin"
 #~ msgid "Film ID"
