@@ -19,14 +19,24 @@ class Single_Film {
         $this->template = $template;
     }
 
-    public function get_rendered_content(): string {
+    public function get_rendered_content( $show_dates = 'upcoming' ): string {
         $filter = new Filter( ( new Event_Query() )->upcoming()->film( $this->film->get_remote_id() ) );
-        $events = ( new Event_Query() )
+
+        $event_query = ( new Event_Query() )
             ->limit( 25 )
             ->upcoming()
             ->film( $this->film->get_remote_id() )
-            ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time() )
-            ->get();
+            ->filter(
+                $filter->get_selected_date(),
+                $filter->get_selected_venue(),
+                $filter->get_selected_time()
+            );
+
+        if ( $show_dates === 'today' ) {
+            $event_query = $event_query->date("today");
+        }
+
+        $events = $event_query->get();
 
         return View::get_rendered_template( $this->template, [
             'film'            => $this->film,

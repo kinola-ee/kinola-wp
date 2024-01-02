@@ -148,8 +148,12 @@ class Bootstrap {
         wp_localize_script( 'kinola', 'Kinola', [ 'ajaxUrl' => admin_url( 'admin-ajax.php' ) ] );
     }
 
-    public function render_events_page(): string {
-        return ( new Events() )->get_rendered_events();
+    public function render_events_page( $atts ): string {
+        $atts = shortcode_atts( [
+            'show_dates' => 'upcoming',
+        ], $atts );
+
+        return ( new Events() )->get_rendered_events( $atts['show_dates'] );
     }
 
     public function render_films_page(): string {
@@ -158,7 +162,8 @@ class Bootstrap {
 
     public function render_film_screenings( $atts ) {
         $atts = shortcode_atts( [
-            'film' => false,
+            'film'       => false,
+            'show_dates' => 'upcoming',
         ], $atts );
 
         if ( ! $atts['film'] ) {
@@ -178,7 +183,7 @@ class Bootstrap {
         $single_film = new Single_Film( $film );
         $single_film->set_template( 'film_screenings' );
 
-        return $single_film->get_rendered_content();
+        return $single_film->get_rendered_content( $atts['show_dates'] );
     }
 
     public function override_checkout_template( $template ) {
