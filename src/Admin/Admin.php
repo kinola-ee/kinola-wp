@@ -102,7 +102,7 @@ class Admin {
     public function register_edit_film_meta_box() {
         add_meta_box(
             'edit_film_meta_box',
-            _x( 'Film data', 'Admin', 'kinola)' ),
+            _x( 'Film data', 'Admin', 'kinola' ),
             [ $this, 'render_edit_film_meta_box' ],
             Helpers::get_films_post_type(),
             'normal',
@@ -118,7 +118,7 @@ class Admin {
     public function register_edit_event_meta_box() {
         add_meta_box(
             'edit_event_meta_box',
-            _x( 'Event data', 'Admin', 'kinola)' ),
+            _x( 'Event data', 'Admin', 'kinola' ),
             [ $this, 'render_edit_event_meta_box' ],
             Helpers::get_events_post_type(),
             'normal',
