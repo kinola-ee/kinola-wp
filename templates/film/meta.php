@@ -1,6 +1,7 @@
 <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
 
 <section class="kinola-film-meta">
+	<img alt="Film poster" src="<?php echo $film->get_field( 'poster' ); ?>">
     <?php echo $film->get_field( 'description' ); ?>
     <br><hr><br>
     <strong><?php echo $film->get_field( 'title' ); ?></strong> <br>
