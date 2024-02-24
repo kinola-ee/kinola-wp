@@ -14,7 +14,7 @@ class Film_Importer {
 
     protected array $data = [];
 
-    public function import_film( string $remote_id ): Film {
+    public function import_film( string $remote_id ): ?Film {
         debug_log( "Film import: Importing film with ID {$remote_id}" );
 
         try {
@@ -24,7 +24,13 @@ class Film_Importer {
             die;
         }
 
-        return $this->save_film( new Api_Film( $response->get_data() ) );
+        $data = $response->get_data();
+
+        if ($data) {
+            return $this->save_film( new Api_Film( $data ) );
+        }
+
+        return null;
     }
 
     public function import_films( string $last_modified_since ) {

@@ -9,7 +9,7 @@ class Response {
         $this->contents = $contents;
     }
 
-    public function get_data(): array {
+    public function get_data(): ?array {
         return $this->contents['data'];
     }
 

@@ -30,9 +30,15 @@
                         </span>
                     </p>
                     <p>
-                        <a class="kinola-event-tickets-link" href="<?php echo $event->get_checkout_url(); ?>">
-                            <?php _e( 'Buy ticket', 'kinola' ); ?>
-                        </a>
+                        <?php if ($event->get_free_seats()): ?>
+                            <a class="kinola-event-tickets-link" href="<?php echo $event->get_checkout_url(); ?>">
+                                <?php _e( 'Buy ticket', 'kinola' ); ?>
+                            </a>
+                        <?php else: ?>
+                            <span class="kinola-event-tickets-link-sold-out">
+                                <?php _e( 'Sold out', 'kinola' ); ?>
+                            </span>
+                        <?php endif; ?>
                     </p>
                 </div>
             </div>

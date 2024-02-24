@@ -11,7 +11,6 @@ class Event extends Api_Model {
     protected function reformat( array $data ): array {
         $unset = [
             'id',
-            'freeSeats',
             'production',
         ];
 

@@ -36,6 +36,10 @@ class Event extends Model {
         return Film::find_by_remote_id( $this->get_field( \Kinola\KinolaWp\Film::FIELD_ID ) );
     }
 
+    public function get_free_seats(): string {
+        return $this->get_field( 'freeSeats' );
+    }
+
     public function set_title( string $production_title, string $date_time ) {
         wp_update_post( [
             'ID'         => $this->get_local_id(),
