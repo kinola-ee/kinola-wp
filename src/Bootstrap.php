@@ -206,7 +206,7 @@ class Bootstrap {
         return $content;
     }
 
-    public function translate_post_title( string $title, int|string $post_id = null ) {
+    public function translate_post_title( string $title, $post_id = null ) {
 
         if ( ! $post_id ) {
             return $title;

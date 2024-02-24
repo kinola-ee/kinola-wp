@@ -37,14 +37,8 @@ class Event_Importer {
     }
 
     protected function get_events( $url = null ): array {
-        try {
-            $response = Kinola_Api::get( $url, false );
-        } catch ( ApiException $e ) {
-            echo $e->getMessage();
-            trigger_error( $e->getMessage(), E_USER_ERROR );
-        }
-
-        $events = $response->get_data();
+        $response = Kinola_Api::get( $url, false );
+        $events   = $response->get_data();
 
         if ( $response->has_next_link() ) {
             $events = array_merge( $events, $this->get_events( $response->get_next_link() ) );

@@ -23,7 +23,7 @@ class Admin {
         add_action( 'admin_head-edit.php', [ $this, 'add_import_button' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_styles' ] );
         add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_events' ] );
-        add_action( Scheduler::EVENT_NAME_DAILY, [ $this, 'import_changed_films' ] );
+        add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_changed_films' ] );
     }
 
     public function add_import_button() {
