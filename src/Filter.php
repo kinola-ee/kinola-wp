@@ -23,7 +23,7 @@ class Filter {
             $filter_data['selected_time'] = $this->get_selected_time();
         }
 
-        if ( apply_filters( 'kinola/filters/film', false ) && ! $film_remote_id ) {
+        if ( apply_filters( 'kinola/filters/film', true ) && ! $film_remote_id ) {
             $filter_data['films']         = $this->get_films();
             $filter_data['selected_film'] = $this->get_selected_film();
         }

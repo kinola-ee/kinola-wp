@@ -6,7 +6,7 @@
 
 <div class="kinola-filters">
     <form class="js-kinola-filters-form" <?php if ( $film_id ): ?> data-film="<?php echo $film_id; ?>" <?php endif; ?>>
-        <?php if ( apply_filters( 'kinola/filters/film', false ) && ! $film_id ): ?>
+        <?php if ( apply_filters( 'kinola/filters/film', true ) && ! $film_id ): ?>
             <select
                 class="js-kinola-film-filter kinola-film-filter"
                 name="<?php echo \Kinola\KinolaWp\Helpers::get_film_parameter_slug() ?>"
