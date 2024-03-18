@@ -151,9 +151,10 @@ class Bootstrap {
     public function render_events_page( $atts ): string {
         $atts = shortcode_atts( [
             'show_dates' => 'upcoming',
+            'limit'      => 25,
         ], $atts );
 
-        return ( new Events() )->get_rendered_events( $atts['show_dates'] );
+        return ( new Events() )->get_rendered_events( $atts['show_dates'], $atts['limit'] );
     }
 
     public function render_films_page(): string {

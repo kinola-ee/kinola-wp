@@ -43,8 +43,20 @@ Films are imported automatically in two situations:
 Films can also be imported manually via Films > Import and also from the individual film's admin page.
 
 ### Shortcodes
-`[kinola_film_screenings film=1234]`  
-This shortcode renders the screenings of the film with the given WordPress post ID. You can find the post ID by opening up the edit view of a film in WordPress and checking your browser's address bar.
+`[kinola_films]`  
+Outputs a list of all films.
+
+`[kinola_events]`   
+Outputs a list of all upcoming events as well as the events filter.  
+
+To control the number of events displayed, use the `limit` attribute in the shortcode. Examples: `limit="10"` or `limit="all"`. Default: `25`.
+
+To show only today's events, use `show_dates` attribute in the shortcode with the value set to `today`. Example: `show_dates="today"`.
+
+`[kinola_film_screenings film="YOUR_FILM_ID"]`  
+Outputs all upcoming screenings of the film with the given WordPress post ID, as well as the events filter (you can find the post ID of a film by opening up the edit view of that film in WordPress and checking your browser's address bar).  
+
+To show only today's events, use the following attribute in the shortcode: `show_dates="today"`
 
 ## Debugging
 If you run into problems, follow these steps:
