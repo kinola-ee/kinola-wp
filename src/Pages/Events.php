@@ -22,7 +22,7 @@ class Events {
             ->upcoming()
             ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time(), $filter->get_selected_film() );
 
-        if ( $show_dates === 'today' ) {
+        if ( $show_dates === 'today' && !$filter->get_selected_date()) {
             $event_query = $event_query->date( "today" );
         }
 
