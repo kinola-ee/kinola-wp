@@ -154,6 +154,12 @@ class Bootstrap {
             'limit'      => 25,
         ], $atts );
 
+        $atts['limit'] = (int) $atts['limit'];
+
+        if ($atts['limit'] < 1 || $atts['limit'] > 1000) {
+            $atts['limit'] = 25;
+        }
+
         return ( new Events() )->get_rendered_events( $atts['show_dates'], $atts['limit'] );
     }
 
@@ -167,8 +173,10 @@ class Bootstrap {
             'show_dates' => 'upcoming',
         ], $atts );
 
+        $atts['film'] = (int) $atts['film'];
+
         if ( ! $atts['film'] ) {
-            return __( "This shortcode requires a 'film' parameter.", 'kinola' );
+            return __( "This shortcode requires a 'film' ID parameter.", 'kinola' );
         }
 
         $film_post = get_post( $atts['film'] );
