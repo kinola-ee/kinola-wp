@@ -1,0 +1,509 @@
+# Copyright (C) 2024 Kinola
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kinola 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
+"POT-Creation-Date: 2024-01-02T17:08:19+02:00\n"
+"PO-Revision-Date: 2024-03-12 13:04+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Domain: kinola\n"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+msgid "Kinola"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/kinola-ee/kinola-wp"
+msgstr ""
+
+#. Description of the plugin
+msgid "Kinola integration for WordPress."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://kinola.ee/"
+msgstr ""
+
+#: kinola.php:30
+msgctxt "Admin"
+msgid "Kinola error"
+msgstr ""
+
+#: kinola.php:40
+msgctxt "Admin"
+msgid "You must be using PHP 7.4 or greater."
+msgstr ""
+
+#: kinola.php:41
+msgctxt "Admin"
+msgid "Invalid PHP version"
+msgstr ""
+
+#: kinola.php:50
+msgctxt "Admin"
+msgid "You must be using WordPress 6.0 or greater."
+msgstr ""
+
+#: kinola.php:51
+msgctxt "Admin"
+msgid "Invalid WordPress version"
+msgstr ""
+
+#: kinola.php:60
+msgctxt "Admin"
+msgid ""
+"You must define KINOLA_URL in your wp-config file, e.g. <em>https://"
+"YOUR_SITE.kinola.ee</em>"
+msgstr ""
+
+#: kinola.php:61
+msgctxt "Admin"
+msgid "KINOLA_URL not defined."
+msgstr ""
+
+#: kinola.php:70
+msgctxt "Admin"
+msgid ""
+"You appear to be running a development version of Kinola. You must run "
+"<code>composer install</code> from the plugin directory."
+msgstr ""
+
+#: kinola.php:75
+msgctxt "Admin"
+msgid "Autoloader not found."
+msgstr ""
+
+#: src/Admin/Admin.php:41
+msgctxt "Admin"
+msgid "Import from Kinola"
+msgstr ""
+
+#: src/Admin/Admin.php:81 src/Admin/Admin.php:82
+msgctxt "Admin"
+msgid "Import films"
+msgstr ""
+
+#: src/Admin/Admin_Messenger.php:39
+msgctxt "Admin"
+msgid "Film data imported successfully!"
+msgstr ""
+
+#: src/Admin/Admin_Messenger.php:49
+msgctxt "Admin"
+msgid "All future events imported successfully!"
+msgstr ""
+
+#: src/Admin/Film_Importer_List_Table.php:19 src/Bootstrap.php:32
+#: src/Bootstrap.php:56
+msgid "Film"
+msgstr ""
+
+#: src/Admin/Film_Importer_List_Table.php:20 src/Bootstrap.php:55
+msgid "Films"
+msgstr ""
+
+#: src/Admin/Film_Importer_List_Table.php:27
+#: templates/admin/edit-film-meta-box.php:12
+msgctxt "Admin"
+msgid "Title"
+msgstr ""
+
+#: src/Admin/Film_Importer_List_Table.php:28
+#: templates/admin/edit-film-meta-box.php:21
+msgctxt "Admin"
+msgid "Original title"
+msgstr ""
+
+#: src/Admin/Film_Importer_List_Table.php:29
+msgctxt "Admin"
+msgid "Actions"
+msgstr ""
+
+#: src/Admin/Film_Importer_List_Table.php:38
+msgctxt "Admin"
+msgid "Import"
+msgstr ""
+
+#: src/Bootstrap.php:57
+msgctxt "Admin"
+msgid "Films"
+msgstr ""
+
+#: src/Bootstrap.php:64 src/Bootstrap.php:88
+msgid "Event"
+msgstr ""
+
+#: src/Bootstrap.php:87
+msgid "Events"
+msgstr ""
+
+#: src/Bootstrap.php:89
+msgctxt "Admin"
+msgid "Events"
+msgstr ""
+
+#: src/Bootstrap.php:100 src/Bootstrap.php:102
+msgid "Venues"
+msgstr "Tapahtumapaikat"
+
+#: src/Bootstrap.php:101
+msgid "Venue"
+msgstr "Paikka"
+
+#: src/Bootstrap.php:170
+msgid "This shortcode requires a 'film' parameter."
+msgstr "Tämä lyhytkoodi vaatii “film”-parametrin."
+
+#: src/Bootstrap.php:177
+msgid "There is no film with ID %s."
+msgstr "Tunnuksella %s ei ole elokuvaa."
+
+#: src/Checkout.php:28
+msgid "Session expires in:"
+msgstr "Istunto päättyy:"
+
+#: src/Checkout.php:29
+msgid "Session expired"
+msgstr "Istunto päättyi"
+
+#: src/Checkout.php:30
+msgid "Screen"
+msgstr "Näyttö"
+
+#: src/Checkout.php:31
+msgid "entrance"
+msgstr "sisäänkäynti"
+
+#: src/Checkout.php:32
+msgid "stage"
+msgstr "vaiheessa"
+
+#: src/Checkout.php:33
+msgid "balcony"
+msgstr "kādu"
+
+#: src/Checkout.php:34
+msgid "side balcony"
+msgstr "sivuparveke"
+
+#: src/Checkout.php:35
+msgid "Free seats"
+msgstr "Vapaat paikat"
+
+#: src/Checkout.php:36
+msgid "Choose tickets"
+msgstr "Valitse liput"
+
+#: src/Checkout.php:37
+msgid "Sorry, the maximum number of tickets is limited"
+msgstr "Valitettavasti lippujen enimmäismäärä on rajoitettu"
+
+#: src/Checkout.php:38
+msgid "Total"
+msgstr "Kaikki yhteensä"
+
+#: src/Checkout.php:39
+msgid "Client card and gift cards"
+msgstr "Asiakaskortti ja lahjakortit"
+
+#: src/Checkout.php:40
+msgid "Client card or gift card number"
+msgstr "Asiakaskortin tai lahjakortin numero"
+
+#: src/Checkout.php:41
+msgid "Confirm number"
+msgstr "Vahvista numero"
+
+#: src/Checkout.php:42
+msgid "We couldn't find a card with this number"
+msgstr "Emme löytäneet korttia tällä numerolla"
+
+#: src/Checkout.php:43
+msgid "This card has already been added to this session"
+msgstr "Tämä kortti on jo lisätty tähän istuntoon"
+
+#: src/Checkout.php:44
+msgid "Contact"
+msgstr "Ottaa yhteyttä"
+
+#: src/Checkout.php:45
+msgid ""
+"We'll use your contact info to e-mail you your tickets and contact you in "
+"the case of unexpected changes to the screening."
+msgstr ""
+"Käytämme yhteystietojasi lähettääksemme sinulle lippusi sähköpostitse ja "
+"otamme sinuun yhteyttä, jos näytöksessä tapahtuu odottamattomia muutoksia."
+
+#: src/Checkout.php:46
+msgid "name"
+msgstr "nimi"
+
+#: src/Checkout.php:47
+msgid "Please enter your name"
+msgstr "Kirjoita nimesi"
+
+#: src/Checkout.php:48
+msgid "e-mail"
+msgstr "sähköposti"
+
+#: src/Checkout.php:49
+msgid "Please enter a valid e-mail address"
+msgstr "Ole hyvä ja syötä toimiva sähköpostiosoite"
+
+#: src/Checkout.php:50
+msgid ""
+"The e-mail address you entered does not match the e-mail address on your card"
+msgstr ""
+"Antamasi sähköpostiosoite ei vastaa kortissasi olevaa sähköpostiosoitetta"
+
+#: src/Checkout.php:51
+msgid "phone"
+msgstr "puhelin"
+
+#: src/Checkout.php:52
+msgid "Sign up to our newsletter"
+msgstr "Tilaa uutiskirjeemme"
+
+#: src/Checkout.php:53
+msgid "By buying I agree with terms and conditions."
+msgstr "Ostamalla hyväksyn ehdot."
+
+#: src/Checkout.php:54
+msgid "Choose payment"
+msgstr "Valitse maksu"
+
+#: src/Checkout.php:55
+msgid "Your payment was not successful. Please try again."
+msgstr "Maksusi ei onnistunut. Yritä uudelleen."
+
+#: src/Checkout.php:56
+msgid "Please choose your payment method."
+msgstr "Valitse maksutapasi."
+
+#: src/Checkout.php:57
+msgid "Register"
+msgstr "Rekisteröidy"
+
+#: src/Checkout.php:58
+msgid "Pay"
+msgstr "Maksaa"
+
+#: src/Checkout.php:59
+msgid "Schedule"
+msgstr "Ajoittaa"
+
+#: src/Checkout.php:60
+msgid "Ticket purchase successful!"
+msgstr "Lipunosto onnistui!"
+
+#: src/Checkout.php:61
+msgid "Seats"
+msgstr "Istuimet"
+
+#: src/Checkout.php:62
+msgid "Tickets"
+msgstr "Liput"
+
+#: src/Checkout.php:63
+msgid "Buy more tickets"
+msgstr "Osta lisää lippuja"
+
+#: src/Checkout.php:64
+msgid "Sold out"
+msgstr "Loppuunmyyty"
+
+#: src/Checkout.php:65
+msgid "Sorry, all tickets have been sold out."
+msgstr "Valitettavasti kaikki liput on myyty loppuun."
+
+#: src/Checkout.php:66
+msgid "Sorry, tickets are temporarily unavailable."
+msgstr "Valitettavasti lippuja ei ole tilapäisesti saatavilla."
+
+#: src/Checkout.php:67
+msgid "Payment pending"
+msgstr "Maksu odottaa"
+
+#: src/Checkout.php:68
+msgid "Please complete your payment."
+msgstr "Suorita maksu loppuun."
+
+#: src/Checkout.php:71
+msgid "You can ask for your tickets from the cashier."
+msgstr "Voit kysyä lippusi kassalta."
+
+#: src/Checkout.php:72
+msgid "You can also download your tickets here:"
+msgstr "Voit myös ladata lippusi täältä:"
+
+#: src/Checkout.php:73
+msgid "Download tickets"
+msgstr "Lataa liput"
+
+#: src/Filter.php:35
+msgid "All films"
+msgstr "Kaikki elokuvat"
+
+#: src/Filter.php:47
+msgid "All venues"
+msgstr "Kaikki tapahtumapaikat"
+
+#: src/Filter.php:62
+msgid "All dates"
+msgstr "Kaikki päivämäärät"
+
+#: src/Filter.php:82
+msgid "All times"
+msgstr "Kaikki ajat"
+
+#: src/Model.php:44
+msgid ""
+"The field '%s' does not a have a corresponding translation in Kinola for "
+"this website's configured language (%s)."
+msgstr ""
+"Kentällä ‘%s’ ei ole vastaavaa käännöstä Kinolassa tämän sivuston "
+"määritetylle kielelle (%s)."
+
+#: src/Scheduler.php:26
+msgctxt "Admin"
+msgid "Every 15 minutes"
+msgstr "15 minuutin välein"
+
+#: templates/admin/edit-event-meta-box.php:12
+msgctxt "Admin"
+msgid "Film"
+msgstr "Elokuva"
+
+#: templates/admin/edit-event-meta-box.php:22
+msgctxt "Admin"
+msgid "Date"
+msgstr "Päivämäärä"
+
+#: templates/admin/edit-event-meta-box.php:30
+msgctxt "Admin"
+msgid "Time"
+msgstr "Aika"
+
+#: templates/admin/edit-event-meta-box.php:38
+msgctxt "Admin"
+msgid "Venue"
+msgstr "Paikka"
+
+#: templates/admin/edit-event-meta-box.php:46
+msgctxt "Admin"
+msgid "Room"
+msgstr "Huone"
+
+#: templates/admin/edit-event-meta-box.php:54
+msgctxt "Admin"
+msgid "Program"
+msgstr "Ohjelmoida"
+
+#: templates/admin/edit-event-meta-box.php:63
+#: templates/admin/edit-film-meta-box.php:61
+msgctxt "Admin"
+msgid "Languages"
+msgstr "Kieli (kielet"
+
+#: templates/admin/edit-event-meta-box.php:71
+#: templates/admin/edit-film-meta-box.php:69
+msgctxt "Admin"
+msgid "Subtitles"
+msgstr "Tekstitykset"
+
+#: templates/admin/edit-event-meta-box.php:86
+msgctxt "Admin"
+msgid "Event ID in Kinola"
+msgstr "Tapahtumatunnus Kinolassa"
+
+#: templates/admin/edit-event-meta-box.php:96
+msgctxt "Admin"
+msgid "Film ID in Kinola"
+msgstr "Film ID Kinolassa"
+
+#: templates/admin/edit-film-meta-box.php:29
+msgctxt "Admin"
+msgid "Runtime"
+msgstr "Suoritusaika"
+
+#: templates/admin/edit-film-meta-box.php:32
+msgctxt "Admin"
+msgid "min"
+msgstr "min"
+
+#: templates/admin/edit-film-meta-box.php:37
+msgctxt "Admin"
+msgid "Year"
+msgstr "Vuosi"
+
+#: templates/admin/edit-film-meta-box.php:45
+msgctxt "Admin"
+msgid "Rating"
+msgstr "Ikäraja"
+
+#: templates/admin/edit-film-meta-box.php:53
+msgctxt "Admin"
+msgid "Distributor"
+msgstr "Jakelija"
+
+#: templates/admin/edit-film-meta-box.php:103
+msgctxt "Admin"
+msgid "ID"
+msgstr "ID"
+
+#: templates/events.php:34 templates/film/screenings.php:13
+msgid "Buy ticket"
+msgstr "Osta lippu"
+
+#: templates/events.php:43
+msgid "No upcoming events."
+msgstr "Ei tulevia tapahtumia."
+
+#: templates/film/meta.php:17
+msgctxt "minutes"
+msgid "min"
+msgstr "min"
+
+#: templates/film/meta.php:23
+msgid "Director"
+msgstr "Ohjaus"
+
+#: templates/film/meta.php:29
+msgid "Cast"
+msgstr "Näyttelijät"
+
+#: templates/film/meta.php:35
+msgid "Language"
+msgstr "Kieli"
+
+#: templates/film/meta.php:41
+msgid "Subtitles"
+msgstr "Tekstitys"
+
+#: templates/film/screenings.php:4
+msgid "Screenings"
+msgstr "Näytökset"
+
+#: templates/film/screenings.php:18
+msgid "No upcoming screenings"
+msgstr "Ei tulevia näytöksiä"
+
+#: templates/film/trailer.php:9
+msgid "Watch trailer"
+msgstr "Katso traileri"
+
+#: templates/films.php:34
+msgid "No films to display."
+msgstr "Ei näytettäviä elokuvia."
+
+#: templates/filters.php:59
+msgid "Filter"
+msgstr "Suodattaa"
