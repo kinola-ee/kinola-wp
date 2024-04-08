@@ -2,7 +2,6 @@
 
 namespace Kinola\KinolaWp\Admin;
 
-use Kinola\KinolaWp\Api\Exceptions\ApiException;
 use Kinola\KinolaWp\Api\Event as Api_Event;
 use Kinola\KinolaWp\Api\Kinola_Api;
 use Kinola\KinolaWp\Event;

@@ -11,15 +11,19 @@ use Kinola\KinolaWp\View;
 class Events {
     protected string $template = 'events';
 
-    public function get_rendered_events( $show_dates = 'upcoming' ): string {
-        $filter = new Filter();
+    public function get_rendered_events( $show_dates = 'upcoming', $limit = 25 ): string {
+        if ( $limit === 'all' ) {
+            $limit = - 1;
+        }
+
+        $filter      = new Filter();
         $event_query = ( new Event_Query() )
-            ->limit( 25 )
+            ->limit( $limit )
             ->upcoming()
             ->filter( $filter->get_selected_date(), $filter->get_selected_venue(), $filter->get_selected_time(), $filter->get_selected_film() );
 
-        if ( $show_dates === 'today' ) {
-            $event_query = $event_query->date("today");
+        if ( $show_dates === 'today' && !$filter->get_selected_date()) {
+            $event_query = $event_query->date( "today" );
         }
 
         $events = $event_query->get();
