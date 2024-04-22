@@ -154,10 +154,10 @@ class Bootstrap {
             'limit'      => 25,
         ], $atts );
 
-        $atts['limit'] = (int) $atts['limit'];
-
-        if ($atts['limit'] < 1 || $atts['limit'] > 1000) {
-            $atts['limit'] = 25;
+        if ( $atts['limit'] === 'all' ) {
+            $atts['limit'] = - 1;
+        } else {
+            $atts['limit'] = is_numeric($atts['limit']) ? (int) $atts['limit'] : 5;
         }
 
         return ( new Events() )->get_rendered_events( $atts['show_dates'], $atts['limit'] );
