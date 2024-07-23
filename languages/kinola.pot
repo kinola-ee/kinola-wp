@@ -3,15 +3,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola-wp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-02T17:08:19+02:00\n"
+"POT-Creation-Date: 2024-07-23T11:20:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: kinola\n"
 
 #. Plugin Name of the plugin
@@ -87,6 +87,16 @@ msgctxt "Admin"
 msgid "Import films"
 msgstr ""
 
+#: src/Admin/Admin.php:105
+msgctxt "Admin"
+msgid "Film data"
+msgstr ""
+
+#: src/Admin/Admin.php:121
+msgctxt "Admin"
+msgid "Event data"
+msgstr ""
+
 #: src/Admin/Admin_Messenger.php:39
 msgctxt "Admin"
 msgid "Film data imported successfully!"
@@ -158,11 +168,11 @@ msgstr ""
 msgid "Venue"
 msgstr ""
 
-#: src/Bootstrap.php:170
-msgid "This shortcode requires a 'film' parameter."
+#: src/Bootstrap.php:179
+msgid "This shortcode requires a 'film' ID parameter."
 msgstr ""
 
-#: src/Bootstrap.php:177
+#: src/Bootstrap.php:186
 msgid "There is no film with ID %s."
 msgstr ""
 
@@ -195,150 +205,391 @@ msgid "side balcony"
 msgstr ""
 
 #: src/Checkout.php:35
-msgid "Free seats"
+msgid "free seat"
 msgstr ""
 
 #: src/Checkout.php:36
-msgid "Choose tickets"
+msgid "booked seat"
 msgstr ""
 
 #: src/Checkout.php:37
-msgid "Sorry, the maximum number of tickets is limited"
+msgid "taken seat"
 msgstr ""
 
 #: src/Checkout.php:38
-msgid "Total"
+msgid "buffer seat"
 msgstr ""
 
 #: src/Checkout.php:39
-msgid "Client card and gift cards"
+msgid "seat with limited visibility"
 msgstr ""
 
 #: src/Checkout.php:40
-msgid "Client card or gift card number"
+msgid "Free seats"
 msgstr ""
 
 #: src/Checkout.php:41
-msgid "Confirm number"
+msgid "Choose tickets"
 msgstr ""
 
 #: src/Checkout.php:42
-msgid "We couldn't find a card with this number"
+msgid "Serial ticket {number}"
 msgstr ""
 
 #: src/Checkout.php:43
-msgid "This card has already been added to this session"
+msgid "Gift card {number}"
 msgstr ""
 
 #: src/Checkout.php:44
-msgid "Contact"
+msgid "Amount left"
 msgstr ""
 
 #: src/Checkout.php:45
-msgid "We'll use your contact info to e-mail you your tickets and contact you in the case of unexpected changes to the screening."
+msgid "Sorry, the maximum number of tickets is limited"
 msgstr ""
 
 #: src/Checkout.php:46
-msgid "name"
+#: src/Checkout.php:120
+msgid "Total"
 msgstr ""
 
 #: src/Checkout.php:47
-msgid "Please enter your name"
+msgid "Selected products"
 msgstr ""
 
 #: src/Checkout.php:48
-msgid "e-mail"
+msgid "Shopping basket"
 msgstr ""
 
 #: src/Checkout.php:49
-msgid "Please enter a valid e-mail address"
+msgid "Client card and gift cards"
 msgstr ""
 
 #: src/Checkout.php:50
-msgid "The e-mail address you entered does not match the e-mail address on your card"
+msgid "Client card or gift card number"
 msgstr ""
 
 #: src/Checkout.php:51
-msgid "phone"
+msgid "Confirm number"
 msgstr ""
 
 #: src/Checkout.php:52
-msgid "Sign up to our newsletter"
+msgid "We couldn't find a card with this number"
 msgstr ""
 
 #: src/Checkout.php:53
-msgid "By buying I agree with terms and conditions."
+msgid "This card has already been added to this session"
 msgstr ""
 
 #: src/Checkout.php:54
-msgid "Choose payment"
+msgid "This discount does not apply to this order"
 msgstr ""
 
 #: src/Checkout.php:55
-msgid "Your payment was not successful. Please try again."
+msgid "Contact"
 msgstr ""
 
 #: src/Checkout.php:56
-msgid "Please choose your payment method."
-msgstr ""
-
-#: src/Checkout.php:57
-msgid "Register"
+msgid "We'll use your contact info to e-mail you your tickets and contact you in the case of unexpected changes to the screening."
 msgstr ""
 
 #: src/Checkout.php:58
-msgid "Pay"
+msgid "name"
 msgstr ""
 
 #: src/Checkout.php:59
-msgid "Schedule"
+msgid "Please enter your name"
 msgstr ""
 
 #: src/Checkout.php:60
-msgid "Ticket purchase successful!"
+msgid "e-mail"
 msgstr ""
 
 #: src/Checkout.php:61
-msgid "Seats"
+msgid "Please enter a valid e-mail address"
 msgstr ""
 
 #: src/Checkout.php:62
-msgid "Tickets"
-msgstr ""
-
-#: src/Checkout.php:63
-msgid "Buy more tickets"
+msgid "The e-mail address you entered does not match the e-mail address on your card"
 msgstr ""
 
 #: src/Checkout.php:64
-msgid "Sold out"
+msgid "phone"
 msgstr ""
 
 #: src/Checkout.php:65
-msgid "Sorry, all tickets have been sold out."
+msgid "Sign up to our newsletter"
 msgstr ""
 
 #: src/Checkout.php:66
-msgid "Sorry, tickets are temporarily unavailable."
+msgid "By buying I agree with terms and conditions."
 msgstr ""
 
 #: src/Checkout.php:67
-msgid "Payment pending"
+msgid "Choose payment"
 msgstr ""
 
 #: src/Checkout.php:68
-msgid "Please complete your payment."
+msgid "Your payment was not successful. Please try again."
+msgstr ""
+
+#: src/Checkout.php:69
+msgid "Please choose your payment method."
+msgstr ""
+
+#: src/Checkout.php:70
+msgid "Something went wrong!"
 msgstr ""
 
 #: src/Checkout.php:71
-msgid "You can ask for your tickets from the cashier."
+msgid "Register"
 msgstr ""
 
 #: src/Checkout.php:72
-msgid "You can also download your tickets here:"
+msgid "Pay"
 msgstr ""
 
 #: src/Checkout.php:73
+msgid "Schedule"
+msgstr ""
+
+#: src/Checkout.php:74
+msgid "Purchase successful!"
+msgstr ""
+
+#: src/Checkout.php:75
+msgid "Buy more tickets"
+msgstr ""
+
+#: src/Checkout.php:76
+#: templates/events.php:39
+#: templates/film/screenings.php:18
+msgid "Sold out"
+msgstr ""
+
+#: src/Checkout.php:77
+msgid "Sorry, all tickets have been sold out."
+msgstr ""
+
+#: src/Checkout.php:78
+msgid "Sorry, tickets are temporarily unavailable."
+msgstr ""
+
+#: src/Checkout.php:79
+msgid "Payment pending"
+msgstr ""
+
+#: src/Checkout.php:80
+msgid "Please complete your payment."
+msgstr ""
+
+#: src/Checkout.php:81
+msgid "Ticket sale has ended."
+msgstr ""
+
+#: src/Checkout.php:82
+msgid "Please choose how many cinema visits can be made with this gift card."
+msgstr ""
+
+#: src/Checkout.php:84
+msgid "One ticket (€ {price})"
+msgstr ""
+
+#: src/Checkout.php:85
+msgid "Two tickets (€ {price})"
+msgstr ""
+
+#: src/Checkout.php:86
+msgid "Six tickets (€ {price})"
+msgstr ""
+
+#: src/Checkout.php:87
+msgid "10 tickets (€ {price})"
+msgstr ""
+
+#: src/Checkout.php:88
+msgid "Or enter a custom amount."
+msgstr ""
+
+#: src/Checkout.php:89
+msgid "Please enter a valid amount"
+msgstr ""
+
+#: src/Checkout.php:90
+msgid "The gift card amount must be at least {min} €. Please choose a larger amount."
+msgstr ""
+
+#: src/Checkout.php:92
+msgid "Unfortunately, you cannot buy such an expensive gift card through the website. If you wish, please contact the cinema and we will find a solution."
+msgstr ""
+
+#: src/Checkout.php:94
+#: src/Checkout.php:101
+msgid "Your email"
+msgstr ""
+
+#: src/Checkout.php:95
+msgid "Gift card purchased!"
+msgstr ""
+
+#: src/Checkout.php:96
+msgid "Your gift card code is:"
+msgstr ""
+
+#: src/Checkout.php:97
+#: src/Checkout.php:104
+msgid "You can use it both on the cinema website and at the cashier."
+msgstr ""
+
+#: src/Checkout.php:98
+msgid "Serial ticket type"
+msgstr ""
+
+#: src/Checkout.php:99
+msgid "{count} uses"
+msgstr ""
+
+#: src/Checkout.php:100
+msgid "Valid until {date}"
+msgstr ""
+
+#: src/Checkout.php:102
+msgid "Serial ticket purchased!"
+msgstr ""
+
+#: src/Checkout.php:103
+msgid "Your serial ticket code is:"
+msgstr ""
+
+#: src/Checkout.php:105
+msgid "Tickets"
+msgstr ""
+
+#: src/Checkout.php:106
+msgid "Products"
+msgstr ""
+
+#: src/Checkout.php:107
+msgid "Confirm and pay"
+msgstr ""
+
+#: src/Checkout.php:108
+msgid "Choose products and pay"
+msgstr ""
+
+#: src/Checkout.php:109
+msgid "Complete purchase and pay"
+msgstr ""
+
+#: src/Checkout.php:110
+msgid "Back"
+msgstr ""
+
+#: src/Checkout.php:111
+msgid "All products"
+msgstr ""
+
+#: src/Checkout.php:112
+msgid "Search for a product..."
+msgstr ""
+
+#: src/Checkout.php:113
+msgid "Other products"
+msgstr ""
+
+#: src/Checkout.php:114
+msgid "My tickets"
+msgstr ""
+
+#: src/Checkout.php:115
+msgid "Change"
+msgstr ""
+
+#: src/Checkout.php:116
+msgid "No results found for your search."
+msgstr ""
+
+#: src/Checkout.php:117
+msgid "Try another search term or"
+msgstr ""
+
+#: src/Checkout.php:118
+msgid "remove filters"
+msgstr ""
+
+#: src/Checkout.php:119
+msgid "Ordering products is currently disabled."
+msgstr ""
+
+#: src/Checkout.php:121
+msgid "Add products"
+msgstr ""
+
+#: src/Checkout.php:122
+msgid "Order food and drinks to your seat!"
+msgstr ""
+
+#: src/Checkout.php:123
+msgid "If you haven't bought a ticket yet, check out our "
+msgstr ""
+
+#: src/Checkout.php:124
+msgid "schedule"
+msgstr ""
+
+#: src/Checkout.php:125
+msgid "."
+msgstr ""
+
+#: src/Checkout.php:126
+msgid "Choose the event you bought a ticket for"
+msgstr ""
+
+#: src/Checkout.php:127
+msgid "Choose the seat you bought a ticket for"
+msgstr ""
+
+#: src/Checkout.php:128
+msgid "Choose the movie"
+msgstr ""
+
+#: src/Checkout.php:129
+msgid "Choose the screening"
+msgstr ""
+
+#: src/Checkout.php:130
+msgid "Choose the row"
+msgstr ""
+
+#: src/Checkout.php:131
+msgid "Choose the seat"
+msgstr ""
+
+#: src/Checkout.php:132
+msgid "This screening does not have numbered seats. The ordered products will be associated with the buyer's name."
+msgstr ""
+
+#: src/Checkout.php:134
+msgid "Row"
+msgstr ""
+
+#: src/Checkout.php:135
+msgid "Seat"
+msgstr ""
+
+#: src/Checkout.php:136
+msgid "Your cart is empty. Add some products to your cart to place an order."
+msgstr ""
+
+#: src/Checkout.php:137
+msgid "You can ask for your tickets from the cashier."
+msgstr ""
+
+#: src/Checkout.php:138
+msgid "You can also download your tickets here:"
+msgstr ""
+
+#: src/Checkout.php:139
 msgid "Download tickets"
 msgstr ""
 
@@ -449,33 +700,33 @@ msgctxt "Admin"
 msgid "ID"
 msgstr ""
 
-#: templates/events.php:34
-#: templates/film/screenings.php:13
+#: templates/events.php:35
+#: templates/film/screenings.php:14
 msgid "Buy ticket"
 msgstr ""
 
-#: templates/events.php:43
+#: templates/events.php:49
 msgid "No upcoming events."
 msgstr ""
 
-#: templates/film/meta.php:17
+#: templates/film/meta.php:18
 msgctxt "minutes"
 msgid "min"
 msgstr ""
 
-#: templates/film/meta.php:23
+#: templates/film/meta.php:24
 msgid "Director"
 msgstr ""
 
-#: templates/film/meta.php:29
+#: templates/film/meta.php:30
 msgid "Cast"
 msgstr ""
 
-#: templates/film/meta.php:35
+#: templates/film/meta.php:36
 msgid "Language"
 msgstr ""
 
-#: templates/film/meta.php:41
+#: templates/film/meta.php:42
 msgid "Subtitles"
 msgstr ""
 
@@ -483,7 +734,7 @@ msgstr ""
 msgid "Screenings"
 msgstr ""
 
-#: templates/film/screenings.php:18
+#: templates/film/screenings.php:24
 msgid "No upcoming screenings"
 msgstr ""
 
