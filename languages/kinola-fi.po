@@ -3,16 +3,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
-"POT-Creation-Date: 2024-01-02T17:08:19+02:00\n"
-"PO-Revision-Date: 2024-03-12 13:04+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola-wp\n"
+"POT-Creation-Date: 2024-07-23T11:20:33+00:00\n"
+"PO-Revision-Date: 2024-07-26 13:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Domain: kinola\n"
 
 #. Plugin Name of the plugin
@@ -91,6 +91,19 @@ msgctxt "Admin"
 msgid "Import films"
 msgstr ""
 
+#: src/Admin/Admin.php:105
+#, fuzzy
+#| msgctxt "Admin"
+#| msgid "Film"
+msgctxt "Admin"
+msgid "Film data"
+msgstr "Elokuva"
+
+#: src/Admin/Admin.php:121
+msgctxt "Admin"
+msgid "Event data"
+msgstr ""
+
 #: src/Admin/Admin_Messenger.php:39
 msgctxt "Admin"
 msgid "Film data imported successfully!"
@@ -104,11 +117,11 @@ msgstr ""
 #: src/Admin/Film_Importer_List_Table.php:19 src/Bootstrap.php:32
 #: src/Bootstrap.php:56
 msgid "Film"
-msgstr ""
+msgstr "Elokuva"
 
 #: src/Admin/Film_Importer_List_Table.php:20 src/Bootstrap.php:55
 msgid "Films"
-msgstr ""
+msgstr "Elokuvat"
 
 #: src/Admin/Film_Importer_List_Table.php:27
 #: templates/admin/edit-film-meta-box.php:12
@@ -139,11 +152,11 @@ msgstr ""
 
 #: src/Bootstrap.php:64 src/Bootstrap.php:88
 msgid "Event"
-msgstr ""
+msgstr "Tapahtuma"
 
 #: src/Bootstrap.php:87
 msgid "Events"
-msgstr ""
+msgstr "Tapahtumat"
 
 #: src/Bootstrap.php:89
 msgctxt "Admin"
@@ -156,13 +169,13 @@ msgstr "Tapahtumapaikat"
 
 #: src/Bootstrap.php:101
 msgid "Venue"
-msgstr "Paikka"
+msgstr "Tapahtumapaika"
 
-#: src/Bootstrap.php:170
-msgid "This shortcode requires a 'film' parameter."
+#: src/Bootstrap.php:179
+msgid "This shortcode requires a 'film' ID parameter."
 msgstr "Tämä lyhytkoodi vaatii “film”-parametrin."
 
-#: src/Bootstrap.php:177
+#: src/Bootstrap.php:186
 msgid "There is no film with ID %s."
 msgstr "Tunnuksella %s ei ole elokuvaa."
 
@@ -195,46 +208,90 @@ msgid "side balcony"
 msgstr "sivuparveke"
 
 #: src/Checkout.php:35
+msgid "free seat"
+msgstr "vapaat paikat"
+
+#: src/Checkout.php:36
+msgid "booked seat"
+msgstr "varattu paikka"
+
+#: src/Checkout.php:37
+msgid "taken seat"
+msgstr "varattu paikka"
+
+#: src/Checkout.php:38
+msgid "buffer seat"
+msgstr "puskuri paikka"
+
+#: src/Checkout.php:39
+msgid "seat with limited visibility"
+msgstr "istuin, jonka näkyvyys on rajoitettu"
+
+#: src/Checkout.php:40
 msgid "Free seats"
 msgstr "Vapaat paikat"
 
-#: src/Checkout.php:36
+#: src/Checkout.php:41
 msgid "Choose tickets"
 msgstr "Valitse liput"
 
-#: src/Checkout.php:37
+#: src/Checkout.php:42
+msgid "Serial ticket {number}"
+msgstr "Sarjalippu {number}"
+
+#: src/Checkout.php:43
+msgid "Gift card {number}"
+msgstr "Lahjakortin {number}"
+
+#: src/Checkout.php:44
+msgid "Amount left"
+msgstr "Jäljellä"
+
+#: src/Checkout.php:45
 msgid "Sorry, the maximum number of tickets is limited"
 msgstr "Valitettavasti lippujen enimmäismäärä on rajoitettu"
 
-#: src/Checkout.php:38
+#: src/Checkout.php:46 src/Checkout.php:120
 msgid "Total"
 msgstr "Kaikki yhteensä"
 
-#: src/Checkout.php:39
+#: src/Checkout.php:47
+msgid "Selected products"
+msgstr "Valitut tuotteet"
+
+#: src/Checkout.php:48
+msgid "Shopping basket"
+msgstr "Ostoskori"
+
+#: src/Checkout.php:49
 msgid "Client card and gift cards"
 msgstr "Asiakaskortti ja lahjakortit"
 
-#: src/Checkout.php:40
+#: src/Checkout.php:50
 msgid "Client card or gift card number"
 msgstr "Asiakaskortin tai lahjakortin numero"
 
-#: src/Checkout.php:41
+#: src/Checkout.php:51
 msgid "Confirm number"
 msgstr "Vahvista numero"
 
-#: src/Checkout.php:42
+#: src/Checkout.php:52
 msgid "We couldn't find a card with this number"
 msgstr "Emme löytäneet korttia tällä numerolla"
 
-#: src/Checkout.php:43
+#: src/Checkout.php:53
 msgid "This card has already been added to this session"
 msgstr "Tämä kortti on jo lisätty tähän istuntoon"
 
-#: src/Checkout.php:44
-msgid "Contact"
-msgstr "Ottaa yhteyttä"
+#: src/Checkout.php:54
+msgid "This discount does not apply to this order"
+msgstr ""
 
-#: src/Checkout.php:45
+#: src/Checkout.php:55
+msgid "Contact"
+msgstr "Yhteystiedot"
+
+#: src/Checkout.php:56
 msgid ""
 "We'll use your contact info to e-mail you your tickets and contact you in "
 "the case of unexpected changes to the screening."
@@ -242,109 +299,314 @@ msgstr ""
 "Käytämme yhteystietojasi lähettääksemme sinulle lippusi sähköpostitse ja "
 "otamme sinuun yhteyttä, jos näytöksessä tapahtuu odottamattomia muutoksia."
 
-#: src/Checkout.php:46
+#: src/Checkout.php:58
 msgid "name"
 msgstr "nimi"
 
-#: src/Checkout.php:47
+#: src/Checkout.php:59
 msgid "Please enter your name"
 msgstr "Kirjoita nimesi"
 
-#: src/Checkout.php:48
+#: src/Checkout.php:60
 msgid "e-mail"
 msgstr "sähköposti"
 
-#: src/Checkout.php:49
+#: src/Checkout.php:61
 msgid "Please enter a valid e-mail address"
 msgstr "Ole hyvä ja syötä toimiva sähköpostiosoite"
 
-#: src/Checkout.php:50
+#: src/Checkout.php:62
 msgid ""
 "The e-mail address you entered does not match the e-mail address on your card"
 msgstr ""
 "Antamasi sähköpostiosoite ei vastaa kortissasi olevaa sähköpostiosoitetta"
 
-#: src/Checkout.php:51
+#: src/Checkout.php:64
 msgid "phone"
 msgstr "puhelin"
 
-#: src/Checkout.php:52
+#: src/Checkout.php:65
 msgid "Sign up to our newsletter"
 msgstr "Tilaa uutiskirjeemme"
 
-#: src/Checkout.php:53
+#: src/Checkout.php:66
 msgid "By buying I agree with terms and conditions."
 msgstr "Ostamalla hyväksyn ehdot."
 
-#: src/Checkout.php:54
+#: src/Checkout.php:67
 msgid "Choose payment"
 msgstr "Valitse maksu"
 
-#: src/Checkout.php:55
+#: src/Checkout.php:68
 msgid "Your payment was not successful. Please try again."
 msgstr "Maksusi ei onnistunut. Yritä uudelleen."
 
-#: src/Checkout.php:56
+#: src/Checkout.php:69
 msgid "Please choose your payment method."
 msgstr "Valitse maksutapasi."
 
-#: src/Checkout.php:57
+#: src/Checkout.php:70
+msgid "Something went wrong!"
+msgstr "Jotain meni pieleen!"
+
+#: src/Checkout.php:71
 msgid "Register"
 msgstr "Rekisteröidy"
 
-#: src/Checkout.php:58
+#: src/Checkout.php:72
 msgid "Pay"
-msgstr "Maksaa"
+msgstr "Maksa"
 
-#: src/Checkout.php:59
+#: src/Checkout.php:73
 msgid "Schedule"
 msgstr "Ajoittaa"
 
-#: src/Checkout.php:60
-msgid "Ticket purchase successful!"
+#: src/Checkout.php:74
+msgid "Purchase successful!"
 msgstr "Lipunosto onnistui!"
 
-#: src/Checkout.php:61
-msgid "Seats"
-msgstr "Istuimet"
-
-#: src/Checkout.php:62
-msgid "Tickets"
-msgstr "Liput"
-
-#: src/Checkout.php:63
+#: src/Checkout.php:75
 msgid "Buy more tickets"
 msgstr "Osta lisää lippuja"
 
-#: src/Checkout.php:64
+#: src/Checkout.php:76 templates/events.php:39 templates/film/screenings.php:18
 msgid "Sold out"
 msgstr "Loppuunmyyty"
 
-#: src/Checkout.php:65
+#: src/Checkout.php:77
 msgid "Sorry, all tickets have been sold out."
 msgstr "Valitettavasti kaikki liput on myyty loppuun."
 
-#: src/Checkout.php:66
+#: src/Checkout.php:78
 msgid "Sorry, tickets are temporarily unavailable."
 msgstr "Valitettavasti lippuja ei ole tilapäisesti saatavilla."
 
-#: src/Checkout.php:67
+#: src/Checkout.php:79
 msgid "Payment pending"
 msgstr "Maksu odottaa"
 
-#: src/Checkout.php:68
+#: src/Checkout.php:80
 msgid "Please complete your payment."
 msgstr "Suorita maksu loppuun."
 
-#: src/Checkout.php:71
+#: src/Checkout.php:81
+msgid "Ticket sale has ended."
+msgstr "Lipunmyynti on päättynyt."
+
+#: src/Checkout.php:82
+msgid "Please choose how many cinema visits can be made with this gift card."
+msgstr ""
+"Ole hyvä ja valitse kuinka monta teatterikäyntiä voit tehdä tällä "
+"lahjakortilla."
+
+#: src/Checkout.php:84
+msgid "One ticket (€ {price})"
+msgstr "Yksi lippu (€ {price})"
+
+#: src/Checkout.php:85
+msgid "Two tickets (€ {price})"
+msgstr "Kaksi lippua (€ {price})"
+
+#: src/Checkout.php:86
+msgid "Six tickets (€ {price})"
+msgstr "Kuusi lippua (€ {price})"
+
+#: src/Checkout.php:87
+msgid "10 tickets (€ {price})"
+msgstr "10 lippua (€ {price})"
+
+#: src/Checkout.php:88
+msgid "Or enter a custom amount."
+msgstr "Tai anna mukautettu summa."
+
+#: src/Checkout.php:89
+msgid "Please enter a valid amount"
+msgstr "Anna kelvollinen summa"
+
+#: src/Checkout.php:90
+msgid ""
+"The gift card amount must be at least {min} €. Please choose a larger amount."
+msgstr ""
+"Lahjakortin summan tulee olla vähintään {min} €. Valitse suurempi summa."
+
+#: src/Checkout.php:92
+msgid ""
+"Unfortunately, you cannot buy such an expensive gift card through the "
+"website. If you wish, please contact the cinema and we will find a solution."
+msgstr ""
+"Valitettavasti et voi ostaa niin kallista lahjakorttia verkkosivuston "
+"kautta. Jos haluat, ota yhteyttä elokuvateatteriin, niin löydämme ratkaisun."
+
+#: src/Checkout.php:94 src/Checkout.php:101
+msgid "Your email"
+msgstr "Sähköposti"
+
+#: src/Checkout.php:95
+msgid "Gift card purchased!"
+msgstr "Lahjakortti ostettu!"
+
+#: src/Checkout.php:96
+msgid "Your gift card code is:"
+msgstr "Lahjakorttisi koodi on:"
+
+#: src/Checkout.php:97 src/Checkout.php:104
+msgid "You can use it both on the cinema website and at the cashier."
+msgstr "Voit käyttää sitä sekä elokuvateatterin verkkosivuilla että kassalla."
+
+#: src/Checkout.php:98
+msgid "Serial ticket type"
+msgstr "Sarjalipun tyyppi"
+
+#: src/Checkout.php:99
+msgid "{count} uses"
+msgstr "{count} käyttää"
+
+#: src/Checkout.php:100
+msgid "Valid until {date}"
+msgstr "Voimassa {date} asti"
+
+#: src/Checkout.php:102
+msgid "Serial ticket purchased!"
+msgstr "Sarjalippu ostettu!"
+
+#: src/Checkout.php:103
+msgid "Your serial ticket code is:"
+msgstr "Sarjalippusi koodi on:"
+
+#: src/Checkout.php:105
+msgid "Tickets"
+msgstr "Liput"
+
+#: src/Checkout.php:106
+msgid "Products"
+msgstr "Ruoka ja juoma"
+
+#: src/Checkout.php:107
+msgid "Confirm and pay"
+msgstr "Vahvista ja maksa"
+
+#: src/Checkout.php:108
+msgid "Choose products and pay"
+msgstr "Hyväksy"
+
+#: src/Checkout.php:109
+msgid "Complete purchase and pay"
+msgstr "Hyväksy ja maksa"
+
+#: src/Checkout.php:110
+msgid "Back"
+msgstr "Takaisin"
+
+#: src/Checkout.php:111
+msgid "All products"
+msgstr "Kaikki tuotteet"
+
+#: src/Checkout.php:112
+msgid "Search for a product..."
+msgstr "Etsi tuote…"
+
+#: src/Checkout.php:113
+msgid "Other products"
+msgstr "Muut tuotteet"
+
+#: src/Checkout.php:114
+msgid "My tickets"
+msgstr "Minun lippuni"
+
+#: src/Checkout.php:115
+msgid "Change"
+msgstr "Muuttaa"
+
+#: src/Checkout.php:116
+msgid "No results found for your search."
+msgstr "Ei tuloksia haullesi."
+
+#: src/Checkout.php:117
+msgid "Try another search term or"
+msgstr "Kokeile toista hakutermiä tai"
+
+#: src/Checkout.php:118
+msgid "remove filters"
+msgstr "poista suodattimet"
+
+#: src/Checkout.php:119
+msgid "Ordering products is currently disabled."
+msgstr "Tuotteiden tilaaminen on tällä hetkellä poissa käytöstä."
+
+#: src/Checkout.php:121
+msgid "Add products"
+msgstr "Lisää tuotteita"
+
+#: src/Checkout.php:122
+msgid "Order food and drinks to your seat!"
+msgstr "Tilaa ruokaa ja juomaa istuimellesi!"
+
+#: src/Checkout.php:123
+msgid "If you haven't bought a ticket yet, check out our "
+msgstr "Jos et ole vielä ostanut lippua, katso meidän"
+
+#: src/Checkout.php:124
+msgid "schedule"
+msgstr "ohjelma"
+
+#: src/Checkout.php:125
+msgid "."
+msgstr "."
+
+#: src/Checkout.php:126
+msgid "Choose the event you bought a ticket for"
+msgstr "Valitse tapahtuma, johon ostit lipun"
+
+#: src/Checkout.php:127
+msgid "Choose the seat you bought a ticket for"
+msgstr "Valitse paikka, jolle ostit lipun"
+
+#: src/Checkout.php:128
+msgid "Choose the movie"
+msgstr "Valitse elokuva"
+
+#: src/Checkout.php:129
+msgid "Choose the screening"
+msgstr "Valitse seulonta"
+
+#: src/Checkout.php:130
+msgid "Choose the row"
+msgstr "Valitse rivi"
+
+#: src/Checkout.php:131
+msgid "Choose the seat"
+msgstr "Valitse istuin"
+
+#: src/Checkout.php:132
+msgid ""
+"This screening does not have numbered seats. The ordered products will be "
+"associated with the buyer's name."
+msgstr ""
+"Tässä näytöksessä ei ole numeroituja paikkoja. Tilatut tuotteet liitetään "
+"ostajan nimeen."
+
+#: src/Checkout.php:134
+msgid "Row"
+msgstr "Rivi"
+
+#: src/Checkout.php:135
+msgid "Seat"
+msgstr "Istuin"
+
+#: src/Checkout.php:136
+msgid "Your cart is empty. Add some products to your cart to place an order."
+msgstr ""
+"Ostoskorisi on tyhjä. Lisää tuotteita ostoskoriin tehdäksesi tilauksen."
+
+#: src/Checkout.php:137
 msgid "You can ask for your tickets from the cashier."
 msgstr "Voit kysyä lippusi kassalta."
 
-#: src/Checkout.php:72
+#: src/Checkout.php:138
 msgid "You can also download your tickets here:"
 msgstr "Voit myös ladata lippusi täältä:"
 
-#: src/Checkout.php:73
+#: src/Checkout.php:139
 msgid "Download tickets"
 msgstr "Lataa liput"
 
@@ -459,32 +721,32 @@ msgctxt "Admin"
 msgid "ID"
 msgstr "ID"
 
-#: templates/events.php:34 templates/film/screenings.php:13
+#: templates/events.php:35 templates/film/screenings.php:14
 msgid "Buy ticket"
 msgstr "Osta lippu"
 
-#: templates/events.php:43
+#: templates/events.php:49
 msgid "No upcoming events."
 msgstr "Ei tulevia tapahtumia."
 
-#: templates/film/meta.php:17
+#: templates/film/meta.php:18
 msgctxt "minutes"
 msgid "min"
 msgstr "min"
 
-#: templates/film/meta.php:23
+#: templates/film/meta.php:24
 msgid "Director"
 msgstr "Ohjaus"
 
-#: templates/film/meta.php:29
+#: templates/film/meta.php:30
 msgid "Cast"
 msgstr "Näyttelijät"
 
-#: templates/film/meta.php:35
+#: templates/film/meta.php:36
 msgid "Language"
 msgstr "Kieli"
 
-#: templates/film/meta.php:41
+#: templates/film/meta.php:42
 msgid "Subtitles"
 msgstr "Tekstitys"
 
@@ -492,7 +754,7 @@ msgstr "Tekstitys"
 msgid "Screenings"
 msgstr "Näytökset"
 
-#: templates/film/screenings.php:18
+#: templates/film/screenings.php:24
 msgid "No upcoming screenings"
 msgstr "Ei tulevia näytöksiä"
 
