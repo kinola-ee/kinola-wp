@@ -67,6 +67,10 @@ abstract class Model {
         return get_post_meta( $this->post->ID );
     }
 
+    public function get_custom_fields() {
+        return get_post_meta( $this->post->ID, 'custom_fields', true );
+    }
+
     public function get_local_id(): int {
         return $this->post->ID;
     }
