@@ -127,6 +127,10 @@ $fields = $film->get_fields();
 // Get the WP Post object of the Film:
 $film_post = $film->get_post();
 
+// If you have configured custom frields for film objekt in Kinola admin
+// you can access them from Film object:
+$custom_fields = $film->get_custom_fields()
+
 // There's more in the Model class.
 
 // Get all upcoming screenings of a film:
