@@ -29,6 +29,9 @@ Make sure you replace `your-cinema` with the name of your cinema. It should be t
 7. (Optional) In your wp-config.php, add constant to display newsletter checkbox in checkout:
 `define( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX', true );`
 
+8. (Optional) In your wp-config.php, add constant to change default newsletter checked status in checkout:
+`define( 'KINOLA_NEWSLETTER_CHECKED_BY_DEFAULT', true );`
+
 ### Using the plugin
 The plugin creates two menu items in the admin menu - Films and Events. New Film or Event posts cannot be created or edited via WordPress - they must be imported
 from Kinola instead. This way, there is a single source of truth for both. If you need to make any changes to an already imported Film or Event, the changes must be made inside Kinola and then re-imported to WordPress.
@@ -43,18 +46,18 @@ Films are imported automatically in two situations:
 Films can also be imported manually via Films > Import and also from the individual film's admin page.
 
 ### Shortcodes
-`[kinola_films]`  
+`[kinola_films]`
 Outputs a list of all films.
 
-`[kinola_events]`   
-Outputs a list of all upcoming events as well as the events filter.  
+`[kinola_events]`
+Outputs a list of all upcoming events as well as the events filter.
 
 To control the number of events displayed, use the `limit` attribute in the shortcode. Examples: `limit="10"` or `limit="all"`. Default: `25`.
 
 To show only today's events, use `show_dates` attribute in the shortcode with the value set to `today`. Example: `show_dates="today"`.
 
-`[kinola_film_screenings film="YOUR_FILM_ID"]`  
-Outputs all upcoming screenings of the film with the given WordPress post ID, as well as the events filter (you can find the post ID of a film by opening up the edit view of that film in WordPress and checking your browser's address bar).  
+`[kinola_film_screenings film="YOUR_FILM_ID"]`
+Outputs all upcoming screenings of the film with the given WordPress post ID, as well as the events filter (you can find the post ID of a film by opening up the edit view of that film in WordPress and checking your browser's address bar).
 
 To show only today's events, use the following attribute in the shortcode: `show_dates="today"`
 
@@ -62,7 +65,7 @@ To show only today's events, use the following attribute in the shortcode: `show
 If you run into problems, follow these steps:
 1. Ensure you've followed *all* steps outlined above under the big heading that says "Setup"
 2. Double-check your WP site's language, time and date format and time zone settings.
-3. In wp-config.php, add the following:  
+3. In wp-config.php, add the following:
 `define( 'WP_DEBUG_LOG', true );`
 `define( 'KINOLA_DEBUG_LOG', true );`
 

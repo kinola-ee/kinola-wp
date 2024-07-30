@@ -32,6 +32,7 @@
         eventId: '<?php echo \Kinola\KinolaWp\Checkout::get_event_id(); ?>',
         scheduleUrl: '<?php echo get_home_url(); ?>',
         hasNewsletterCheckbox: <?php echo \Kinola\KinolaWp\Helpers::has_newsletter_checkbox() ? 'true' : 'false'; ?>,
+        newsletterCheckedByDefault: <?php echo \Kinola\KinolaWp\Helpers::newsletter_checked_by_default() ? 'true' : 'false'; ?>,
         selectedLang: '<?php echo \Kinola\KinolaWp\Helpers::get_language(); ?>',
         strings: <?php echo json_encode(\Kinola\KinolaWp\Checkout::get_strings()); ?>,
 

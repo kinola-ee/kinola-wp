@@ -8,6 +8,14 @@ class Helpers {
         return defined( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX' ) && KINOLA_SHOW_NEWSLETTER_CHECKBOX;
     }
 
+    public static function newsletter_checked_by_default(): bool {
+        if ( !defined( 'KINOLA_NEWSLETTER_CHECKED_BY_DEFAULT' ) ) {
+            return false;
+        }
+
+        return KINOLA_NEWSLETTER_CHECKED_BY_DEFAULT;
+    }
+
     public static function get_checkout_terms_link(): string {
         return defined( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX' ) ? KINOLA_SHOW_NEWSLETTER_CHECKBOX : '';
     }
