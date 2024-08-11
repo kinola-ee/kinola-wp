@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-23T11:20:33+00:00\n"
+"POT-Creation-Date: 2024-08-11T20:55:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: kinola\n"
@@ -168,11 +168,11 @@ msgstr ""
 msgid "Venue"
 msgstr ""
 
-#: src/Bootstrap.php:179
+#: src/Bootstrap.php:182
 msgid "This shortcode requires a 'film' ID parameter."
 msgstr ""
 
-#: src/Bootstrap.php:186
+#: src/Bootstrap.php:189
 msgid "There is no film with ID %s."
 msgstr ""
 
@@ -249,7 +249,7 @@ msgid "Sorry, the maximum number of tickets is limited"
 msgstr ""
 
 #: src/Checkout.php:46
-#: src/Checkout.php:120
+#: src/Checkout.php:123
 msgid "Total"
 msgstr ""
 
@@ -424,7 +424,7 @@ msgid "Unfortunately, you cannot buy such an expensive gift card through the web
 msgstr ""
 
 #: src/Checkout.php:94
-#: src/Checkout.php:101
+#: src/Checkout.php:104
 msgid "Your email"
 msgstr ""
 
@@ -437,159 +437,159 @@ msgid "Your gift card code is:"
 msgstr ""
 
 #: src/Checkout.php:97
-#: src/Checkout.php:104
+#: src/Checkout.php:107
 msgid "You can use it both on the cinema website and at the cashier."
 msgstr ""
 
-#: src/Checkout.php:98
+#: src/Checkout.php:101
 msgid "Serial ticket type"
 msgstr ""
 
-#: src/Checkout.php:99
+#: src/Checkout.php:102
 msgid "{count} uses"
 msgstr ""
 
-#: src/Checkout.php:100
+#: src/Checkout.php:103
 msgid "Valid until {date}"
 msgstr ""
 
-#: src/Checkout.php:102
+#: src/Checkout.php:105
 msgid "Serial ticket purchased!"
 msgstr ""
 
-#: src/Checkout.php:103
+#: src/Checkout.php:106
 msgid "Your serial ticket code is:"
 msgstr ""
 
-#: src/Checkout.php:105
+#: src/Checkout.php:108
 msgid "Tickets"
 msgstr ""
 
-#: src/Checkout.php:106
+#: src/Checkout.php:109
 msgid "Products"
 msgstr ""
 
-#: src/Checkout.php:107
+#: src/Checkout.php:110
 msgid "Confirm and pay"
 msgstr ""
 
-#: src/Checkout.php:108
+#: src/Checkout.php:111
 msgid "Choose products and pay"
 msgstr ""
 
-#: src/Checkout.php:109
+#: src/Checkout.php:112
 msgid "Complete purchase and pay"
 msgstr ""
 
-#: src/Checkout.php:110
+#: src/Checkout.php:113
 msgid "Back"
 msgstr ""
 
-#: src/Checkout.php:111
+#: src/Checkout.php:114
 msgid "All products"
 msgstr ""
 
-#: src/Checkout.php:112
+#: src/Checkout.php:115
 msgid "Search for a product..."
 msgstr ""
 
-#: src/Checkout.php:113
+#: src/Checkout.php:116
 msgid "Other products"
 msgstr ""
 
-#: src/Checkout.php:114
+#: src/Checkout.php:117
 msgid "My tickets"
 msgstr ""
 
-#: src/Checkout.php:115
+#: src/Checkout.php:118
 msgid "Change"
 msgstr ""
 
-#: src/Checkout.php:116
+#: src/Checkout.php:119
 msgid "No results found for your search."
 msgstr ""
 
-#: src/Checkout.php:117
+#: src/Checkout.php:120
 msgid "Try another search term or"
 msgstr ""
 
-#: src/Checkout.php:118
+#: src/Checkout.php:121
 msgid "remove filters"
 msgstr ""
 
-#: src/Checkout.php:119
+#: src/Checkout.php:122
 msgid "Ordering products is currently disabled."
 msgstr ""
 
-#: src/Checkout.php:121
+#: src/Checkout.php:124
 msgid "Add products"
 msgstr ""
 
-#: src/Checkout.php:122
+#: src/Checkout.php:125
 msgid "Order food and drinks to your seat!"
 msgstr ""
 
-#: src/Checkout.php:123
+#: src/Checkout.php:126
 msgid "If you haven't bought a ticket yet, check out our "
 msgstr ""
 
-#: src/Checkout.php:124
+#: src/Checkout.php:127
 msgid "schedule"
 msgstr ""
 
-#: src/Checkout.php:125
+#: src/Checkout.php:128
 msgid "."
 msgstr ""
 
-#: src/Checkout.php:126
+#: src/Checkout.php:129
 msgid "Choose the event you bought a ticket for"
 msgstr ""
 
-#: src/Checkout.php:127
+#: src/Checkout.php:130
 msgid "Choose the seat you bought a ticket for"
 msgstr ""
 
-#: src/Checkout.php:128
+#: src/Checkout.php:131
 msgid "Choose the movie"
 msgstr ""
 
-#: src/Checkout.php:129
+#: src/Checkout.php:132
 msgid "Choose the screening"
 msgstr ""
 
-#: src/Checkout.php:130
+#: src/Checkout.php:133
 msgid "Choose the row"
 msgstr ""
 
-#: src/Checkout.php:131
+#: src/Checkout.php:134
 msgid "Choose the seat"
 msgstr ""
 
-#: src/Checkout.php:132
+#: src/Checkout.php:135
 msgid "This screening does not have numbered seats. The ordered products will be associated with the buyer's name."
 msgstr ""
 
-#: src/Checkout.php:134
+#: src/Checkout.php:137
 msgid "Row"
 msgstr ""
 
-#: src/Checkout.php:135
+#: src/Checkout.php:138
 msgid "Seat"
 msgstr ""
 
-#: src/Checkout.php:136
+#: src/Checkout.php:139
 msgid "Your cart is empty. Add some products to your cart to place an order."
 msgstr ""
 
-#: src/Checkout.php:137
+#: src/Checkout.php:140
 msgid "You can ask for your tickets from the cashier."
 msgstr ""
 
-#: src/Checkout.php:138
+#: src/Checkout.php:141
 msgid "You can also download your tickets here:"
 msgstr ""
 
-#: src/Checkout.php:139
+#: src/Checkout.php:142
 msgid "Download tickets"
 msgstr ""
 
