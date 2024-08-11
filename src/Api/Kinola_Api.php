@@ -85,4 +85,12 @@ class Kinola_Api {
     public static function get_plugin_api_base_url(): string {
         return trailingslashit( KINOLA_URL ) . self::PLUGIN_API_PATH;
     }
+
+    public static function get_kinola_js_url(): string {
+        if (defined( 'KINOLA_JS_URL' )) {
+            return KINOLA_JS_URL;
+        }
+
+        return 'https://plugin.kinola.ee/index.js';
+    }
 }

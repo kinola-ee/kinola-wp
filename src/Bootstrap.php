@@ -128,6 +128,9 @@ class Bootstrap {
         add_shortcode( 'kinola_events', [ $this, 'render_events_page' ] );
         add_shortcode( 'kinola_films', [ $this, 'render_films_page' ] );
         add_shortcode( 'kinola_film_screenings', [ $this, 'render_film_screenings' ] );
+        add_shortcode( 'kinola_gift_cards', [ $this, 'render_gift_cards' ] );
+        add_shortcode( 'kinola_serial_tickets', [ $this, 'render_serial_tickets' ] );
+        add_shortcode( 'kinola_products', [ $this, 'render_products' ] );
     }
 
     public function enqueue_scripts() {
@@ -193,6 +196,21 @@ class Bootstrap {
         $single_film->set_template( 'film_screenings' );
 
         return $single_film->get_rendered_content( $atts['show_dates'] );
+    }
+
+    public function render_gift_cards(): string
+    {
+        return View::get_rendered_template( 'gift_cards' );
+    }
+
+    public function render_serial_tickets(): string
+    {
+        return View::get_rendered_template( 'serial_tickets' );
+    }
+
+    public function render_products(): string
+    {
+        return View::get_rendered_template( 'products' );
     }
 
     public function override_checkout_template( $template ) {
