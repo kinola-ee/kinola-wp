@@ -61,6 +61,15 @@ Outputs all upcoming screenings of the film with the given WordPress post ID, as
 
 To show only today's events, use the following attribute in the shortcode: `show_dates="today"`
 
+`[kinola_gift_cards]`
+Outputs a view to sell gift cards for the cinema.
+
+`[kinola_serial_tickets]`
+Outputs a view to sell serial tickets online.
+
+`[kinola_products]`
+Outputs a view to order products and food after someone has already bought a cinema ticket.
+
 ## Debugging
 If you run into problems, follow these steps:
 1. Ensure you've followed *all* steps outlined above under the big heading that says "Setup"
