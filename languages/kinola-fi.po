@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola-wp\n"
 "POT-Creation-Date: 2024-07-23T11:20:33+00:00\n"
-"PO-Revision-Date: 2024-08-16 08:36+0300\n"
+"PO-Revision-Date: 2024-08-16 15:51+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -419,7 +419,7 @@ msgstr "10 lippua (€ {price})"
 
 #: src/Checkout.php:88
 msgid "Or enter a custom amount."
-msgstr "Tai anna mukautettu summa."
+msgstr "Valitse summa"
 
 #: src/Checkout.php:89
 msgid "Please enter a valid amount"
@@ -537,19 +537,23 @@ msgstr "Tuotteiden tilaaminen on tällä hetkellä poissa käytöstä."
 
 #: src/Checkout.php:121
 msgid "Add products"
-msgstr "Lisää tuotteita"
+msgstr "Tilaa tarjoilut"
 
 #: src/Checkout.php:122
 msgid "Order food and drinks to your seat!"
-msgstr "Tilaa ruokaa ja juomaa istuimellesi!"
+msgstr ""
+"Voit tilata täältä tarjoiluja näytökseen, johon olet jo ostanut liput. "
+"Tilaus tulee tehdä viimeistään neljä tuntia ennen näytöksen alkua. Anna "
+"näytöksen ja istumapaikkasi tiedot ja pääset tekemään tilausta. Tilaamasi "
+"tarjoilut toimitetaan suoraan paikallesi, etkä joudu jonottamaan baarissa."
 
 #: src/Checkout.php:123
 msgid "If you haven't bought a ticket yet, check out our "
-msgstr "Jos et ole vielä ostanut lippua, katso meidän"
+msgstr "Jos et ole vielä ostanut elokuvalippuja, tee se ensin "
 
 #: src/Checkout.php:124
 msgid "schedule"
-msgstr "ohjelma"
+msgstr "täällä"
 
 #: src/Checkout.php:125
 msgid "."
@@ -557,7 +561,7 @@ msgstr "."
 
 #: src/Checkout.php:126
 msgid "Choose the event you bought a ticket for"
-msgstr "Valitse tapahtuma, johon ostit lipun"
+msgstr "Valitse elokuva, johon ostit lipun"
 
 #: src/Checkout.php:127
 msgid "Choose the seat you bought a ticket for"
