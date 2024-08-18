@@ -17,7 +17,15 @@ class Helpers {
     }
 
     public static function get_checkout_terms_link(): string {
-        return defined( 'KINOLA_SHOW_NEWSLETTER_CHECKBOX' ) ? KINOLA_SHOW_NEWSLETTER_CHECKBOX : '';
+        if (!defined( 'KINOLA_TERMS_LINK' )) {
+            return '';
+        }
+
+        if (!KINOLA_TERMS_LINK || KINOLA_TERMS_LINK === 'https://[YOUR_URL_HERE]') {
+            return '';
+        }
+
+        return KINOLA_TERMS_LINK;
     }
 
     public static function get_language(): string {
