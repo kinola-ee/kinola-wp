@@ -25,6 +25,10 @@ class Bootstrap {
 
         $ajax = new Ajax();
         $ajax->init();
+
+        if (defined( 'KINOLA_TERMS_LINK' ) && (!KINOLA_TERMS_LINK || KINOLA_TERMS_LINK === 'https://[YOUR_URL_HERE]')) {
+            wp_trigger_error('Helpers::get_checkout_terms_link', 'Please add a correct value for the constant KINOLA_TERMS_LINK or remove it entirely', E_USER_WARNING);
+        }
     }
 
     public function register_films_post_type() {
