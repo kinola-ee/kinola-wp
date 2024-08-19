@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola-wp\n"
 "POT-Creation-Date: 2024-07-23T11:20:33+00:00\n"
-"PO-Revision-Date: 2024-08-16 15:51+0300\n"
+"PO-Revision-Date: 2024-08-19 10:45+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -457,7 +457,7 @@ msgstr "Voit käyttää sitä sekä elokuvateatterin verkkosivuilla että kassal
 
 #: src/Checkout.php:98
 msgid "Serial ticket type"
-msgstr "Sarjalipun tyyppi"
+msgstr "Valitse lipputyyppi"
 
 #: src/Checkout.php:99
 msgid "{count} uses"
