@@ -3,16 +3,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
-"POT-Creation-Date: 2024-01-02T17:08:19+02:00\n"
-"PO-Revision-Date: 2024-01-02 17:11+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola-wp\n"
+"POT-Creation-Date: 2024-08-11T20:55:29+00:00\n"
+"PO-Revision-Date: 2024-10-07 15:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt_LT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Domain: kinola\n"
 
 #. Plugin Name of the plugin
@@ -91,6 +91,19 @@ msgctxt "Admin"
 msgid "Import films"
 msgstr "Importuoti filmus"
 
+#: src/Admin/Admin.php:105
+#, fuzzy
+#| msgctxt "Admin"
+#| msgid "Film ID"
+msgctxt "Admin"
+msgid "Film data"
+msgstr "Filmo ID"
+
+#: src/Admin/Admin.php:121
+msgctxt "Admin"
+msgid "Event data"
+msgstr ""
+
 #: src/Admin/Admin_Messenger.php:39
 msgctxt "Admin"
 msgid "Film data imported successfully!"
@@ -158,11 +171,11 @@ msgstr "Miestai"
 msgid "Venue"
 msgstr "Miestas"
 
-#: src/Bootstrap.php:170
-msgid "This shortcode requires a 'film' parameter."
+#: src/Bootstrap.php:182
+msgid "This shortcode requires a 'film' ID parameter."
 msgstr ""
 
-#: src/Bootstrap.php:177
+#: src/Bootstrap.php:189
 msgid "There is no film with ID %s."
 msgstr ""
 
@@ -195,46 +208,96 @@ msgid "side balcony"
 msgstr ""
 
 #: src/Checkout.php:35
-msgid "Free seats"
+#, fuzzy
+#| msgid "Free seats"
+msgid "free seat"
 msgstr "Laisvos vietos"
 
 #: src/Checkout.php:36
+msgid "booked seat"
+msgstr ""
+
+#: src/Checkout.php:37
+#, fuzzy
+#| msgid "Free seats"
+msgid "taken seat"
+msgstr "Laisvos vietos"
+
+#: src/Checkout.php:38
+msgid "buffer seat"
+msgstr ""
+
+#: src/Checkout.php:39
+msgid "seat with limited visibility"
+msgstr ""
+
+#: src/Checkout.php:40
+msgid "Free seats"
+msgstr "Laisvos vietos"
+
+#: src/Checkout.php:41
 msgid "Choose tickets"
 msgstr "Pasirinkite bilietus"
 
-#: src/Checkout.php:37
+#: src/Checkout.php:42
+msgid "Serial ticket {number}"
+msgstr ""
+
+#: src/Checkout.php:43
+#, fuzzy
+#| msgid "Client card or gift card number"
+msgid "Gift card {number}"
+msgstr "Įveskite dovanų kupono kodą"
+
+#: src/Checkout.php:44
+msgid "Amount left"
+msgstr ""
+
+#: src/Checkout.php:45
 msgid "Sorry, the maximum number of tickets is limited"
 msgstr "Atsiprašome, maksimalus bilietų skaičius ribotas"
 
-#: src/Checkout.php:38
+#: src/Checkout.php:46 src/Checkout.php:123
 msgid "Total"
 msgstr "Viso"
 
-#: src/Checkout.php:39
+#: src/Checkout.php:47
+msgid "Selected products"
+msgstr ""
+
+#: src/Checkout.php:48
+msgid "Shopping basket"
+msgstr ""
+
+#: src/Checkout.php:49
 msgid "Client card and gift cards"
 msgstr "Dovanų kuponas"
 
-#: src/Checkout.php:40
+#: src/Checkout.php:50
 msgid "Client card or gift card number"
 msgstr "Įveskite dovanų kupono kodą"
 
-#: src/Checkout.php:41
+#: src/Checkout.php:51
 msgid "Confirm number"
 msgstr "Taikyti kuponą"
 
-#: src/Checkout.php:42
+#: src/Checkout.php:52
 msgid "We couldn't find a card with this number"
 msgstr "Nepavyko rasti kortelės su šiuo numeriu"
 
-#: src/Checkout.php:43
+#: src/Checkout.php:53
 msgid "This card has already been added to this session"
 msgstr "Ši kortelė jau pridėta prie šios sesijos"
 
-#: src/Checkout.php:44
+#: src/Checkout.php:54
+msgid "This discount does not apply to this order"
+msgstr ""
+
+#: src/Checkout.php:55
 msgid "Contact"
 msgstr "Kontaktai"
 
-#: src/Checkout.php:45
+#: src/Checkout.php:56
 msgid ""
 "We'll use your contact info to e-mail you your tickets and contact you in "
 "the case of unexpected changes to the screening."
@@ -242,112 +305,332 @@ msgstr ""
 "Jūsų kontaktinė informacija bus naudojama siunčiant bilietus el. paštu, taip "
 "pat esant poreikiui informuoti apie netikėtus peržiūros pakeitimus."
 
-#: src/Checkout.php:46
+#: src/Checkout.php:58
 msgid "name"
 msgstr "Vardas"
 
-#: src/Checkout.php:47
+#: src/Checkout.php:59
 msgid "Please enter your name"
 msgstr "Įveskite savo vardą"
 
-#: src/Checkout.php:48
+#: src/Checkout.php:60
 msgid "e-mail"
 msgstr "El. paštas"
 
-#: src/Checkout.php:49
+#: src/Checkout.php:61
 msgid "Please enter a valid e-mail address"
 msgstr "Prašome įvesti galiojantį elektroninio pašto adresą"
 
-#: src/Checkout.php:50
+#: src/Checkout.php:62
 msgid ""
 "The e-mail address you entered does not match the e-mail address on your card"
 msgstr ""
 "Jūsų įvestas el. pašto adresas nesutampa su kortelėje esančiu el. pašto "
 "adresu"
 
-#: src/Checkout.php:51
+#: src/Checkout.php:64
 msgid "phone"
 msgstr "Telefono nr."
 
-#: src/Checkout.php:52
+#: src/Checkout.php:65
 msgid "Sign up to our newsletter"
 msgstr "Gauti kino teatro naujienlaiškį"
 
-#: src/Checkout.php:53
+#: src/Checkout.php:66
 msgid "By buying I agree with terms and conditions."
 msgstr ""
 "Įsigydami bilietus sutinkame su Hexa Cinema taisyklėmis ir privatumo "
 "politika."
 
-#: src/Checkout.php:54
+#: src/Checkout.php:67
 msgid "Choose payment"
 msgstr "Pasirinkite mokėjimą"
 
-#: src/Checkout.php:55
+#: src/Checkout.php:68
 msgid "Your payment was not successful. Please try again."
 msgstr "Jūsų mokėjimas nebuvo sėkmingas. Prašau, pabandykite dar kartą."
 
-#: src/Checkout.php:56
+#: src/Checkout.php:69
 msgid "Please choose your payment method."
 msgstr "Pasirinkite mokėjimo būdą."
 
-#: src/Checkout.php:57
+#: src/Checkout.php:70
+msgid "Something went wrong!"
+msgstr ""
+
+#: src/Checkout.php:71
 msgid "Register"
 msgstr "Registruotis"
 
-#: src/Checkout.php:58
+#: src/Checkout.php:72
 msgid "Pay"
 msgstr "Apmokėti"
 
-#: src/Checkout.php:59
+#: src/Checkout.php:73
 msgid "Schedule"
 msgstr "Tvarkaraštis"
 
-#: src/Checkout.php:60
-msgid "Ticket purchase successful!"
+#: src/Checkout.php:74
+#, fuzzy
+#| msgid "Ticket purchase successful!"
+msgid "Purchase successful!"
 msgstr "Jūsų užsakymas patvirtintas!"
 
-#: src/Checkout.php:61
-msgid "Seats"
-msgstr "Vietos"
-
-#: src/Checkout.php:62
-msgid "Tickets"
-msgstr "Bilietai"
-
-#: src/Checkout.php:63
+#: src/Checkout.php:75
 msgid "Buy more tickets"
 msgstr "Pirkite daugiau bilietų"
 
-#: src/Checkout.php:64
+#: src/Checkout.php:76 templates/events.php:39 templates/film/screenings.php:18
 msgid "Sold out"
 msgstr "Išparduota!"
 
-#: src/Checkout.php:65
+#: src/Checkout.php:77
 msgid "Sorry, all tickets have been sold out."
 msgstr "Atsiprašome, visi bilietai išparduoti."
 
-#: src/Checkout.php:66
+#: src/Checkout.php:78
 msgid "Sorry, tickets are temporarily unavailable."
 msgstr "Atsiprašome, bilietai laikinai nepasiekiami."
 
-#: src/Checkout.php:67
+#: src/Checkout.php:79
 msgid "Payment pending"
 msgstr "Laukiama apmokėjimo"
 
-#: src/Checkout.php:68
+#: src/Checkout.php:80
 msgid "Please complete your payment."
 msgstr "Užbaikite mokėjimą."
 
-#: src/Checkout.php:71
+#: src/Checkout.php:81
+msgid "Ticket sale has ended."
+msgstr ""
+
+#: src/Checkout.php:82
+msgid "Please choose how many cinema visits can be made with this gift card."
+msgstr ""
+"Prašome pasirinkti, kiek kartų VR kino teatre galima apsilankyti su perkamu "
+"dovanu kuponu."
+
+#: src/Checkout.php:84
+msgid "One ticket (€ {price})"
+msgstr "1 kuponas (€ {price})"
+
+#: src/Checkout.php:85
+msgid "Two tickets (€ {price})"
+msgstr "2 kuponai (€ {price})"
+
+#: src/Checkout.php:86
+msgid "Six tickets (€ {price})"
+msgstr "6 kuponai (€ {price})"
+
+#: src/Checkout.php:87
+msgid "10 tickets (€ {price})"
+msgstr "10 kuponų (€ {price})"
+
+#: src/Checkout.php:88
+msgid "Or enter a custom amount."
+msgstr "Arba įveskite savo suma"
+
+#: src/Checkout.php:89
+msgid "Please enter a valid amount"
+msgstr "Įrašykite norimą sumą"
+
+#: src/Checkout.php:90
+msgid ""
+"The gift card amount must be at least {min} €. Please choose a larger amount."
+msgstr ""
+"Dovanų kupono suma turi būti didesnė negu {min} €. Pasirinkite didesnę sumą."
+
+#: src/Checkout.php:92
+msgid ""
+"Unfortunately, you cannot buy such an expensive gift card through the "
+"website. If you wish, please contact the cinema and we will find a solution."
+msgstr ""
+"Atsiprašome, bet internetu tokios dydžio dovanų kupono įsigyti negalima. "
+"Kviečiame apsilankyti kino teatre arba parašyti mums info@hexacinema.lt"
+
+#: src/Checkout.php:94 src/Checkout.php:104
+msgid "Your email"
+msgstr "Jūsų el. paštas"
+
+#: src/Checkout.php:95
+msgid "Gift card purchased!"
+msgstr "Dovanų kuponas išsiųsta!"
+
+#: src/Checkout.php:96
+msgid "Your gift card code is:"
+msgstr "Jūsų dovanų kupono kodas yra:"
+
+#: src/Checkout.php:97 src/Checkout.php:107
+msgid "You can use it both on the cinema website and at the cashier."
+msgstr "Dovanų kuponą galite išsikeisti VR kino teatre arba internetu."
+
+#: src/Checkout.php:101
+msgid "Serial ticket type"
+msgstr ""
+
+#: src/Checkout.php:102
+msgid "{count} uses"
+msgstr ""
+
+#: src/Checkout.php:103
+msgid "Valid until {date}"
+msgstr ""
+
+#: src/Checkout.php:105
+msgid "Serial ticket purchased!"
+msgstr ""
+
+#: src/Checkout.php:106
+msgid "Your serial ticket code is:"
+msgstr ""
+
+#: src/Checkout.php:108
+msgid "Tickets"
+msgstr "Bilietai"
+
+#: src/Checkout.php:109
+msgid "Products"
+msgstr ""
+
+#: src/Checkout.php:110
+#, fuzzy
+#| msgid "Confirm number"
+msgid "Confirm and pay"
+msgstr "Taikyti kuponą"
+
+#: src/Checkout.php:111
+msgid "Choose products and pay"
+msgstr ""
+
+#: src/Checkout.php:112
+msgid "Complete purchase and pay"
+msgstr ""
+
+#: src/Checkout.php:113
+msgid "Back"
+msgstr ""
+
+#: src/Checkout.php:114
+#, fuzzy
+#| msgid "All dates"
+msgid "All products"
+msgstr "Visos datos"
+
+#: src/Checkout.php:115
+msgid "Search for a product..."
+msgstr ""
+
+#: src/Checkout.php:116
+msgid "Other products"
+msgstr ""
+
+#: src/Checkout.php:117
+#, fuzzy
+#| msgid "Buy ticket"
+msgid "My tickets"
+msgstr "Pirkti bilietą"
+
+#: src/Checkout.php:118
+msgid "Change"
+msgstr ""
+
+#: src/Checkout.php:119
+msgid "No results found for your search."
+msgstr ""
+
+#: src/Checkout.php:120
+msgid "Try another search term or"
+msgstr ""
+
+#: src/Checkout.php:121
+msgid "remove filters"
+msgstr ""
+
+#: src/Checkout.php:122
+msgid "Ordering products is currently disabled."
+msgstr ""
+
+#: src/Checkout.php:124
+msgid "Add products"
+msgstr ""
+
+#: src/Checkout.php:125
+msgid "Order food and drinks to your seat!"
+msgstr ""
+
+#: src/Checkout.php:126
+msgid "If you haven't bought a ticket yet, check out our "
+msgstr ""
+
+#: src/Checkout.php:127
+#, fuzzy
+#| msgid "Schedule"
+msgid "schedule"
+msgstr "Tvarkaraštis"
+
+#: src/Checkout.php:128
+msgid "."
+msgstr ""
+
+#: src/Checkout.php:129
+msgid "Choose the event you bought a ticket for"
+msgstr ""
+
+#: src/Checkout.php:130
+msgid "Choose the seat you bought a ticket for"
+msgstr ""
+
+#: src/Checkout.php:131
+#, fuzzy
+#| msgid "Choose tickets"
+msgid "Choose the movie"
+msgstr "Pasirinkite bilietus"
+
+#: src/Checkout.php:132
+msgid "Choose the screening"
+msgstr ""
+
+#: src/Checkout.php:133
+#, fuzzy
+#| msgid "Choose tickets"
+msgid "Choose the row"
+msgstr "Pasirinkite bilietus"
+
+#: src/Checkout.php:134
+#, fuzzy
+#| msgid "Choose tickets"
+msgid "Choose the seat"
+msgstr "Pasirinkite bilietus"
+
+#: src/Checkout.php:135
+msgid ""
+"This screening does not have numbered seats. The ordered products will be "
+"associated with the buyer's name."
+msgstr ""
+
+#: src/Checkout.php:137
+msgid "Row"
+msgstr ""
+
+#: src/Checkout.php:138
+#, fuzzy
+#| msgid "Seats"
+msgid "Seat"
+msgstr "Vietos"
+
+#: src/Checkout.php:139
+msgid "Your cart is empty. Add some products to your cart to place an order."
+msgstr ""
+
+#: src/Checkout.php:140
 msgid "You can ask for your tickets from the cashier."
 msgstr "Bilietus galite gauti ir kasoje."
 
-#: src/Checkout.php:72
+#: src/Checkout.php:141
 msgid "You can also download your tickets here:"
 msgstr "E. bilietą galite atsisiųsti paspaudę žemiau esančią nuorodą."
 
-#: src/Checkout.php:73
+#: src/Checkout.php:142
 msgid "Download tickets"
 msgstr "Atsisiųsti bilietą"
 
@@ -462,15 +745,15 @@ msgctxt "Admin"
 msgid "ID"
 msgstr "ID"
 
-#: templates/events.php:34 templates/film/screenings.php:13
+#: templates/events.php:35 templates/film/screenings.php:14
 msgid "Buy ticket"
 msgstr "Pirkti bilietą"
 
-#: templates/events.php:43
+#: templates/events.php:49
 msgid "No upcoming events."
 msgstr "Bilietų nėra."
 
-#: templates/film/meta.php:17
+#: templates/film/meta.php:18
 #, fuzzy
 #| msgctxt "Admin"
 #| msgid "min"
@@ -478,22 +761,22 @@ msgctxt "minutes"
 msgid "min"
 msgstr "min"
 
-#: templates/film/meta.php:23
+#: templates/film/meta.php:24
 msgid "Director"
 msgstr ""
 
-#: templates/film/meta.php:29
+#: templates/film/meta.php:30
 msgid "Cast"
 msgstr ""
 
-#: templates/film/meta.php:35
+#: templates/film/meta.php:36
 #, fuzzy
 #| msgctxt "Admin"
 #| msgid "Languages"
 msgid "Language"
 msgstr "Kalbos"
 
-#: templates/film/meta.php:41
+#: templates/film/meta.php:42
 #, fuzzy
 #| msgctxt "Admin"
 #| msgid "Subtitles"
@@ -506,7 +789,7 @@ msgstr "Subtitrai"
 msgid "Screenings"
 msgstr "Sesija"
 
-#: templates/film/screenings.php:18
+#: templates/film/screenings.php:24
 msgid "No upcoming screenings"
 msgstr "Jokių būsimų seansų"
 
@@ -525,7 +808,3 @@ msgstr "Ieškoti"
 #~ msgctxt "Admin"
 #~ msgid "Duration"
 #~ msgstr "Trukmė"
-
-#~ msgctxt "Admin"
-#~ msgid "Film ID"
-#~ msgstr "Filmo ID"
