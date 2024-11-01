@@ -6,28 +6,29 @@
 ?>
 
 <?php if ( count( $films ) ): ?>
-    <div class="kinola-films">
+    <div class="kinola-films w-full max-w-screen-1xl flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-12 !mt-10">
         <?php foreach ( $films as $film ): ?>
             <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
-            <div class="kinola-film" style="padding: 10px 20px; border: 1px solid #ccc; overflow: auto;">
-                <a href="<?php echo get_permalink( $film->get_local_id() ); ?>">
-                    <img src="<?php echo $film->get_field( 'poster' ); ?>" width="100px" height="150px"
-                         style="float: left;"/>
-                </a>
-                <div class="kinola-film-details" style="float:left; margin-left: 20px;">
-                    <p>
-                        <strong>
-                            <a class="kinola-film-title" href="<?php echo get_permalink( $film->get_local_id() ); ?>">
-                                <?php echo $film->get_field( 'title' ); ?>
-                            </a>
-                        </strong>
-                        <br>
-                        <span class="kinola-film-title-original">
-					        <?php echo $film->get_field( 'title_original' ); ?>
-                        </span>
-                    </p>
+            <a href="<?php echo get_permalink( $film->get_local_id() ); ?>" class="kinola-film">
+                <div class="flex items-center justify-center w-full aspect-[1.34/1] bg-gray-100 overflow-hidden relative">
+                    <img src="<?php echo $film->get_field( 'poster' ); ?>" class="w-full h-full object-center object-cover absolute inset-0 blur-3xl">
+                    <img src="<?php echo $film->get_field( 'poster' ); ?>" class="max-w-full max-h-full object-center object-contain relative">
                 </div>
-            </div>
+                <div class="mt-3 text-base leading-6">
+                    <div class="kinola-film-title text-neutral-900 text-2xl font-semibold">
+                        <?php echo $film->get_field( 'title' ); ?>
+                    </div>
+                    <div>
+                        <?php echo $film->get_field( 'runtime' ); ?> <?php _ex( 'min', 'minutes', 'kinola' ); ?>
+                    </div>
+                    <div>
+                        <?php _e('Language', 'kinola'); ?>: <?php echo $film->get_field('languages'); ?>
+                    </div>
+                    <div>
+                        <?php _e('Subtitles', 'kinola'); ?>: <?php echo $film->get_field('subtitles'); ?>
+                    </div>
+                </div>
+            </a>
         <?php endforeach; ?>
     </div>
 <?php else: ?>
