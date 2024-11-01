@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-Italic-VariableFont_wght.ttf");
+  font-style: italic;
+}
+@font-face {
+  font-family: "Syncopate";
+  src: url("../fonts/Syncopate-Regular.ttf");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Syncopate";
+  src: url("../fonts/Syncopate-Bold.ttf");
+  font-weight: 700;
+}
+
+body {
+  @apply font-sans;
+}
+h1, h2, h3, h4 {
+  @apply font-heading;
+}
+h1 {
+  @apply text-6xl !m-0 !font-bold uppercase text-center tracking-wide;
+}
