@@ -139,7 +139,7 @@ class Bootstrap {
 
     public function enqueue_scripts() {
         if ( apply_filters( 'kinola/assets/css', true ) ) {
-            wp_enqueue_style( 'kinola', Helpers::get_assets_url( 'styles/kinola.min.css' ), [], KINOLA_VERSION );
+            wp_enqueue_style( 'kinola', Helpers::get_assets_url( 'styles/kinola.css' ), [], KINOLA_VERSION );
         }
 
         if ( apply_filters( 'kinola/assets/select2', true ) ) {
