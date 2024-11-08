@@ -13,10 +13,10 @@
                 <div class="w-full aspect-4/3 overflow-hidden relative">
                     <?php if ( $film->get_field( 'poster' ) ): ?>
                         <div class="absolute -inset-4 bg-center blur-2xl">
-                            <img src="<?php echo $film->get_field( 'poster' ); ?>" class="w-full h-full object-cover object-center">
+                            <img class="w-full h-full object-cover object-center" src="<?php echo $film->get_field( 'poster' ); ?>" alt="<?php echo $film->get_field( 'title' ); ?>">
                         </div>
                         <div class="w-full h-full flex items-center justify-center relative backdrop-blur-xl bg-white/5">
-                            <img src="<?php echo $film->get_field( 'poster' ); ?>" class="w-full h-full object-center object-contain">
+                            <img class="w-full h-full object-center object-contain" src="<?php echo $film->get_field( 'poster' ); ?>" alt="<?php echo $film->get_field( 'title' ); ?>">
                         </div>
                     <?php endif; ?>
                 </div>
