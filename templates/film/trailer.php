@@ -1,7 +1,7 @@
 <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
 
 <?php if ( $film->get_field( 'embeddable_video' ) || $film->get_field( 'video' ) ): ?>
-    <section class="kinola-film-trailer">
+    <section class="aspect-video overflow-hidden">
         <?php if ( $film->get_field( 'embeddable_video' ) ): ?>
             <?php echo $film->get_field( 'embeddable_video' ); ?>
         <?php else: ?>

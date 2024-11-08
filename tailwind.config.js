@@ -14,6 +14,13 @@ module.exports = {
       aspectRatio: {
         '4/3': '4 / 3',
       },
+      width: {
+        'sidebar': '275px',
+        '105': '420px',
+      },
+      height: {
+        '98': '392px'
+      },
     },
   },
   plugins: [],

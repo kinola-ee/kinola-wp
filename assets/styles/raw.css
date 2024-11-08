@@ -23,11 +23,20 @@
 }
 
 body {
-  @apply font-sans;
+  @apply font-sans text-base;
 }
-h1, h2, h3, h4 {
+h1, h2 {
   @apply font-heading;
 }
 h1 {
   @apply text-6xl !m-0 !font-bold uppercase text-center tracking-wide;
+}
+h2 {
+  @apply text-2xl mb-4 uppercase font-bold;
+}
+h3 {
+  @apply text-2xl mb-4;
+}
+iframe {
+  @apply w-full h-auto max-w-full aspect-video;
 }
