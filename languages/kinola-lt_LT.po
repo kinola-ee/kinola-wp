@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola-wp\n"
 "POT-Creation-Date: 2024-08-11T20:55:29+00:00\n"
-"PO-Revision-Date: 2024-10-07 15:43+0200\n"
+"PO-Revision-Date: 2024-11-27 10:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt_LT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "X-Domain: kinola\n"
 
 #. Plugin Name of the plugin
@@ -412,19 +412,19 @@ msgstr ""
 
 #: src/Checkout.php:84
 msgid "One ticket (€ {price})"
-msgstr "1 kuponas (€ {price})"
+msgstr "1 bilietas € {price})"
 
 #: src/Checkout.php:85
 msgid "Two tickets (€ {price})"
-msgstr "2 kuponai (€ {price})"
+msgstr "2 bilietai(€ {price})"
 
 #: src/Checkout.php:86
 msgid "Six tickets (€ {price})"
-msgstr "6 kuponai (€ {price})"
+msgstr "6 bilietai (€ {price})"
 
 #: src/Checkout.php:87
 msgid "10 tickets (€ {price})"
-msgstr "10 kuponų (€ {price})"
+msgstr "10 bilietų (€ {price})"
 
 #: src/Checkout.php:88
 msgid "Or enter a custom amount."
