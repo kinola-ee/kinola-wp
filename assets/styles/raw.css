@@ -22,21 +22,63 @@
   font-weight: 700;
 }
 
-body {
-  @apply font-sans text-base;
+@layer base {
+  body {
+    @apply font-sans font-medium text-base text-neutral-900;
+  }
+  h1, h2 {
+    @apply font-heading;
+  }
+  h1 {
+    @apply text-6xl !m-0 !font-bold uppercase text-center tracking-wide;
+  }
+  h2 {
+    @apply text-2xl mb-4 uppercase font-bold;
+  }
+  h3 {
+    @apply text-1xl mb-4;
+  }
+  iframe {
+    @apply w-full h-auto max-w-full aspect-video;
+  }
+  :focus-visible {
+    @apply outline-accentI40;
+  }
 }
-h1, h2 {
-  @apply font-heading;
+
+.select2-container {
+  @apply !w-full;
 }
-h1 {
-  @apply text-6xl !m-0 !font-bold uppercase text-center tracking-wide;
+.select2-container .select2-selection--single {
+  @apply px-4 py-2 !border !border-stone-300 !rounded-xl !h-auto !bg-transparent hover:!bg-white transition focus-visible:outline-accentI40;
 }
-h2 {
-  @apply text-2xl mb-4 uppercase font-bold;
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single {
+  @apply !rounded-b-none;
 }
-h3 {
-  @apply text-2xl mb-4;
+.select2-container--default.select2-container--open.select2-container--above .select2-selection--single {
+  @apply !rounded-t-none;
 }
-iframe {
-  @apply w-full h-auto max-w-full aspect-video;
+.select2-container .select2-selection--single .select2-selection__rendered {
+  @apply !p-0 !leading-relaxed;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  @apply !hidden;
+}
+.select2-dropdown {
+  @apply !border-stone-300 !py-2.5;
+}
+.select2-dropdown--below {
+  @apply !rounded-t-none !rounded-b-xl;
+}
+.select2-dropdown--above {
+  @apply !rounded-t-xl !rounded-b-none;
+}
+.select2-results__option {
+  @apply !bg-none !px-4 !py-1.5 !text-neutral-900 hover:!bg-zinc-100 transition;
+}
+.select2-container--default .select2-results__option[aria-selected=true] {
+  @apply !bg-white !text-violet-600;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  @apply !bg-white hover:!bg-zinc-100;
 }

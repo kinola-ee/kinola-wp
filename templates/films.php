@@ -22,7 +22,7 @@
                 </div>
                 <div class="mt-3 text-base leading-6 text-neutral-900">
                     <?php if ( $film->get_field( 'title' ) ): ?>
-                        <div class="text-2xl font-semibold mb-1">
+                        <div class="text-1xl font-semibold mb-1">
                             <?php echo $film->get_field( 'title' ); ?>
                         </div>
                     <?php endif; ?>

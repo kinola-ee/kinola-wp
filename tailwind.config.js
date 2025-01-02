@@ -21,6 +21,15 @@ module.exports = {
       height: {
         '98': '392px'
       },
+      colors: {
+        'accentI100': '#5f0ce7',
+        'accentI80': '#7f3dec',
+        'accentI40': '#bf9ef6',
+        'accentI20': '#ccb1f8',
+      },
+      fontSize: {
+        '1xl': '1.375rem',
+      },
     },
   },
   plugins: [],
