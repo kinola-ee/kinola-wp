@@ -22,7 +22,7 @@
                     </div>
                     <?php if ($event->get_free_seats()): ?>
                         <div class="ml-auto">
-                            <a class="px-4 py-2 rounded-full bg-neutral-900 text-sm text-white font-semibold tracking-wide uppercase hover:bg-accentI100 active:bg-accentI80 focus-visible:outline-accentI40 transition" href="<?php echo $event->get_checkout_url(); ?>">
+                            <a class="px-4 py-2 rounded-full bg-neutral-900 text-sm text-white font-semibold tracking-wide uppercase hover:bg-accentI100 active:bg-accentI80 focus-visible:outline focus-visible:outline-accentI40 focus-visible:outline-4 focus-visible:outline-offset-0 transition" href="<?php echo $event->get_checkout_url(); ?>">
                                 <?php _e( 'Buy ticket', 'kinola' ); ?>
                             </a>
                         </div>
@@ -37,6 +37,10 @@
             <?php endforeach; ?>
         </div>
     <?php else: ?>
-        <h3 class="text-center"><?php _e( 'No upcoming screenings', 'kinola' ); ?></h3>
+        <div class="text-center">
+            <h3>
+                <?php _e( 'No upcoming screenings', 'kinola' ); ?>
+            </h3>
+        </div>
     <?php endif; ?>
 </section>

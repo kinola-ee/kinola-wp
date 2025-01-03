@@ -30,6 +30,9 @@ module.exports = {
       fontSize: {
         '1xl': '1.375rem',
       },
+      outlineWidth: {
+        '6': '6px'
+      },
     },
   },
   plugins: [],

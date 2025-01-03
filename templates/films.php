@@ -6,7 +6,7 @@
 ?>
 
 <?php if ( count( $films ) ): ?>
-    <div class="w-full max-w-screen-1xl flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-12 !mt-10">
+    <div class="w-full max-w-screen-1xl flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-10 !mt-10">
         <?php foreach ( $films as $film ): ?>
             <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
             <a href="<?php echo get_permalink( $film->get_local_id() ); ?>">
@@ -20,7 +20,7 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="mt-3 text-base leading-6 text-neutral-900">
+                <div class="mt-4 text-base leading-6 text-neutral-900">
                     <?php if ( $film->get_field( 'title' ) ): ?>
                         <div class="text-1xl font-semibold mb-1">
                             <?php echo $film->get_field( 'title' ); ?>
