@@ -23,10 +23,13 @@
                         </div>
                         <div class="w-full h-full flex items-center justify-center relative backdrop-blur-xl bg-white/5">
                             <img class="w-full h-full object-center object-contain" src="<?php echo $event->get_field( 'production_poster' ); ?>" alt="<?php echo $event->get_field( 'production_title' ); ?>">
+                            <div class="absolute top-2 left-2 px-3 py-1.5 bg-white text-base border border-primary20 rounded-md">
+                                Filmiaasta nädalalõpp
+                            </div>
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="mt-4 text-base leading-6 text-neutral-900">
+                <div class="mt-4 text-base leading-6 text-primary100">
                     <?php if ( $event->get_field( 'production_title' ) ): ?>
                         <div class="text-1xl font-semibold mb-1">
                             <?php echo $event->get_field( 'production_title' ); ?>
@@ -58,7 +61,7 @@
                     <?php endif; ?>
                     <div class="mt-3 flex justify-center">
                         <?php if ($event->get_free_seats()): ?>
-                            <a class="px-12 py-3 rounded-full bg-neutral-900 text-sm text-white font-semibold tracking-wide uppercase hover:bg-accentI100 active:bg-accentI80 focus-visible:outline focus-visible:outline-accentI40 focus-visible:outline-6 focus-visible:outline-offset-0 transition" href="<?php echo $event->get_checkout_url(); ?>">
+                            <a class="px-12 py-3 rounded-full bg-primary100 text-sm text-white font-semibold tracking-wide uppercase hover:bg-accentI100 active:bg-accentI80 focus-visible:bg-primary80 focus-visible:outline focus-visible:outline-accentI40 focus-visible:outline-6 focus-visible:outline-offset-0 transition" href="<?php echo $event->get_checkout_url(); ?>">
                                 <?php _e( 'Buy ticket', 'kinola' ); ?>
                             </a>
                         <?php else: ?>

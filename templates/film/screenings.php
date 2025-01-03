@@ -7,7 +7,7 @@
         <div class="mt-6">
             <?php foreach ( $events as $event ): ?>
                 <?php /* @var $event \Kinola\KinolaWp\Event */ ?>
-                <div class="py-4 border-t border-stone-300 flex items-center gap-4">
+                <div class="py-4 border-t border-primary20 flex items-center gap-4">
                     <div class="flex flex-col gap-y-1">
                         <div class="font-semibold">
                             <?php echo $event->get_date(); ?> - <?php echo $event->get_time(); ?>
@@ -22,7 +22,7 @@
                     </div>
                     <?php if ($event->get_free_seats()): ?>
                         <div class="ml-auto">
-                            <a class="px-4 py-2 rounded-full bg-neutral-900 text-sm text-white font-semibold tracking-wide uppercase hover:bg-accentI100 active:bg-accentI80 focus-visible:outline focus-visible:outline-accentI40 focus-visible:outline-4 focus-visible:outline-offset-0 transition" href="<?php echo $event->get_checkout_url(); ?>">
+                            <a class="px-4 py-2 rounded-full bg-primary100 text-sm text-white font-semibold tracking-wide uppercase hover:bg-accentI100 active:bg-accentI80 focus-visible:bg-primary80 focus-visible:outline focus-visible:outline-accentI40 focus-visible:outline-4 focus-visible:outline-offset-0 transition" href="<?php echo $event->get_checkout_url(); ?>">
                                 <?php _e( 'Buy ticket', 'kinola' ); ?>
                             </a>
                         </div>

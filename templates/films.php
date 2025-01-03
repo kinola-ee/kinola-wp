@@ -20,7 +20,7 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="mt-4 text-base leading-6 text-neutral-900">
+                <div class="mt-4 text-base leading-6 text-primary100">
                     <?php if ( $film->get_field( 'title' ) ): ?>
                         <div class="text-1xl font-semibold mb-1">
                             <?php echo $film->get_field( 'title' ); ?>

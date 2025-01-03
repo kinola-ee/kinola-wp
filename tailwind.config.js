@@ -16,12 +16,18 @@ module.exports = {
       },
       width: {
         'sidebar': '275px',
-        '105': '420px',
+        '105': '26.25rem',
       },
       height: {
-        '98': '392px'
+        '98': '24.5rem'
       },
       colors: {
+        'primary100': '#171615',
+        'primary80': '#454544',
+        'primary60': '#747373',
+        'primary40': '#a2a2a1',
+        'primary20': '#d1d0d0',
+        'primary5': '#f3f3f3',
         'accentI100': '#5f0ce7',
         'accentI80': '#7f3dec',
         'accentI40': '#bf9ef6',

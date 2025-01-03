@@ -560,7 +560,7 @@ body {
   line-height: 1.5rem;
   font-weight: 500;
   --tw-text-opacity: 1;
-  color: rgb(23 23 23 / var(--tw-text-opacity));
+  color: rgb(23 22 21 / var(--tw-text-opacity));
 }
 
 h1, h2 {
@@ -660,6 +660,14 @@ iframe {
   inset: -1rem;
 }
 
+.left-2 {
+  left: 0.5rem;
+}
+
+.top-2 {
+  top: 0.5rem;
+}
+
 .\!my-28 {
   margin-top: 7rem !important;
   margin-bottom: 7rem !important;
@@ -727,7 +735,7 @@ iframe {
 }
 
 .h-98 {
-  height: 392px;
+  height: 24.5rem;
 }
 
 .h-full {
@@ -735,7 +743,7 @@ iframe {
 }
 
 .w-105 {
-  width: 420px;
+  width: 26.25rem;
 }
 
 .w-full {
@@ -801,6 +809,10 @@ iframe {
   row-gap: 1.5rem;
 }
 
+.self-end {
+  align-self: flex-end;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -809,18 +821,31 @@ iframe {
   border-radius: 9999px;
 }
 
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.border {
+  border-width: 1px;
+}
+
 .border-t {
   border-top-width: 1px;
 }
 
-.border-stone-300 {
+.border-primary20 {
   --tw-border-opacity: 1;
-  border-color: rgb(214 211 209 / var(--tw-border-opacity));
+  border-color: rgb(209 208 208 / var(--tw-border-opacity));
 }
 
-.bg-neutral-900 {
+.bg-primary100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+  background-color: rgb(23 22 21 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-white\/5 {
@@ -851,9 +876,19 @@ iframe {
   padding-right: 3rem;
 }
 
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
 }
 
 .py-2 {
@@ -914,9 +949,9 @@ iframe {
   letter-spacing: 0.025em;
 }
 
-.text-neutral-900 {
+.text-primary100 {
   --tw-text-opacity: 1;
-  color: rgb(23 23 23 / var(--tw-text-opacity));
+  color: rgb(23 22 21 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -982,7 +1017,7 @@ iframe {
   border-radius: 0.75rem !important;
   border-width: 1px !important;
   --tw-border-opacity: 1 !important;
-  border-color: rgb(214 211 209 / var(--tw-border-opacity)) !important;
+  border-color: rgb(209 208 208 / var(--tw-border-opacity)) !important;
   background-color: transparent !important;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1025,7 +1060,7 @@ iframe {
 
 .select2-dropdown {
   --tw-border-opacity: 1 !important;
-  border-color: rgb(214 211 209 / var(--tw-border-opacity)) !important;
+  border-color: rgb(209 208 208 / var(--tw-border-opacity)) !important;
   padding-top: 0.625rem !important;
   padding-bottom: 0.625rem !important;
 }
@@ -1051,7 +1086,7 @@ iframe {
   padding-top: 0.375rem !important;
   padding-bottom: 0.375rem !important;
   --tw-text-opacity: 1 !important;
-  color: rgb(23 23 23 / var(--tw-text-opacity)) !important;
+  color: rgb(23 22 21 / var(--tw-text-opacity)) !important;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
@@ -1061,14 +1096,14 @@ iframe {
 
 .select2-results__option:hover {
   --tw-bg-opacity: 1 !important;
-  background-color: rgb(244 244 245 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(243 243 243 / var(--tw-bg-opacity)) !important;
 }
 
 .select2-container--default .select2-results__option[aria-selected=true] {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
   --tw-text-opacity: 1 !important;
-  color: rgb(124 58 237 / var(--tw-text-opacity)) !important;
+  color: rgb(127 61 236 / var(--tw-text-opacity)) !important;
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
@@ -1078,12 +1113,17 @@ iframe {
 
 .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
   --tw-bg-opacity: 1 !important;
-  background-color: rgb(244 244 245 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(243 243 243 / var(--tw-bg-opacity)) !important;
 }
 
 .hover\:bg-accentI100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(95 12 231 / var(--tw-bg-opacity));
+}
+
+.focus-visible\:bg-primary80:focus-visible {
+  --tw-bg-opacity: 1;
+  background-color: rgb(69 69 68 / var(--tw-bg-opacity));
 }
 
 .focus-visible\:outline:focus-visible {

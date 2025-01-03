@@ -24,7 +24,7 @@
 
 @layer base {
   body {
-    @apply font-sans font-medium text-base text-neutral-900;
+    @apply font-sans font-medium text-base text-primary100;
   }
   h1, h2 {
     @apply font-heading;
@@ -50,7 +50,7 @@
   @apply !w-full;
 }
 .select2-container .select2-selection--single {
-  @apply px-4 py-2 !border !border-stone-300 !rounded-xl !h-auto !bg-transparent hover:!bg-white transition focus-visible:outline-accentI40;
+  @apply px-4 py-2 !border !border-primary20 !rounded-xl !h-auto !bg-transparent hover:!bg-white transition focus-visible:outline-accentI40;
 }
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--single {
   @apply !rounded-b-none;
@@ -65,7 +65,7 @@
   @apply !hidden;
 }
 .select2-dropdown {
-  @apply !border-stone-300 !py-2.5;
+  @apply !border-primary20 !py-2.5;
 }
 .select2-dropdown--below {
   @apply !rounded-t-none !rounded-b-xl;
@@ -74,11 +74,11 @@
   @apply !rounded-t-xl !rounded-b-none;
 }
 .select2-results__option {
-  @apply !bg-none !px-4 !py-1.5 !text-neutral-900 hover:!bg-zinc-100 transition;
+  @apply !bg-none !px-4 !py-1.5 !text-primary100 hover:!bg-primary5 transition;
 }
 .select2-container--default .select2-results__option[aria-selected=true] {
-  @apply !bg-white !text-violet-600;
+  @apply !bg-white !text-accentI80;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  @apply !bg-white hover:!bg-zinc-100;
+  @apply !bg-white hover:!bg-primary5;
 }
