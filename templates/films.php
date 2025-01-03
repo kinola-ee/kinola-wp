@@ -9,7 +9,7 @@
     <div class="w-full max-w-screen-1xl flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-10 !mt-10">
         <?php foreach ( $films as $film ): ?>
             <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
-            <a href="<?php echo get_permalink( $film->get_local_id() ); ?>">
+            <a href="<?php echo get_permalink( $film->get_local_id() ); ?>" class="flex flex-col gap-y-4">
                 <div class="w-full aspect-4/3 overflow-hidden relative">
                     <?php if ( $film->get_field( 'poster' ) ): ?>
                         <div class="absolute -inset-4 bg-center blur-2xl">
@@ -20,7 +20,7 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="mt-4 text-base leading-6 text-primary100">
+                <div class="text-base leading-6 text-primary100">
                     <?php if ( $film->get_field( 'title' ) ): ?>
                         <div class="text-1xl font-semibold mb-1">
                             <?php echo $film->get_field( 'title' ); ?>
