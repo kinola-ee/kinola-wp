@@ -1,12 +1,21 @@
 <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
 
-<div class="flex flex-col gap-y-10">
-    <div class="h-98">
+<div class="flex flex-col gap-y-5 lg:gap-y-10">
+    <div class="h-98 max-lg:hidden">
         <img class="w-full h-full object-cover object-center" src="<?php echo $film->get_field( 'poster' ); ?>" alt="<?php echo $film->get_field( 'title' ); ?>">
+    </div>
+
+    <div class="h-40 sm:h-80 lg:hidden">
+        <?php if ( $film->get_field( 'gallery' ) && count( $film->get_field( 'gallery' ) ) ): ?>
+            <img class="w-full h-full object-cover object-center" src="<?php echo $film->get_field( 'gallery' )[0]['src'] ?>" alt="<?php echo $film->get_field( 'title' ); ?>">
+        <?php endif; ?>
     </div>
 
     <div class="w-full lg:max-w-60 flex flex-col gap-y-6">
         <div class="flex flex-col gap-y-1">
+            <div class="lg:hidden">
+                <h2><?php echo $film->get_field( 'title' ); ?></h2>
+            </div>
             <?php if ($film->get_field( 'title_original' )): ?>
                 <div class="font-semibold">
                     <?php echo $film->get_field( 'title_original' ); ?>

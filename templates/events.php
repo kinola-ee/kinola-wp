@@ -23,7 +23,7 @@
                         </div>
                         <div class="w-full h-full flex items-center justify-center relative backdrop-blur-xl bg-white/5">
                             <img class="w-full h-full object-center object-contain" src="<?php echo $event->get_field( 'production_poster' ); ?>" alt="<?php echo $event->get_field( 'production_title' ); ?>">
-                            <!-- <div class="absolute top-2 left-2">
+                            <!-- <div class="absolute top-2 inset-x-2">
                                 <div class="px-3 py-1.5 bg-white text-primary80 text-base border border-primary20 rounded-md">
                                     Filmiaasta nädalalõpp
                                 </div>

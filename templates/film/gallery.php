@@ -1,7 +1,7 @@
 <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
 
 <?php if ( $film->get_field( 'gallery' ) && count( $film->get_field( 'gallery' ) ) ): ?>
-    <section class="grid grid-cols-2 md:grid-cols-3 gap-3" id="kinola-film-gallery">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="kinola-film-gallery">
         <?php foreach ( $film->get_field( 'gallery' ) as $image ): ?>
             <a
                 class="aspect-square"
@@ -17,7 +17,7 @@
                 />
             </a>
         <?php endforeach; ?>
-    </section>
+    </div>
 <?php endif; ?>
 
 <script type="module">
