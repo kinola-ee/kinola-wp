@@ -29,6 +29,8 @@
                                 </div>
                             </div> -->
                         </div>
+                    <?php else: ?>
+                        <div class="absolute inset-0 bg-gradient-to-br from-accentII100 to-accentIII100 opacity-10 -z-10"></div>
                     <?php endif; ?>
                 </div>
                 <div class="text-base leading-6 text-primary100">

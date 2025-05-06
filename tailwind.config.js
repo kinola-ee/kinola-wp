@@ -32,6 +32,8 @@ module.exports = {
         'accentI80': '#7f3dec',
         'accentI40': '#bf9ef6',
         'accentI20': '#ccb1f8',
+        'accentII100': '#34cc3b',
+        'accentIII100': '#2a40ff',
       },
       fontSize: {
         '1xl': '1.375rem',

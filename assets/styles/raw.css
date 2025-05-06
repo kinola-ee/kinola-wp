@@ -23,8 +23,12 @@
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
   body {
-    @apply font-sans font-medium text-base text-primary100;
+    @apply font-sans font-medium text-base text-primary100 overflow-x-hidden bg-repeat-y bg-cover bg-fixed;
+    background-image: url("data:image/svg+xml,%3Csvg width='1440' height='1803' viewBox='0 0 1440 1803' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.16' filter='url(%23filter0_f_0_1)'%3E%3Ccircle cx='1305' cy='42' r='376' fill='%232A40FF'/%3E%3C/g%3E%3Cg opacity='0.16' filter='url(%23filter1_f_0_1)'%3E%3Ccircle cx='1230' cy='522' r='376' fill='%2334CC3B'/%3E%3C/g%3E%3Cg opacity='0.16' filter='url(%23filter2_f_0_1)'%3E%3Ccircle cx='363' cy='983' r='376' fill='%2334CC3B'/%3E%3C/g%3E%3Cg opacity='0.15' filter='url(%23filter3_f_0_1)'%3E%3Ccircle cx='93' cy='776' r='376' fill='%232A40FF'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_f_0_1' x='485' y='-778' width='1640' height='1640' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeGaussianBlur stdDeviation='222' result='effect1_foregroundBlur_0_1'/%3E%3C/filter%3E%3Cfilter id='filter1_f_0_1' x='410' y='-298' width='1640' height='1640' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeGaussianBlur stdDeviation='222' result='effect1_foregroundBlur_0_1'/%3E%3C/filter%3E%3Cfilter id='filter2_f_0_1' x='-457' y='163' width='1640' height='1640' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeGaussianBlur stdDeviation='222' result='effect1_foregroundBlur_0_1'/%3E%3C/filter%3E%3Cfilter id='filter3_f_0_1' x='-727' y='-44' width='1640' height='1640' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeGaussianBlur stdDeviation='222' result='effect1_foregroundBlur_0_1'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E%0A");
   }
   h1, h2 {
     @apply font-heading;
@@ -38,6 +42,9 @@
   h3 {
     @apply text-1xl mb-4;
   }
+  p {
+    @apply my-6 first:mt-0;
+  }
   iframe {
     @apply w-full h-auto max-w-full aspect-video;
   }
@@ -46,39 +53,92 @@
   }
 }
 
+/* wp default override */
+
+.wp-block-post-title {
+  @apply max-w-none;
+}
+
+/* select2 */
+
 .select2-container {
   @apply !w-full;
 }
-.select2-container .select2-selection--single {
-  @apply px-4 py-2 !border !border-primary20 !rounded-xl !h-auto !bg-transparent hover:!bg-white transition focus-visible:outline-accentI40;
+
+.select2-container .select2-selection {
+  @apply pl-12 !h-16 !bg-transparent focus-visible:outline-accentI40 transition-all duration-100 border !border-primary20 box-border !rounded-none max-md:!rounded-xl;
 }
-.select2-container--default.select2-container--open.select2-container--below .select2-selection--single {
+.select2-container:hover .select2-selection {
+  @apply !bg-white;
+}
+.select2-container.select2-container--open .select2-selection {
+  @apply bg-gradient-to-b from-white to-primary20/20;
+}
+.kinola-film-filter-container .select2-container .select2-selection {
+  @apply pl-10 !h-10 !rounded-xl;
+}
+.kinola-events-filter-container:first-child .select2-container .select2-selection {
+  @apply md:!rounded-l-xl;
+}
+.kinola-events-filter-container:last-child .select2-container .select2-selection {
+  @apply md:!rounded-r-xl;
+}
+
+.select2-container.select2-container--open.select2-container--below .select2-selection {
   @apply !rounded-b-none;
 }
-.select2-container--default.select2-container--open.select2-container--above .select2-selection--single {
+.select2-container.select2-container--open.select2-container--above .select2-selection {
   @apply !rounded-t-none;
 }
-.select2-container .select2-selection--single .select2-selection__rendered {
-  @apply !p-0 !leading-relaxed;
+
+.select2-container .select2-selection .select2-selection__rendered {
+  @apply !p-0 !leading-[62px];
 }
-.select2-container--default .select2-selection--single .select2-selection__arrow b {
+.kinola-film-filter-container .select2-container .select2-selection .select2-selection__rendered {
+  @apply !leading-[38px];
+}
+
+.select2-container .select2-selection .select2-selection__arrow {
+  @apply !size-3 !absolute !top-1/2 !-translate-y-1/2 !right-6 bg-no-repeat bg-center bg-contain;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg' class='size-3'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%23171615' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.kinola-film-filter-container .select2-container .select2-selection .select2-selection__arrow {
+  @apply !right-4;
+}
+.select2-container.select2-container--open .select2-selection .select2-selection__arrow {
+  @apply rotate-180;
+}
+
+.select2-container .select2-selection .select2-selection__arrow b {
   @apply !hidden;
 }
+
 .select2-dropdown {
-  @apply !border-primary20 !py-2.5;
+  @apply !border-primary20 bg-white;
 }
-.select2-dropdown--below {
+
+.select2-results {
+  @apply overflow-hidden;
+}
+.select2-dropdown--below,
+.select2-dropdown--below .select2-results {
   @apply !rounded-t-none !rounded-b-xl;
 }
-.select2-dropdown--above {
+.select2-dropdown--above,
+.select2-dropdown--above .select2-results {
   @apply !rounded-t-xl !rounded-b-none;
 }
+
 .select2-results__option {
-  @apply !bg-none !px-4 !py-1.5 !text-primary100 hover:!bg-primary5 transition;
+  @apply !px-4 !py-1.5 !text-primary100 hover:!bg-primary5 transition;
 }
-.select2-container--default .select2-results__option[aria-selected=true] {
+.select2-container .select2-results__option {
+  @apply !px-4 !py-1.5;
+}
+
+.select2-container .select2-results__option[aria-selected=true] {
   @apply !bg-white !text-accentI80;
 }
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
+.select2-container .select2-results__option--highlighted[aria-selected] {
   @apply !bg-white hover:!bg-primary5;
 }

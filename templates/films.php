@@ -18,6 +18,8 @@
                         <div class="w-full h-full flex items-center justify-center relative backdrop-blur-xl bg-white/5">
                             <img class="w-full h-full object-center object-contain" src="<?php echo $film->get_field( 'poster' ); ?>" alt="<?php echo $film->get_field( 'title' ); ?>">
                         </div>
+                    <?php else: ?>
+                        <div class="absolute inset-0 bg-gradient-to-br from-accentII100 to-accentIII100 opacity-10 -z-10"></div>
                     <?php endif; ?>
                 </div>
                 <div class="text-base leading-6 text-primary100">
