@@ -51,12 +51,18 @@
   :focus-visible {
     @apply outline-accentI40;
   }
+  :focus {
+    @apply !decoration-accentI40;
+  }
 }
 
 /* wp default override */
 
 .wp-block-post-title {
   @apply max-w-none;
+}
+.film-template-default h1.wp-block-post-title {
+  @apply hidden;
 }
 
 /* select2 */

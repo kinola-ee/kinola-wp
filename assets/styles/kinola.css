@@ -626,6 +626,10 @@ iframe {
   outline-color: #bf9ef6;
 }
 
+:focus {
+  text-decoration-color: #bf9ef6 !important;
+}
+
 .container {
   width: 100%;
 }
@@ -1141,6 +1145,10 @@ iframe {
 
 .wp-block-post-title {
   max-width: none;
+}
+
+.film-template-default h1.wp-block-post-title {
+  display: none;
 }
 
 /* select2 */

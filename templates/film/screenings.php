@@ -9,8 +9,9 @@
                 <?php /* @var $event \Kinola\KinolaWp\Event */ ?>
                 <div class="py-4 border-t border-primary20 flex flex-col sm:flex-row sm:items-center gap-4">
                     <div class="flex flex-col gap-y-2">
+                        <!-- TAGS -->
                         <!-- <div class="px-3 py-1.5 bg-white text-primary80 text-base border border-primary20 rounded-md">
-                            Filmiaasta nädalalõpp ja veel mingi pikk väljend sellele lisaks ka
+                            Filmiaasta nädalalõpp
                         </div> -->
                         <div class="font-semibold">
                             <?php echo $event->get_date(); ?> - <?php echo $event->get_time(); ?>
@@ -24,6 +25,7 @@
                             </span>
                             <span><?php echo $event->get_venue_name(); ?></span>
                         </div>
+                        <!-- ADDITIONAL COMMENT -->
                         <!-- <div class="flex items-center gap-x-1.5 max-sm:mt-1">
                             <span class="max-sm:hidden text-accentI100">
                                 <svg viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-4">
