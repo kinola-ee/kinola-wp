@@ -573,7 +573,7 @@ body {
 }
 
 h1, h2 {
-  font-family: Syncopate, sans-serif;
+  font-family: Syncopate, sans-serif !important;
 }
 
 h1 {
@@ -599,6 +599,11 @@ h2 {
   line-height: 2rem;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+h3, h4, h5, h6 {
+  font-family: Work Sans, sans-serif;
+  font-weight: 500;
 }
 
 h3 {
@@ -1145,10 +1150,6 @@ iframe {
 
 .wp-block-post-title {
   max-width: none;
-}
-
-.film-template-default h1.wp-block-post-title {
-  display: none;
 }
 
 /* select2 */
