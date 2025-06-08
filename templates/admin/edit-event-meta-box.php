@@ -54,7 +54,12 @@
             <?php _ex( 'Program', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $event->get_field( 'program' ) ?: '-'; ?>
+            <?php echo $event->get_program_name() ?: '-'; ?>
+            <?php if ($event->get_program_description()): ?>
+                <div class="mt-2 text-sm text-gray-500">
+                    <?php echo $event->get_program_description(); ?>
+                </div>
+            <?php endif; ?>
         </td>
     </tr>
     <!--
@@ -63,7 +68,7 @@
             <?php _ex( 'Languages', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $event->get_field( 'languages' ); ?>
+            <?php echo $event->get_film()->get_field( 'languages' ); ?>
         </td>
     </tr>
     <tr>
@@ -71,7 +76,7 @@
             <?php _ex( 'Subtitles', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $event->get_field( 'subtitles' ); ?>
+            <?php echo $event->get_film()->get_field( 'subtitles' ); ?>
         </td>
     </tr>
     -->

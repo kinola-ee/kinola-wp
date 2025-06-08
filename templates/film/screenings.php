@@ -9,10 +9,12 @@
                 <?php /* @var $event \Kinola\KinolaWp\Event */ ?>
                 <div class="py-4 border-t border-primary20 flex flex-col sm:flex-row sm:items-center gap-4">
                     <div class="flex flex-col gap-y-2">
-                        <!-- TAGS -->
-                        <!-- <div class="px-3 py-1.5 bg-white text-primary80 text-base border border-primary20 rounded-md">
-                            Filmiaasta nädalalõpp
-                        </div> -->
+                        <?php if ($event->has_program()): ?>
+                            <!-- PROGRAM TAG -->
+                            <div class="px-3 py-1.5 bg-white text-primary80 text-base border border-primary20 rounded-md">
+                                <?php echo $event->get_program_name(); ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="font-semibold">
                             <?php echo $event->get_date(); ?> - <?php echo $event->get_time(); ?>
                         </div>
@@ -25,15 +27,17 @@
                             </span>
                             <span><?php echo $event->get_venue_name(); ?></span>
                         </div>
-                        <!-- ADDITIONAL COMMENT -->
-                        <!-- <div class="flex items-center gap-x-1.5 max-sm:mt-1">
-                            <span class="max-sm:hidden text-accentI100">
-                                <svg viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-4">
-                                    <path d="M6.89998 17.35V10.925L1.32498 14.15L0.224976 12.225L5.79998 8.99999L0.224976 5.79999L1.32498 3.87499L6.89998 7.09999V0.649994H9.09998V7.09999L14.675 3.87499L15.775 5.79999L10.2 8.99999L15.775 12.225L14.675 14.15L9.09998 10.925V17.35H6.89998Z" fill="#5F0CE7"/>
-                                </svg>
-                            </span>
-                            <span>Külas režissöör Rain Tolk</span>
-                        </div> -->
+                        <?php if ($event->get_note()): ?>
+                            <!-- ADDITIONAL COMMENT -->
+                            <div class="flex items-center gap-x-1.5 max-sm:mt-1">
+                                <span class="max-sm:hidden text-accentI100">
+                                    <svg viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-4">
+                                        <path d="M6.89998 17.35V10.925L1.32498 14.15L0.224976 12.225L5.79998 8.99999L0.224976 5.79999L1.32498 3.87499L6.89998 7.09999V0.649994H9.09998V7.09999L14.675 3.87499L15.775 5.79999L10.2 8.99999L15.775 12.225L14.675 14.15L9.09998 10.925V17.35H6.89998Z" fill="#5F0CE7"/>
+                                    </svg>
+                                </span>
+                                <span><?php echo $event->get_note(); ?></span>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <?php if ($event->get_free_seats()): ?>
                         <div class="max-sm:self-center sm:ml-auto whitespace-nowrap">

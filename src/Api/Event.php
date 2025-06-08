@@ -20,7 +20,12 @@ class Event extends Api_Model {
         $data['production_poster']                = $data['production']['image']['src'] ?? null;
         $data['venue']                            = $data['venue']['name'] ?? null;
         $data['room']                             = $data['room']['name'] ?? null;
-        $data['program']                          = $data['program']['name'] ?? null;
+        
+        if (isset($data['program']) && is_array($data['program'])) {
+            $data['program_data'] = $data['program'];
+            // Extract name for backward compatibility
+            $data['program'] = $data['program']['name'] ?? null;
+        }
 
         foreach ( $unset as $field ) {
             unset( $data[ $field ] );

@@ -53,6 +53,10 @@ class Event extends Model {
                 case 'venue':
                     $this->set_venue( $value );
                     break;
+                case 'program':
+                case 'program_data':
+                    $this->set_field( $field, $value );
+                    break;
                 default:
                     $this->set_field( $field, $value );
             }
@@ -152,5 +156,51 @@ class Event extends Model {
         return $production_title . ' - ' .
                $dateTime->format( get_option( 'date_format' ) ) . ' ' .
                $dateTime->format( get_option( 'time_format' ) );
+    }
+
+    public function get_note(): string {
+        return $this->get_field( 'note' );
+    }
+
+    public function has_program(): bool {
+        // Use compact=false to get raw program_data array
+        return !empty( $this->get_field( 'program_data', false ) );
+    }
+
+    public function get_program_id(): string {
+        // Important: pass compact=false to prevent array flattening
+        $program_data = $this->get_field('program_data', false);
+        
+        if (is_array($program_data) && isset($program_data['id'])) {
+            return $program_data['id'];
+        }
+        return '';
+    }
+
+    public function get_program_name(): string {
+        $program = $this->get_field('program');
+        // Important: pass compact=false to prevent array flattening
+        $program_data = $this->get_field('program_data', false);
+        
+        // First try to get from program field for backward compatibility
+        if (!empty($program)) {
+            return $program;
+        }
+        // If program field is empty, try to get from program_data
+        else if (is_array($program_data) && isset($program_data['name'])) {
+            return $program_data['name'];
+        }
+        
+        return '';
+    }
+
+    public function get_program_description(): string {
+        // Important: pass compact=false to prevent array flattening
+        $program_data = $this->get_field('program_data', false);
+        
+        if (is_array($program_data) && isset($program_data['description'])) {
+            return $program_data['description'];
+        }
+        return '';
     }
 }

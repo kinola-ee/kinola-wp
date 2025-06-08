@@ -28,8 +28,13 @@ abstract class Model {
             $name,
             true
         );
-
-        if ( empty( $value ) ) {
+        
+        // Special handling for program data to avoid returning empty string when value exists but is "empty"
+        if (in_array($name, ['program_data'])) {
+            if ($value === false || $value === null) {
+                return [];
+            }
+        } else if ( empty( $value ) ) {
             return '';
         }
 
