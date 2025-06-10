@@ -10,8 +10,7 @@
                 <div class="py-4 border-t border-primary20 flex flex-col sm:flex-row sm:items-center gap-4">
                     <div class="flex flex-col gap-y-2">
                         <?php if ($event->has_program()): ?>
-                            <!-- PROGRAM TAG -->
-                            <div class="px-3 py-1.5 bg-white text-primary80 text-base border border-primary20 rounded-md">
+                            <div class="self-start px-3 py-1.5 bg-white text-primary80 text-base border border-primary20 rounded-md">
                                 <?php echo $event->get_program_name(); ?>
                             </div>
                         <?php endif; ?>

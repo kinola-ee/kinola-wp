@@ -29,7 +29,6 @@
                             <div class="absolute inset-0 bg-gradient-to-br from-accentII100 to-accentIII100 opacity-10 -z-10"></div>
                         <?php endif; ?>
                         <?php if ($event->has_program()): ?>
-                            <!-- TAGS -->
                             <div class="absolute top-2 inset-x-2">
                                 <div class="inline-block px-3 py-1.5 bg-white text-primary80 text-base border border-primary20 rounded-md">
                                     <?php echo $event->get_program_name(); ?>
@@ -70,16 +69,15 @@
                             </div>
                         <?php endif; ?>
                         <?php if ($event->get_note()): ?>
-                            <!-- ADDITIONAL COMMENT -->
                             <div class="flex items-center gap-x-1.5 mt-1.5 font-semibold">
                                 <span class="text-accentI100">
                                     <svg viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-4">
                                         <path d="M6.89998 17.35V10.925L1.32498 14.15L0.224976 12.225L5.79998 8.99999L0.224976 5.79999L1.32498 3.87499L6.89998 7.09999V0.649994H9.09998V7.09999L14.675 3.87499L15.775 5.79999L10.2 8.99999L15.775 12.225L14.675 14.15L9.09998 10.925V17.35H6.89998Z" fill="#5F0CE7"/>
                                     </svg>
-                            </span>
-                            <span><?php echo $event->get_note(); ?></span>
-                        </div>
-                    <?php endif; ?>
+                                </span>
+                                <span><?php echo $event->get_note(); ?></span>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </a>
                 <div class="mt-auto flex justify-center">

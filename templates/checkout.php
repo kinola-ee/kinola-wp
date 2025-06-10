@@ -17,7 +17,9 @@ $template_html = get_the_block_template_html();
 
     <?php do_action('kinola/checkout/before_content'); ?>
 
-    <div id="kinola-container"></div>
+    <div class="my-8">
+        <div id="kinola-container"></div>
+    </div>
 
     <script src="<?php echo \Kinola\KinolaWp\Checkout::get_kinola_js_url(); ?>"></script>
     <script>
