@@ -14,10 +14,10 @@ class Response {
     }
 
     public function has_next_link(): bool {
-        return isset( $this->contents['links']['next'] ) && $this->get_next_link();
+        return isset( $this->contents['links']['next'] ) && ! empty( $this->contents['links']['next'] );
     }
 
-    public function get_next_link(): string {
-        return $this->contents['links']['next'];
+    public function get_next_link(): ?string {
+        return $this->contents['links']['next'] ?? null;
     }
 }

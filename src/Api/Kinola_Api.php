@@ -40,11 +40,13 @@ class Kinola_Api {
 
         $response_data = json_decode( $result['body'], true );
 
-        debug_log( "API: response data: " );
-        debug_log( $response_data );
-
         if ( is_null( $response_data ) ) {
-            throw new JsonDecodeException();
+            $json_error = json_last_error_msg();
+            debug_log( "API: JSON decode failed: {$json_error}" );
+            debug_log( "API: Response HTTP code: " . wp_remote_retrieve_response_code( $result ) );
+            debug_log( "API: Response body length: " . strlen( $result['body'] ) );
+            debug_log( "API: Response body (first 1000 chars): " . substr( $result['body'], 0, 1000 ) );
+            throw new JsonDecodeException( "JSON decode error: {$json_error}" );
         }
 
         return new Response( $response_data );
