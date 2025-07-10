@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="max-w-4xl kinola-filters">
+<div class="kinola-filters">
     <form
         class="js-kinola-filters-form" 
         <?php if ( $film_id ): ?> data-film="<?php echo $film_id; ?>" <?php endif; ?>

@@ -1,10 +1,10 @@
-<?php $gridColsClass = count( $venues ) ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'; ?>
+<?php $gridColsClass = count( $venues ) ? 'has-two-cols' : 'has-one-col'; ?>
 
-<div class="w-full grid gap-x-2 gap-y-2 <?php echo $gridColsClass ?>">
+<div class="kinola-film-filters <?php echo $gridColsClass ?>">
     <?php if ( count( $venues ) ): ?>
-        <div class="relative kinola-film-filter-container group">
-            <div class="absolute top-1/2 -translate-y-1/2 left-4 z-10 group-hover:text-accentI100">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin size-4">
+        <div class="kinola-filters-item">
+            <div class="kinola-filters-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                 </svg>
@@ -23,9 +23,9 @@
         </div>
     <?php endif; ?>
 
-    <div class="relative kinola-film-filter-container group">
-        <div class="absolute top-1/2 -translate-y-1/2 left-4 z-10 group-hover:text-accentI100">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar size-4">
+    <div class="kinola-filters-item">
+        <div class="kinola-filters-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -33,7 +33,7 @@
             </svg>
         </div>
         <select
-            class="js-kinola-date-filter kinola-date-filter"
+            class="js-kinola-date-filter"
             name="<?php echo \Kinola\KinolaWp\Helpers::get_date_parameter_slug() ?>"
             onchange="this.form.submit()"
         >

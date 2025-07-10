@@ -138,10 +138,6 @@ class Bootstrap {
     }
 
     public function enqueue_scripts() {
-        if ( apply_filters( 'kinola/assets/css', true ) ) {
-            wp_enqueue_style( 'kinola', Helpers::get_assets_url( 'styles/kinola.css' ), [], KINOLA_VERSION );
-        }
-
         if ( apply_filters( 'kinola/assets/select2', true ) ) {
             wp_enqueue_style( 'kinola-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css', [], KINOLA_VERSION );
             wp_enqueue_script( 'kinola-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', [ 'jquery' ], KINOLA_VERSION );

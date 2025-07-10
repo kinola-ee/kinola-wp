@@ -3,11 +3,11 @@
 <?php if ( $film->get_field( 'embeddable_video' ) || $film->get_field( 'video' ) ): ?>
     <div>
         <?php if ( $film->get_field( 'embeddable_video' ) ): ?>
-            <div class="aspect-video overflow-hidden">
+            <div class="kinola-film-trailer-wrap">
                 <?php echo $film->get_field( 'embeddable_video' ); ?>
             </div>
         <?php else: ?>
-            <a href="<?php echo $film->get_field( 'video' ); ?>" target="_blank" class="inline-block px-12 py-3 rounded-full bg-primary100 text-sm text-white font-semibold tracking-wide uppercase hover:bg-accentI100 active:bg-accentI80 focus-visible:bg-primary80 focus-visible:outline focus-visible:outline-accentI40 focus-visible:outline-6 focus-visible:outline-offset-0 transition">
+            <a href="<?php echo $film->get_field( 'video' ); ?>" target="_blank" class="kinola-btn">
                 <?php _e( 'Watch trailer', 'kinola' ); ?>
             </a>
         <?php endif; ?>

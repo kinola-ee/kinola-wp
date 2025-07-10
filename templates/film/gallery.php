@@ -1,17 +1,17 @@
 <?php /* @var $film \Kinola\KinolaWp\Film */ ?>
 
 <?php if ( $film->get_field( 'gallery' ) && count( $film->get_field( 'gallery' ) ) ): ?>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="kinola-film-gallery">
+    <div class="kinola-film-gallery" id="kinola-film-gallery">
         <?php foreach ( $film->get_field( 'gallery' ) as $image ): ?>
             <a
-                class="aspect-square"
+                class="kinola-film-gallery-item"
                 href="<?php echo $image['src']; ?>"
                 data-pswp-width="<?php echo $image['width']; ?>"
                 data-pswp-height="<?php echo $image['height']; ?>"
                 target="_blank"
             >
                 <img
-                    class="w-full h-full object-cover object-center"
+                    class="kinola-film-gallery-photo"
                     src="<?php echo $image['thumbnail']; ?>"
                     alt="<?php echo $image['alt']; ?>"
                 />
