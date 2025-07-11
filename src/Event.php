@@ -11,13 +11,13 @@ class Event extends Model {
     public function get_date(): string {
         $dateTime = Helpers::format_datetime( $this->get_field( 'time' ) );
 
-        return $dateTime->format( get_option( 'date_format' ) );
+        return date_i18n( get_option( 'date_format' ), $dateTime->getTimestamp() );
     }
 
     public function get_time(): string {
         $dateTime = Helpers::format_datetime( $this->get_field( 'time' ) );
 
-        return $dateTime->format( get_option( 'time_format' ) );
+        return date_i18n( get_option( 'time_format' ), $dateTime->getTimestamp() );
     }
 
     public function get_checkout_url(): string {
