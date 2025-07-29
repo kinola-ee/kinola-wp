@@ -22,10 +22,7 @@
                     <?php endif; ?>
                     <div class="kinola-item-photo-wrapper">
                         <?php if ( $event->get_field( 'production_poster' ) ): ?>
-                            <div class="kinola-item-photo-bg">
-                                <img class="kinola-item-photo-bg-img" src="<?php echo $event->get_field( 'production_poster' ); ?>" alt="<?php echo $event->get_field( 'production_title' ); ?>">
-                            </div>
-                            <div class="kinola-item-photo">
+                            <div class="kinola-item-photo" style="--bg-url: url('<?php echo $event->get_field( 'production_poster' ); ?>')">
                                 <img class="kinola-item-photo-img" src="<?php echo $event->get_field( 'production_poster' ); ?>" alt="<?php echo $event->get_field( 'production_title' ); ?>">
                             </div>
                         <?php else: ?>
