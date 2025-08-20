@@ -12,12 +12,6 @@ jQuery(function ($) {
     return null;
   }
 
-  // Fix html margin-top (added by admin bar) breaking minimumResultsForSearch on select2 filters
-  // https://github.com/select2/select2/issues/4166
-  if ($('.kinola-filters').length && $('body.logged-in.admin-bar').length) {
-    $('html').attr('style', 'margin-top: 0 !important;');
-  }
-
   if ($('.js-kinola-film-filter').length) {
     $('.js-kinola-film-filter').select2({
       minimumResultsForSearch: Infinity,

@@ -15,10 +15,7 @@
                 <a href="<?php echo get_permalink( $film->get_local_id() ); ?>" class="kinola-item-link">
                     <div class="kinola-item-photo-wrapper">
                         <?php if ( $film->get_field( 'poster' ) ): ?>
-                            <div class="kinola-item-photo-bg">
-                                <img class="kinola-item-photo-bg-img" src="<?php echo $film->get_field( 'poster' ); ?>" alt="<?php echo $film->get_field( 'title' ); ?>">
-                            </div>
-                            <div class="kinola-item-photo">
+                            <div class="kinola-item-photo" style="--bg-url: url('<?php echo $film->get_field( 'poster' ); ?>')">
                                 <img class="kinola-item-photo-img" src="<?php echo $film->get_field( 'poster' ); ?>" alt="<?php echo $film->get_field( 'title' ); ?>">
                             </div>
                         <?php else: ?>
