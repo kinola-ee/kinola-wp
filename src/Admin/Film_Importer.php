@@ -64,7 +64,7 @@ class Film_Importer {
         $this->data = array_merge( $this->data, $response->get_data() );
 
         if ( $response->has_next_link() ) {
-            $this->get_films_data( $response->get_next_link() );
+            $this->get_films_data( $response->get_next_link(), $with_translations );
         }
     }
 

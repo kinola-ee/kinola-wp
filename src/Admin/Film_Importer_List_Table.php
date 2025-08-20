@@ -52,12 +52,38 @@ class Film_Importer_List_Table extends \WP_List_Table {
         }
 
         $films = [];
+        $skipped_private = [];
+        
         foreach ( $data as $film ) {
+            // Skip non-array items
+            if ( ! is_array( $film ) ) {
+                continue;
+            }
+            
+            // Skip films with missing required fields (likely private films)
+            if ( ! isset( $film['id'], $film['name'], $film['originalName'] ) ) {
+                // Track private/incomplete films for potential logging
+                if ( isset( $film['id'], $film['visibility'] ) ) {
+                    if ( $film['visibility'] === 'private' ) {
+                        $skipped_private[] = $film['id'];
+                    } else {
+                        // Log unexpected case: non-private film missing required fields
+                        error_log( "Film_Importer_List_Table: WARNING - Film {$film['id']} with visibility '{$film['visibility']}' is missing required fields" );
+                    }
+                }
+                continue;
+            }
+            
             $films[] = [
                 'id'             => $film['id'],
                 'title'          => $film['name'],
                 'title_original' => $film['originalName'],
             ];
+        }
+        
+        // Only log if we skipped private films
+        if ( ! empty( $skipped_private ) ) {
+            error_log( "Film_Importer_List_Table: Skipped " . count( $skipped_private ) . " private film(s)" );
         }
 
         $this->items = $films;
