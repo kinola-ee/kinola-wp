@@ -21,6 +21,7 @@ class Event extends Api_Model {
         $data['venue']                            = $data['venue']['name'] ?? null;
         $data['room']                             = $data['room']['name'] ?? null;
         $data['program']                          = $data['program']['name'] ?? null;
+        $data['checkout_url']                     = $data['checkout_url'] ?? null;
 
         foreach ( $unset as $field ) {
             unset( $data[ $field ] );

@@ -21,6 +21,12 @@ class Event extends Model {
     }
 
     public function get_checkout_url(): string {
+        // Use checkout_url from API if available (handles both internal and external ticketing)
+        $checkout_url = $this->get_field( 'checkout_url' );
+        if ( $checkout_url ) {
+            return $checkout_url;
+        }
+        // Fallback to generating local checkout URL
         return Router::get_event_checkout_url( $this->get_remote_id() );
     }
 
@@ -36,8 +42,9 @@ class Event extends Model {
         return Film::find_by_remote_id( $this->get_field( \Kinola\KinolaWp\Film::FIELD_ID ) );
     }
 
-    public function get_free_seats(): string {
-        return $this->get_field( 'freeSeats' );
+    public function get_free_seats(): ?string {
+        $seats = $this->get_field( 'freeSeats' );
+        return $seats !== null ? (string) $seats : null;
     }
 
     public function set_title( string $production_title, string $date_time ) {

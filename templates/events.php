@@ -30,14 +30,15 @@
                         </span>
                     </p>
                     <p>
-                        <?php if ($event->get_free_seats()): ?>
-                            <a class="kinola-event-tickets-link" href="<?php echo $event->get_checkout_url(); ?>">
-                                <?php _e( 'Buy ticket', 'kinola' ); ?>
-                            </a>
-                        <?php else: ?>
+                        <?php $free_seats = $event->get_free_seats(); ?>
+                        <?php if ($free_seats !== null && $free_seats == 0): ?>
                             <span class="kinola-event-tickets-link-sold-out">
                                 <?php _e( 'Sold out', 'kinola' ); ?>
                             </span>
+                        <?php else: ?>
+                            <a class="kinola-event-tickets-link" href="<?php echo $event->get_checkout_url(); ?>">
+                                <?php _e( 'Buy ticket', 'kinola' ); ?>
+                            </a>
                         <?php endif; ?>
                     </p>
                 </div>
