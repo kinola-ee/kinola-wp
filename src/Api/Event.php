@@ -22,6 +22,11 @@ class Event extends Api_Model {
         $data['room']                             = $data['room']['name'] ?? null;
         $data['program']                          = $data['program']['name'] ?? null;
         $data['checkout_url']                     = $data['checkout_url'] ?? null;
+        $data['visibility']                       = $data['visibility'] ?? 'public';
+        $data['registration_required']            = $data['registration_required'] ?? true;
+        $data['is_free_public']                   = $data['is_free_public'] ?? false;
+        $data['event_type']                       = $data['event_type'] ?? 'paid';
+        $data['free']                             = $data['free'] ?? false;
 
         foreach ( $unset as $field ) {
             unset( $data[ $field ] );

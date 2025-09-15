@@ -10,13 +10,25 @@
                 <p><?php echo $event->get_venue_name(); ?></p>
                 <p><?php echo $event->get_date(); ?> <?php echo $event->get_time(); ?></p>
                 <?php $free_seats = $event->get_free_seats(); ?>
-                <?php if ($free_seats !== null && $free_seats == 0): ?>
+                <?php if ( $event->is_coming_soon() ): ?>
+                    <span class="kinola-screenings-coming-soon">
+                        <?php _e( 'Coming soon', 'kinola' ); ?>
+                    </span>
+                <?php elseif ($free_seats !== null && $free_seats == 0): ?>
                     <span class="kinola-screenings-tickets-link-sold-out">
                         <?php _e( 'Sold out', 'kinola' ); ?>
                     </span>
                 <?php else: ?>
                     <a class="kinola-screenings-tickets-link" href="<?php echo $event->get_checkout_url(); ?>">
-                        <?php _e( 'Buy ticket', 'kinola' ); ?>
+                        <?php if ( $event->is_free() ): ?>
+                            <?php if ( $event->requires_registration() ): ?>
+                                <?php _e( 'Register', 'kinola' ); ?>
+                            <?php else: ?>
+                                <?php _e( 'Free entry', 'kinola' ); ?>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <?php _e( 'Buy ticket', 'kinola' ); ?>
+                        <?php endif; ?>
                     </a>
                 <?php endif; ?>
             </div>

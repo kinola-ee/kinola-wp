@@ -47,6 +47,36 @@ class Event extends Model {
         return $seats !== null ? (string) $seats : null;
     }
 
+    public function is_coming_soon(): bool {
+        return $this->get_field( 'visibility' ) === 'coming_soon';
+    }
+
+    public function is_bookable(): bool {
+        // Event is bookable if it's not coming_soon and has available seats
+        if ( $this->is_coming_soon() ) {
+            return false;
+        }
+
+        $free_seats = $this->get_free_seats();
+        return $free_seats === null || $free_seats > 0;
+    }
+
+    public function get_visibility(): string {
+        return $this->get_field( 'visibility' ) ?: 'public';
+    }
+
+    public function is_free(): bool {
+        return (bool) $this->get_field( 'free' );
+    }
+
+    public function requires_registration(): bool {
+        return (bool) $this->get_field( 'registration_required' );
+    }
+
+    public function is_free_public(): bool {
+        return (bool) $this->get_field( 'is_free_public' );
+    }
+
     public function set_title( string $production_title, string $date_time ) {
         wp_update_post( [
             'ID'         => $this->get_local_id(),

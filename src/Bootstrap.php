@@ -221,6 +221,18 @@ class Bootstrap {
         global $wp_query;
 
         if ( isset( $wp_query->query_vars[ Helpers::get_checkout_url_slug() ] ) ) {
+            $event_id = $wp_query->query_vars[ Helpers::get_checkout_url_slug() ];
+            $event = Event::find_by_remote_id( $event_id );
+
+            // Prevent checkout for coming_soon events
+            if ( $event && $event->is_coming_soon() ) {
+                wp_die(
+                    __( 'This event is coming soon and not yet available for booking.', 'kinola' ),
+                    __( 'Event Not Available', 'kinola' ),
+                    [ 'response' => 403 ]
+                );
+            }
+
             return View::get_template_path( 'checkout' );
         }
 
