@@ -57,6 +57,39 @@
             <?php echo $event->get_field( 'program' ) ?: '-'; ?>
         </td>
     </tr>
+    <tr>
+        <td class="kinola-admin__table_field_name">
+            <?php _ex( 'Event Type', 'Admin', 'kinola' ); ?>
+        </td>
+        <td class="kinola-admin__table_field_value">
+            <?php
+            $event_type = $event->get_field( 'event_type' ) ?: 'paid';
+            $type_labels = [
+                'paid' => __( 'Paid', 'kinola' ),
+                'free_registered' => __( 'Free with Registration', 'kinola' ),
+                'free_public' => __( 'Free Public', 'kinola' ),
+            ];
+            echo $type_labels[$event_type] ?? $event_type;
+            ?>
+        </td>
+    </tr>
+    <tr>
+        <td class="kinola-admin__table_field_name">
+            <?php _ex( 'Visibility', 'Admin', 'kinola' ); ?>
+        </td>
+        <td class="kinola-admin__table_field_value">
+            <?php
+            $visibility = $event->get_visibility();
+            $visibility_labels = [
+                'public' => __( 'Public', 'kinola' ),
+                'coming_soon' => __( 'Coming Soon', 'kinola' ),
+                'hidden_link' => __( 'Hidden Link', 'kinola' ),
+                'private' => __( 'Private', 'kinola' ),
+            ];
+            echo $visibility_labels[$visibility] ?? $visibility;
+            ?>
+        </td>
+    </tr>
     <!--
     <tr>
         <td class="kinola-admin__table_field_name">
