@@ -19,17 +19,19 @@
                         <?php _e( 'Sold out', 'kinola' ); ?>
                     </span>
                 <?php else: ?>
-                    <a class="kinola-screenings-tickets-link" href="<?php echo $event->get_checkout_url(); ?>">
-                        <?php if ( $event->is_free() ): ?>
-                            <?php if ( $event->requires_registration() ): ?>
+                    <?php if ( $event->is_free() && !$event->requires_registration() ): ?>
+                        <span class="kinola-screenings-free">
+                            <?php _e( 'Free', 'kinola' ); ?>
+                        </span>
+                    <?php else: ?>
+                        <a class="kinola-screenings-tickets-link" href="<?php echo $event->get_checkout_url(); ?>">
+                            <?php if ( $event->is_free() && $event->requires_registration() ): ?>
                                 <?php _e( 'Register', 'kinola' ); ?>
                             <?php else: ?>
-                                <?php _e( 'Free entry', 'kinola' ); ?>
+                                <?php _e( 'Buy ticket', 'kinola' ); ?>
                             <?php endif; ?>
-                        <?php else: ?>
-                            <?php _e( 'Buy ticket', 'kinola' ); ?>
-                        <?php endif; ?>
-                    </a>
+                        </a>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>

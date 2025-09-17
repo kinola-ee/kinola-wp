@@ -66,15 +66,13 @@ class Event extends Model {
     }
 
     public function is_free(): bool {
-        return (bool) $this->get_field( 'free' );
+        $event_type = $this->get_field( 'event_type' ) ?: 'paid';
+        return in_array( $event_type, [ 'free_registered', 'free_public' ] );
     }
 
     public function requires_registration(): bool {
-        return (bool) $this->get_field( 'registration_required' );
-    }
-
-    public function is_free_public(): bool {
-        return (bool) $this->get_field( 'is_free_public' );
+        $event_type = $this->get_field( 'event_type' ) ?: 'paid';
+        return $event_type === 'free_registered';
     }
 
     public function set_title( string $production_title, string $date_time ) {
