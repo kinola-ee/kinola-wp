@@ -49,3 +49,15 @@
   color: #cc0000;
   border-radius: 3px;
 }
+
+/* Checkout page styles */
+.kinola-checkout-title {
+  font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-align: center;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.kinola-checkout-main {
+  margin-top: var(--wp--preset--spacing--60, 3rem);
+}
