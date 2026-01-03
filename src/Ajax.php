@@ -56,7 +56,7 @@ class Ajax {
         foreach ( $items as $key => $item ) {
             $results[] = [
                 'id'   => $key,
-                'text' => $item,
+                'text' => html_entity_decode( $item, ENT_QUOTES | ENT_HTML5, 'UTF-8' ),
             ];
         }
 

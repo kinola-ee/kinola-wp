@@ -13,7 +13,7 @@
             >
                 <?php foreach ( $films as $key => $film ): ?>
                     <option value="<?php echo $key; ?>" <?php selected( $key, $selected_film ); ?>>
-                        <?php echo $film; ?>
+                        <?php echo html_entity_decode( $film, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -26,7 +26,7 @@
             >
                 <?php foreach ( $venues as $key => $venue ): ?>
                     <option value="<?php echo $key; ?>" <?php selected( $key, $selected_venue ); ?>>
-                        <?php echo $venue; ?>
+                        <?php echo html_entity_decode( $venue, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -38,7 +38,7 @@
         >
             <?php foreach ( $dates as $key => $date ): ?>
                 <option value="<?php echo $key; ?>" <?php selected( $key, $selected_date ); ?>>
-                    <?php echo $date; ?>
+                    <?php echo html_entity_decode( $date, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); ?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -50,7 +50,7 @@
             >
                 <?php foreach ( $times as $key => $time ): ?>
                     <option value="<?php echo $key; ?>" <?php selected( $key, $selected_time ); ?>>
-                        <?php echo $time; ?>
+                        <?php echo html_entity_decode( $time, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
