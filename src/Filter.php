@@ -5,11 +5,11 @@ namespace Kinola\KinolaWp;
 class Filter {
     protected Event_Query $available_dates_query;
 
-    public function __construct( Event_Query $available_dates_query = null ) {
+    public function __construct( ?Event_Query $available_dates_query = null ) {
         $this->available_dates_query = $available_dates_query ?? ( new Event_Query() )->upcoming();
     }
 
-    public function get_rendered_filter( string $film_remote_id = null ): string {
+    public function get_rendered_filter( ?string $film_remote_id = null ): string {
         $filter_data = [
             'dates'          => $this->get_dates(),
             'selected_date'  => $this->get_selected_date(),
