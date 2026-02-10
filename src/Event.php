@@ -42,6 +42,15 @@ class Event extends Model {
         return Film::find_by_remote_id( $this->get_field( \Kinola\KinolaWp\Film::FIELD_ID ) );
     }
 
+    public function get_program(): ?Program {
+        $program_id = $this->get_field( Program::FIELD_ID );
+        if ( $program_id ) {
+            return Program::find_by_remote_id( $program_id );
+        }
+
+        return null;
+    }
+
     public function get_free_seats(): ?string {
         $seats = $this->get_field( 'freeSeats' );
         return $seats !== null ? (string) $seats : null;

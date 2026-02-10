@@ -54,7 +54,16 @@
             <?php _ex( 'Program', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $event->get_field( 'program' ) ?: '-'; ?>
+            <?php
+            $program = $event->get_program();
+            if ( $program ) {
+                echo '<a href="' . esc_url( get_edit_post_link( $program->get_local_id() ) ) . '">';
+                echo esc_html( $program->get_name() );
+                echo '</a>';
+            } else {
+                echo '-';
+            }
+            ?>
         </td>
     </tr>
     <tr>

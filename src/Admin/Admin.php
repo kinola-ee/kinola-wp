@@ -11,39 +11,56 @@ use Kinola\KinolaWp\View;
 
 class Admin {
 
-    public const IMPORT_FILM_ACTION   = 'kinola_import_film';
-    public const IMPORT_EVENTS_ACTION = 'kinola_import_events';
-    public const MESSENGER_ACTION     = 'kinola_message';
+    public const IMPORT_FILM_ACTION     = 'kinola_import_film';
+    public const IMPORT_EVENTS_ACTION   = 'kinola_import_events';
+    public const IMPORT_PROGRAMS_ACTION = 'kinola_import_programs';
+    public const MESSENGER_ACTION       = 'kinola_message';
 
     public function __construct() {
         add_action( 'init', [ $this, 'handle_actions' ] );
         add_action( 'admin_menu', [ $this, 'register_import_page' ] );
         add_action( 'add_meta_boxes_' . Helpers::get_films_post_type(), [ $this, 'register_edit_film_meta_box' ] );
         add_action( 'add_meta_boxes_' . Helpers::get_events_post_type(), [ $this, 'register_edit_event_meta_box' ] );
+        add_action( 'add_meta_boxes_' . Helpers::get_programs_post_type(), [ $this, 'register_edit_program_meta_box' ] );
         add_action( 'admin_head-edit.php', [ $this, 'add_import_button' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_styles' ] );
         add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_events' ] );
         add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_changed_films' ] );
+        add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_programs' ] );
     }
 
     public function add_import_button() {
         global $current_screen;
 
-        if ( $current_screen->post_type !== Helpers::get_events_post_type() ) {
-            return;
+        // Add import button for Events page
+        if ( $current_screen->post_type === Helpers::get_events_post_type() ) {
+            ?>
+            <script>
+                jQuery(function ($) {
+                    $('.wrap h1.wp-heading-inline').after(
+                        "<a class='page-title-action' href='<?php echo Router::get_action_url( [ self::IMPORT_EVENTS_ACTION => 1 ] ); ?>'>" +
+                        "<?php _ex( 'Import from Kinola', 'Admin', 'kinola' ); ?>" +
+                        "</a>"
+                    );
+                });
+            </script>
+            <?php
         }
 
-        ?>
-        <script>
-            jQuery(function ($) {
-                $('.wrap h1.wp-heading-inline').after(
-                    "<a class='page-title-action' href='<?php echo Router::get_action_url( [ self::IMPORT_EVENTS_ACTION => 1 ] ); ?>'>" +
-                    "<?php _ex( 'Import from Kinola', 'Admin', 'kinola' ); ?>" +
-                    "</a>"
-                );
-            });
-        </script>
-        <?php
+        // Add import button for Programs page
+        if ( $current_screen->post_type === Helpers::get_programs_post_type() ) {
+            ?>
+            <script>
+                jQuery(function ($) {
+                    $('.wrap h1.wp-heading-inline').after(
+                        "<a class='page-title-action' href='<?php echo Router::get_action_url( [ self::IMPORT_PROGRAMS_ACTION => 1 ] ); ?>'>" +
+                        "<?php _ex( 'Import from Kinola', 'Admin', 'kinola' ); ?>" +
+                        "</a>"
+                    );
+                });
+            </script>
+            <?php
+        }
     }
 
     public function register_admin_styles() {
@@ -71,6 +88,13 @@ class Admin {
             $this->import_events();
             $url = admin_url( 'edit.php?post_type=' . Helpers::get_events_post_type() );
             $url = Router::append_message( $url, Admin_Messenger::EVENTS_IMPORTED );
+            Router::redirect( $url );
+        }
+
+        if ( $this->should_run_action( self::IMPORT_PROGRAMS_ACTION ) ) {
+            $this->import_programs();
+            $url = admin_url( 'edit.php?post_type=' . Helpers::get_programs_post_type() );
+            $url = Router::append_message( $url, Admin_Messenger::PROGRAMS_IMPORTED );
             Router::redirect( $url );
         }
     }
@@ -131,6 +155,22 @@ class Admin {
         View::render( 'admin/edit-event-meta-box', [ 'event' => $event ] );
     }
 
+    public function register_edit_program_meta_box() {
+        add_meta_box(
+            'edit_program_meta_box',
+            _x( 'Program data', 'Admin', 'kinola' ),
+            [ $this, 'render_edit_program_meta_box' ],
+            Helpers::get_programs_post_type(),
+            'normal',
+            'high',
+        );
+    }
+
+    public function render_edit_program_meta_box() {
+        $program = \Kinola\KinolaWp\Program::find_by_local_id( $_GET['post'] );
+        View::render( 'admin/edit-program-meta-box', [ 'program' => $program ] );
+    }
+
     public function import_events() {
         $importer = new Event_Importer();
         $importer->import();
@@ -139,6 +179,11 @@ class Admin {
     public function import_changed_films() {
         $importer = new Film_Importer();
         $importer->import_films( date( 'Y-m-d\TH:i:s\Z', strtotime( '-2 days' ) ) );
+    }
+
+    public function import_programs() {
+        $importer = new Program_Importer();
+        $importer->import_programs();
     }
 
     protected function should_run_action( string $action ): bool {

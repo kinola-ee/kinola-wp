@@ -52,6 +52,21 @@ class Event_Query {
         return $this;
     }
 
+    public function program( $program_remote_id ): Event_Query {
+        if ($program_remote_id === 'all') {
+            return $this;
+        }
+
+        $this->params['meta_query'] = array_merge( [
+            [
+                'key'   => \Kinola\KinolaWp\Program::FIELD_ID,
+                'value' => $program_remote_id,
+            ],
+        ], $this->params['meta_query'] ?? [] );
+
+        return $this;
+    }
+
     public function date( $date ): Event_Query {
         // The date in the database is in UTC time zone, so we need to convert it to whatever is configured in WP.
         $selected_date_utc = new \DateTime( $date, new \DateTimeZone( wp_timezone_string() ) );

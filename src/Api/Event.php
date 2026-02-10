@@ -20,7 +20,9 @@ class Event extends Api_Model {
         $data['production_poster']                = $data['production']['image']['src'] ?? null;
         $data['venue']                            = $data['venue']['name'] ?? null;
         $data['room']                             = $data['room']['name'] ?? null;
+        // 'program' stores program name for backward compatibility
         $data['program']                          = $data['program']['name'] ?? null;
+        $data[ \Kinola\KinolaWp\Program::FIELD_ID ] = $data['program']['id'] ?? null;
         $data['checkout_url']                     = $data['checkout_url'] ?? null;
         $data['visibility']                       = $data['visibility'] ?? 'public';
         $data['event_type']                       = $data['event_type'] ?? 'paid';

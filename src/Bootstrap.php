@@ -10,6 +10,7 @@ class Bootstrap {
     public function __construct() {
         add_action( 'init', [ $this, 'register_films_post_type' ], 1 );
         add_action( 'init', [ $this, 'register_events_post_type' ], 1 );
+        add_action( 'init', [ $this, 'register_programs_post_type' ], 1 );
         add_action( 'init', [ $this, 'register_venue_taxonomy' ], 1 );
         add_action( 'init', [ $this, 'register_endpoints' ] );
         add_action( 'init', [ $this, 'register_shortcodes' ] );
@@ -91,6 +92,38 @@ class Bootstrap {
                 'name'          => __( 'Events', 'kinola' ),
                 'singular_name' => __( 'Event', 'kinola' ),
                 'menu_name'     => _x( 'Events', 'Admin', 'kinola' ),
+            ],
+        ] );
+    }
+
+    public function register_programs_post_type() {
+        register_post_type( Helpers::get_programs_post_type(), [
+            'label'               => __( 'Program', 'kinola' ),
+            'supports'            => apply_filters( 'kinola/post_type/program/supports', [
+                'title',
+                'revisions',
+            ] ),
+            'hierarchical'        => false,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'menu_position'       => 5,
+            'menu_icon'           => 'dashicons-portfolio',
+            'show_in_admin_bar'   => true,
+            'show_in_nav_menus'   => true,
+            'can_export'          => false,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'capability_type'     => 'page',
+            'capabilities'        => [
+                'create_posts' => false,
+            ],
+            'map_meta_cap'        => true,
+            'labels'              => [
+                'name'          => __( 'Programs', 'kinola' ),
+                'singular_name' => __( 'Program', 'kinola' ),
+                'menu_name'     => _x( 'Programs', 'Admin', 'kinola' ),
             ],
         ] );
     }

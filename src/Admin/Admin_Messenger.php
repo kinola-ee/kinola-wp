@@ -3,8 +3,9 @@
 namespace Kinola\KinolaWp\Admin;
 
 class Admin_Messenger {
-    public const FILM_CREATED    = 'film_created';
-    public const EVENTS_IMPORTED = 'events_imported';
+    public const FILM_CREATED      = 'film_created';
+    public const EVENTS_IMPORTED   = 'events_imported';
+    public const PROGRAMS_IMPORTED = 'programs_imported';
 
     protected array $messages = [];
 
@@ -24,6 +25,9 @@ class Admin_Messenger {
                     break;
                 case self::EVENTS_IMPORTED:
                     $this->events_created();
+                    break;
+                case self::PROGRAMS_IMPORTED:
+                    $this->programs_imported();
                     break;
                 default:
                     $this->message( $message );
@@ -47,6 +51,16 @@ class Admin_Messenger {
         <div class="notice notice-success is-dismissible">
             <p>
                 Kinola: <?php _ex( 'All future events imported successfully!', 'Admin', 'kinola' ); ?>
+            </p>
+        </div>
+        <?php
+    }
+
+    public function programs_imported() {
+        ?>
+        <div class="notice notice-success is-dismissible">
+            <p>
+                Kinola: <?php _ex( 'All programs imported successfully!', 'Admin', 'kinola' ); ?>
             </p>
         </div>
         <?php

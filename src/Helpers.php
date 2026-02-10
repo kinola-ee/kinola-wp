@@ -48,6 +48,10 @@ class Helpers {
         return apply_filters( 'kinola/post_type/event', 'event' );
     }
 
+    public static function get_programs_post_type(): string {
+        return apply_filters( 'kinola/post_type/program', 'program' );
+    }
+
     public static function get_venue_taxonomy_name(): string {
         return apply_filters( 'kinola/taxonomy/venue', 'venue' );
     }
