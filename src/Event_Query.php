@@ -130,11 +130,39 @@ class Event_Query {
     public function venue( $venue ): Event_Query {
         $this->params['tax_query'] = array_merge( [
             [
-                [
-                    'taxonomy' => Helpers::get_venue_taxonomy_name(),
-                    'field'    => 'slug',
-                    'terms'    => $venue,
-                ],
+                'taxonomy' => Helpers::get_venue_taxonomy_name(),
+                'field'    => 'slug',
+                'terms'    => $venue,
+            ],
+        ], $this->params['tax_query'] ?? [] );
+
+        return $this;
+    }
+
+    /**
+     * Filter events by allowed venues.
+     *
+     * Looks up venue taxonomy terms by name and adds them to the tax_query.
+     * Invalid venue names are silently ignored.
+     *
+     * @param array $allowed_venues Array of allowed venue names to filter by.
+     * @return self Returns $this for method chaining.
+     */
+    public function filterByAllowedVenues( array $allowed_venues ): Event_Query {
+        if ( empty( $allowed_venues ) ) {
+            return $this;
+        }
+
+        // Use centralized helper for term ID lookup
+        $term_ids = Helpers::get_venue_term_ids( $allowed_venues );
+        $taxonomy_name = Helpers::get_venue_taxonomy_name();
+
+        $this->params['tax_query'] = array_merge( [
+            [
+                'taxonomy' => $taxonomy_name,
+                'field'    => 'term_id',
+                'terms'    => $term_ids,
+                'operator' => 'IN',
             ],
         ], $this->params['tax_query'] ?? [] );
 

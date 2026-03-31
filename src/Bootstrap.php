@@ -190,8 +190,9 @@ class Bootstrap {
 
     public function render_events_page( $atts ): string {
         $atts = shortcode_atts( [
-            'show_dates' => 'upcoming',
-            'limit'      => 25,
+            'show_dates'     => 'upcoming',
+            'limit'          => 25,
+            'allowed_venues' => '',
         ], $atts );
 
         if ( $atts['limit'] === 'all' ) {
@@ -200,7 +201,21 @@ class Bootstrap {
             $atts['limit'] = is_numeric($atts['limit']) ? (int) $atts['limit'] : 25;
         }
 
-        return ( new Events() )->get_rendered_events( $atts['show_dates'], $atts['limit'] );
+        $allowed_venues = $this->parse_venues_parameter( $atts['allowed_venues'] );
+
+        return ( new Events() )->get_rendered_events( $atts['show_dates'], $atts['limit'], $allowed_venues );
+    }
+
+    /**
+     * Parse the allowed_venues shortcode parameter into an array of venue names.
+     *
+     * Delegates to Helpers::parse_venue_names() for consistent parsing logic.
+     *
+     * @param string $allowed_venues Comma-separated allowed venue names from shortcode attribute.
+     * @return array Array of trimmed venue names, empty array if none specified.
+     */
+    private function parse_venues_parameter( string $allowed_venues ): array {
+        return Helpers::parse_venue_names( $allowed_venues );
     }
 
     public function render_films_page(): string {

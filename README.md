@@ -56,6 +56,13 @@ To control the number of events displayed, use the `limit` attribute in the shor
 
 To show only today's events, use `show_dates` attribute in the shortcode with the value set to `today`. Example: `show_dates="today"`.
 
+To show only events at a specific venue, use `allowed_venues` attribute in the shortcode with the value set to the venue name. Example: `allowed_venues="Bio Rex Helsinki"`.
+
+Example of [kinola_events] with all parameters:
+```
+[kinola_events show_dates="upcoming" limit="50" allowed_venues="Bio Rex Helsinki"]
+```
+
 `[kinola_film_screenings film="YOUR_FILM_ID"]`
 Outputs all upcoming screenings of the film with the given WordPress post ID, as well as the events filter (you can find the post ID of a film by opening up the edit view of that film in WordPress and checking your browser's address bar).
 

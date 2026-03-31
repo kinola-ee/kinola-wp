@@ -12,6 +12,21 @@ jQuery(function ($) {
     return null;
   }
 
+  var getAllowedVenues = function () {
+    if ($('.js-kinola-filters-form').data('allowed-venues')) {
+      return $('.js-kinola-filters-form').data('allowed-venues');
+    }
+
+    return '';
+  }
+
+  var getNonce = function () {
+    if ($('.js-kinola-filters-form').data('nonce')) {
+      return $('.js-kinola-filters-form').data('nonce');
+    }
+    return '';
+  }
+
   // Fix html margin-top (added by admin bar) breaking minimumResultsForSearch on select2 filters
   // https://github.com/select2/select2/issues/4166
   if ($('.kinola-filters').length && $('body.logged-in.admin-bar').length) {
@@ -27,10 +42,12 @@ jQuery(function ($) {
         data: function (params) {
           return {
             'action': 'kinola_get_filter_options',
+            'nonce': getNonce(),
             'field': 'film',
             'venue': $('.js-kinola-venue-filter').val(),
             'date': $('.js-kinola-date-filter').val(),
             'time': $('.js-kinola-film-filter').data('film'),
+            'allowed_venues': getAllowedVenues(),
           };
         }
       }
@@ -44,10 +61,12 @@ jQuery(function ($) {
       data: function (params) {
         return {
           'action': 'kinola_get_filter_options',
+          'nonce': getNonce(),
           'field': 'venue',
           'film': getFilmId(),
           'date': $('.js-kinola-date-filter').val(),
           'time': $('.js-kinola-time-filter').length ? $('.js-kinola-time-filter').val() : 'all',
+          'allowed_venues': getAllowedVenues(),
         };
       }
     }
@@ -60,10 +79,12 @@ jQuery(function ($) {
       data: function (params) {
         return {
           'action': 'kinola_get_filter_options',
+          'nonce': getNonce(),
           'field': 'date',
           'film': getFilmId(),
           'venue': $('.js-kinola-venue-filter').val(),
           'time': $('.js-kinola-time-filter').length ? $('.js-kinola-time-filter').val() : 'all',
+          'allowed_venues': getAllowedVenues(),
         };
       }
     }
@@ -77,10 +98,12 @@ jQuery(function ($) {
         data: function (params) {
           return {
             'action': 'kinola_get_filter_options',
+            'nonce': getNonce(),
             'field': 'time',
             'film': getFilmId(),
             'venue': $('.js-kinola-venue-filter').val(),
             'date': $('.js-kinola-date-filter').val(),
+            'allowed_venues': getAllowedVenues(),
           };
         }
       }

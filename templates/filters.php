@@ -5,7 +5,7 @@
 ?>
 
 <div class="kinola-filters">
-    <form class="js-kinola-filters-form" <?php if ( $film_id ): ?> data-film="<?php echo $film_id; ?>" <?php endif; ?>>
+    <form class="js-kinola-filters-form" data-nonce="<?php echo wp_create_nonce( 'kinola_filter_nonce' ); ?>" <?php if ( $film_id ): ?> data-film="<?php echo $film_id; ?>" <?php endif; ?> <?php if ( ! empty( $allowed_venues ) ): ?> data-allowed-venues="<?php echo esc_attr( implode( ',', $allowed_venues ) ); ?>" <?php endif; ?>>
         <?php if ( apply_filters( 'kinola/filters/film', true ) && ! $film_id ): ?>
             <select
                 class="js-kinola-film-filter kinola-film-filter"

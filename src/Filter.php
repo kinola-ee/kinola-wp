@@ -4,9 +4,25 @@ namespace Kinola\KinolaWp;
 
 class Filter {
     protected Event_Query $available_dates_query;
+    /**
+     * @var array Array of allowed venue names (from shortcode).
+     */
+    private array $allowed_venues = [];
 
     public function __construct( ?Event_Query $available_dates_query = null ) {
         $this->available_dates_query = $available_dates_query ?? ( new Event_Query() )->upcoming();
+    }
+
+    /**
+     * Set allowed venues for filtering dropdown options.
+     *
+     * When set, the venue dropdown will only display venues from this list.
+     * Used to restrict dropdown scope when shortcode has allowed_venues parameter.
+     *
+     * @param array $allowed_venues Array of allowed venue names to restrict dropdown to.
+     */
+    public function set_allowed_venues( array $allowed_venues ) {
+        $this->allowed_venues = $allowed_venues;
     }
 
     public function get_rendered_filter( ?string $film_remote_id = null ): string {
@@ -16,6 +32,7 @@ class Filter {
             'venues'         => $this->get_venues(),
             'selected_venue' => $this->get_selected_venue(),
             'film_id'        => $film_remote_id,
+            'allowed_venues' => $this->allowed_venues,
         ];
 
         if ( apply_filters( 'kinola/filters/time', false ) ) {
@@ -43,16 +60,38 @@ class Filter {
         return $films;
     }
 
+    /**
+     * Get venue dropdown options, optionally restricted by allowed venues.
+     *
+     * @return array Array of venue options for dropdown.
+     */
     public function get_venues(): array {
         $venues = [ 'all' => __( 'All venues', 'kinola' ) ];
-        $terms  = get_terms( [
-            'taxonomy'   => Helpers::get_venue_taxonomy_name(),
+        $taxonomy_name = Helpers::get_venue_taxonomy_name();
+
+        // Fetch all venue terms in a single query
+        $terms = get_terms( [
+            'taxonomy'   => $taxonomy_name,
             'hide_empty' => true,
+            'orderby'    => 'name',
+            'order'      => 'ASC',
         ] );
 
-        foreach ( $terms as $term ) {
-            /* @var $term \WP_Term */
-            $venues[ $term->slug ] = $term->name;
+        if ( ! empty( $this->allowed_venues ) ) {
+            $allowed_term_ids = Helpers::get_venue_term_ids( $this->allowed_venues );
+
+            foreach ( $terms as $term ) {
+                /* @var $term \WP_Term */
+                if ( in_array( (int) $term->term_id, $allowed_term_ids, true ) ) {
+                    $venues[ $term->slug ] = $term->name;
+                }
+            }
+        } else {
+            // No restriction: include all venue terms
+            foreach ( $terms as $term ) {
+                /* @var $term \WP_Term */
+                $venues[ $term->slug ] = $term->name;
+            }
         }
 
         return $venues;
