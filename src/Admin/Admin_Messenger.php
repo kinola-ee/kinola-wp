@@ -3,9 +3,6 @@
 namespace Kinola\KinolaWp\Admin;
 
 class Admin_Messenger {
-    public const FILM_CREATED      = 'film_created';
-    public const EVENTS_IMPORTED   = 'events_imported';
-    public const PROGRAMS_IMPORTED = 'programs_imported';
     public const IMPORT_SCHEDULED  = 'import_scheduled';
 
     protected array $messages = [];
@@ -21,15 +18,6 @@ class Admin_Messenger {
     public function render_messages() {
         foreach ( $this->messages as $message ) {
             switch ( $message ) {
-                case self::FILM_CREATED:
-                    $this->film_created();
-                    break;
-                case self::EVENTS_IMPORTED:
-                    $this->events_created();
-                    break;
-                case self::PROGRAMS_IMPORTED:
-                    $this->programs_imported();
-                    break;
                 case self::IMPORT_SCHEDULED:
                     $this->import_scheduled();
                     break;
@@ -38,36 +26,6 @@ class Admin_Messenger {
                     break;
             }
         }
-    }
-
-    public function film_created() {
-        ?>
-        <div class="notice notice-success is-dismissible">
-            <p>
-                Kinola: <?php _ex( 'Film data imported successfully!', 'Admin', 'kinola' ); ?>
-            </p>
-        </div>
-        <?php
-    }
-
-    public function events_created() {
-        ?>
-        <div class="notice notice-success is-dismissible">
-            <p>
-                Kinola: <?php _ex( 'All future events imported successfully!', 'Admin', 'kinola' ); ?>
-            </p>
-        </div>
-        <?php
-    }
-
-    public function programs_imported() {
-        ?>
-        <div class="notice notice-success is-dismissible">
-            <p>
-                Kinola: <?php _ex( 'All programs imported successfully!', 'Admin', 'kinola' ); ?>
-            </p>
-        </div>
-        <?php
     }
 
     public function import_scheduled() {
