@@ -18,6 +18,7 @@ class Admin {
 
     public function __construct() {
         add_action( 'init', [ $this, 'handle_actions' ] );
+        add_action( 'admin_menu', [ $this, 'register_main_menu' ] );
         add_action( 'admin_menu', [ $this, 'register_import_page' ] );
         add_action( 'add_meta_boxes_' . Helpers::get_films_post_type(), [ $this, 'register_edit_film_meta_box' ] );
         add_action( 'add_meta_boxes_' . Helpers::get_events_post_type(), [ $this, 'register_edit_event_meta_box' ] );
@@ -126,9 +127,21 @@ class Admin {
         }
     }
 
+    public function register_main_menu() {
+        add_menu_page(
+            _x( 'Kinola', 'Admin', 'kinola' ),
+            _x( 'Kinola', 'Admin', 'kinola' ),
+            'edit_posts',
+            'kinola',
+            '',
+            'dashicons-tickets-alt',
+            5
+        );
+    }
+
     public function register_import_page() {
         add_submenu_page(
-            'edit.php?post_type=' . Helpers::get_films_post_type(),
+            'kinola',
             _x( 'Import films', 'Admin', 'kinola' ),
             _x( 'Import films', 'Admin', 'kinola' ),
             'edit_posts',

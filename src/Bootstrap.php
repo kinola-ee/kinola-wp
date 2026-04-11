@@ -8,8 +8,8 @@ use Kinola\KinolaWp\Pages\Single_Film;
 
 class Bootstrap {
     public function __construct() {
-        add_action( 'init', [ $this, 'register_films_post_type' ], 1 );
         add_action( 'init', [ $this, 'register_events_post_type' ], 1 );
+        add_action( 'init', [ $this, 'register_films_post_type' ], 1 );
         add_action( 'init', [ $this, 'register_programs_post_type' ], 1 );
         add_action( 'init', [ $this, 'register_venue_taxonomy' ], 1 );
         add_action( 'init', [ $this, 'register_endpoints' ] );
@@ -42,7 +42,7 @@ class Bootstrap {
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
-            'show_in_menu'        => true,
+            'show_in_menu'        => 'kinola',
             'menu_position'       => 5,
             'menu_icon'           => 'dashicons-editor-video',
             'show_in_admin_bar'   => true,
@@ -73,7 +73,7 @@ class Bootstrap {
             'hierarchical'        => false,
             'public'              => false,
             'show_ui'             => true,
-            'show_in_menu'        => true,
+            'show_in_menu'        => 'kinola',
             'menu_position'       => 5,
             'menu_icon'           => 'dashicons-megaphone',
             'show_in_admin_bar'   => false,
@@ -106,7 +106,7 @@ class Bootstrap {
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
-            'show_in_menu'        => true,
+            'show_in_menu'        => 'kinola',
             'menu_position'       => 5,
             'menu_icon'           => 'dashicons-portfolio',
             'show_in_admin_bar'   => true,
