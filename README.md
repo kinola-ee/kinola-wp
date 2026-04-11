@@ -56,7 +56,7 @@ To control the number of events displayed, use the `limit` attribute in the shor
 
 To show only today's events, use `show_dates` attribute in the shortcode with the value set to `today`. Example: `show_dates="today"`.
 
-To show only events at a specific venue, use `allowed_venues` attribute in the shortcode with the value set to the venue name. Example: `allowed_venues="Bio Rex Helsinki"`.
+To show only events at a specific venue, use `allowed_venues` attribute in the shortcode. Example: `allowed_venues="Bio Rex Helsinki, Tartu Elektriteater"`.
 
 Example with all parameters:
 ```
