@@ -27,6 +27,11 @@ class Admin {
         add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_events' ] );
         add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_changed_films' ] );
         add_action( Scheduler::EVENT_NAME_15MIN, [ $this, 'import_programs' ] );
+
+        // Background import handlers
+        add_action( 'kinola_import_single_film_async', [ $this, 'async_import_film' ] );
+        add_action( 'kinola_import_events_async', [ $this, 'async_import_events' ] );
+        add_action( 'kinola_import_programs_async', [ $this, 'async_import_programs' ] );
     }
 
     public function add_import_button() {
@@ -78,23 +83,45 @@ class Admin {
         }
 
         if ( $this->should_run_action( self::IMPORT_FILM_ACTION ) ) {
-            $imported_film = $this->import_film();
-            $url           = get_edit_post_link( $imported_film->get_local_id(), 'redirect' );
-            $url           = Router::append_message( $url, Admin_Messenger::FILM_CREATED );
+            $remote_id = $_GET[ self::IMPORT_FILM_ACTION ];
+
+            // Schedule background import
+            wp_schedule_single_event( time(), 'kinola_import_single_film_async', array( $remote_id ) );
+            spawn_cron(); // Trigger cron immediately
+
+            // Check if film already exists to determine redirect
+            $existing_film = Film::find_by_remote_id( $remote_id );
+
+            if ( $existing_film ) {
+                // Redirect to existing film edit page
+                $url = get_edit_post_link( $existing_film->get_local_id(), 'redirect' );
+                $url = Router::append_message( $url, Admin_Messenger::IMPORT_SCHEDULED );
+            } else {
+                // Redirect to films list since we don't have a post ID yet
+                $url = admin_url( 'edit.php?post_type=' . Helpers::get_films_post_type() );
+                $url = Router::append_message( $url, Admin_Messenger::IMPORT_SCHEDULED );
+            }
+
             Router::redirect( $url );
         }
 
         if ( $this->should_run_action( self::IMPORT_EVENTS_ACTION ) ) {
-            $this->import_events();
+            // Schedule background import
+            wp_schedule_single_event( time(), 'kinola_import_events_async' );
+            spawn_cron(); // Trigger cron immediately
+
             $url = admin_url( 'edit.php?post_type=' . Helpers::get_events_post_type() );
-            $url = Router::append_message( $url, Admin_Messenger::EVENTS_IMPORTED );
+            $url = Router::append_message( $url, Admin_Messenger::IMPORT_SCHEDULED );
             Router::redirect( $url );
         }
 
         if ( $this->should_run_action( self::IMPORT_PROGRAMS_ACTION ) ) {
-            $this->import_programs();
+            // Schedule background import
+            wp_schedule_single_event( time(), 'kinola_import_programs_async' );
+            spawn_cron(); // Trigger cron immediately
+
             $url = admin_url( 'edit.php?post_type=' . Helpers::get_programs_post_type() );
-            $url = Router::append_message( $url, Admin_Messenger::PROGRAMS_IMPORTED );
+            $url = Router::append_message( $url, Admin_Messenger::IMPORT_SCHEDULED );
             Router::redirect( $url );
         }
     }
@@ -184,6 +211,56 @@ class Admin {
     public function import_programs() {
         $importer = new Program_Importer();
         $importer->import_programs();
+    }
+
+    /**
+     * Background film import handler (called by cron).
+     *
+     * @param string $remote_id Film ID from Kinola API
+     */
+    public function async_import_film( $remote_id ) {
+        debug_log( "Async film import: Starting import for film ID {$remote_id}" );
+
+        try {
+            $importer = new Film_Importer();
+            $film     = $importer->import_film( $remote_id );
+
+            if ( $film ) {
+                debug_log( "Async film import: Successfully imported film ID {$remote_id} to post #{$film->get_local_id()}" );
+            } else {
+                debug_log( "Async film import: Film ID {$remote_id} import returned null (may not be public)" );
+            }
+        } catch ( \Exception $e ) {
+            debug_log( "Async film import: ERROR importing film ID {$remote_id} - " . $e->getMessage() );
+        }
+    }
+
+    /**
+     * Background events import handler (called by cron).
+     */
+    public function async_import_events() {
+        debug_log( "Async events import: Starting background import" );
+
+        try {
+            $this->import_events();
+            debug_log( "Async events import: Successfully completed" );
+        } catch ( \Exception $e ) {
+            debug_log( "Async events import: ERROR - " . $e->getMessage() );
+        }
+    }
+
+    /**
+     * Background programs import handler (called by cron).
+     */
+    public function async_import_programs() {
+        debug_log( "Async programs import: Starting background import" );
+
+        try {
+            $this->import_programs();
+            debug_log( "Async programs import: Successfully completed" );
+        } catch ( \Exception $e ) {
+            debug_log( "Async programs import: ERROR - " . $e->getMessage() );
+        }
     }
 
     protected function should_run_action( string $action ): bool {

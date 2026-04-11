@@ -20,8 +20,8 @@ class Film_Importer {
         try {
             $response = Kinola_Api::get( $this->single_film_endpoint . $remote_id );
         } catch ( ApiException $e ) {
-            echo $e->getMessage();
-            die;
+            debug_log( "Film import: API error for film ID {$remote_id} - " . $e->getMessage() );
+            return null;
         }
 
         $data = $response->get_data();
@@ -57,8 +57,8 @@ class Film_Importer {
         try {
             $response = Kinola_Api::get( $url ?: $this->films_endpoint, $with_translations );
         } catch ( ApiException $e ) {
-            echo $e->getMessage();
-            die;
+            debug_log( "Film import: API error while fetching films - " . $e->getMessage() );
+            return;
         }
 
         $this->data = array_merge( $this->data, $response->get_data() );
