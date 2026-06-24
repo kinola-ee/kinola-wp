@@ -77,6 +77,48 @@ Outputs a view to sell serial tickets online.
 `[kinola_products]`
 Outputs a view to order products and food after someone has already bought a cinema ticket.
 
+### Structured data (search engine & AI visibility)
+The plugin automatically adds [schema.org](https://schema.org) structured data (JSON-LD) to your
+pages, so search engines and AI assistants can read your films, screenings and venues. MovieTheater, ScreeningEvent and Movie schemas are used. It is JSON-formatted data in the HTML source code and usually invisible to visitors. Structured data is enabled by default and needs no setup; you can turn it off any time in WordPress admin under **Kinola > Settings**.
+
+You don't need to add anything for this: single film pages, `[kinola_events]` and
+`[kinola_film_screenings]` already include the relevant structured data automatically.
+
+`[kinola_venues_structured_data]`
+Adds your cinema's venue details (name, address, location) as structured data. Use it on a page that
+is not a film or events listing - e.g. an About or Contact page - to give your venues a permanent home
+in search results. Outputs no visible content.
+
+By default it outputs the venues you currently have screenings scheduled at. If you have none
+scheduled, it falls back to all your venues, so the shortcode always outputs something. To output a
+specific set instead:
+- `[kinola_venues_structured_data name="Bio Rex Helsinki, Tartu Elektriteater"]` - only the named venue(s); comma-separated, case-insensitive.
+
+#### From PHP
+If you build pages in PHP instead of with shortcodes (a custom theme template, a block, `functions.php`),
+the same structured data is available as functions. Each returns a ready-to-echo
+`<script type="application/ld+json">` string (it does not echo itself), and returns an empty string when
+there is nothing to output or structured data is turned off:
+
+```php
+<?php
+// Film + its upcoming screenings + venues (same as [kinola_film_screenings film="123"]).
+echo kinola_get_film_schema( 123 ); // 123 = the film's WordPress post ID
+
+// A list of upcoming screenings (same markup [kinola_events] emits). All args are optional.
+echo kinola_get_events_schema( [
+    'show_dates'     => 'upcoming',                 // or 'today' (any other value behaves as 'upcoming')
+    'limit'          => 25,                          // integer, or 'all'
+    'allowed_venues' => 'Bio Rex Helsinki',          // comma-separated string or array of names
+] );
+
+// Your venues (same as [kinola_venues_structured_data]).
+echo kinola_get_venues_schema();                                       // venues with upcoming screenings, if there are no upcoming screenings then all venues are returned
+echo kinola_get_venues_schema( 'Bio Rex Helsinki, Tartu Elektriteater' ); // or a specific set
+```
+
+These respect the **Kinola > Settings** toggle and the `kinola/schema/enabled` filter, just like the shortcodes.
+
 ## Debugging
 If you run into problems, follow these steps:
 1. Ensure you've followed *all* steps outlined above under the big heading that says "Setup"
@@ -155,6 +197,10 @@ $custom_fields = $film->get_custom_fields()
 // Get all upcoming screenings of a film:
 $events = $film->get_events(); // This returns an array of Event objects.
 
+// Get the schema.org structured data (JSON-LD) for a film and its screenings.
+// Same output as kinola_get_film_schema( $film_id ); handy when you already have the Film object:
+echo $film->get_schema();
+
 // You can get an Event the same way as with Films:
 $event = Event::find_by_local_id( $post_id );
 $event = Event::find_by_remote_id( 'c8f92b84-cd6f-4c09-a0a9-176d201e2c91' );
@@ -174,6 +220,25 @@ $time = $event->get_time(); // Same as above
 // If you need to display an UTC date or time in your locally defined time zone, you can use a helper function:
 $utc_event_time = $event->get_field( 'time' );
 $formatted_date_in_your_timezone = \Kinola\KinolaWp\Helpers::format_datetime( $utc_event_time );
+
+// Venues are exposed as a Venue object:
+use Kinola\KinolaWp\Venue;
+
+$venue = $event->get_venue();          // a Venue object, or null if the event has no venue
+$name  = $venue->get_name();
+$slug  = $venue->get_slug();
+$id    = $venue->get_kinola_id();      // the venue's Kinola id, '' if unknown
+$addr  = $venue->get_address();        // [ 'street' => ..., 'locality' => ..., 'postcode' => ..., 'country' => ... ]
+echo $venue->get_schema();             // schema.org JSON-LD (MovieTheater) for this venue
+
+// If you need the underlying WP_Term instead of the Venue wrapper:
+$term = $venue->get_term();
+
+// You can also look venues up directly:
+$venue  = Venue::find_by_name( 'Bio Rex Helsinki' );
+$venue  = Venue::find_by_kinola_id( 'c8f92b84-cd6f-4c09-a0a9-176d201e2c91' );
+$venues = Venue::all();                          // all venues
+$venues = Venue::with_upcoming_screenings();     // only venues with upcoming screenings
 
 ```
 
@@ -221,6 +286,18 @@ This filter allows you to modify which folders are used to look for Kinola templ
 `kinola/template`
 This filter runs every time a Kinola template is loaded. Using it, you can completely customize which templates are loaded and from where.
 
+`kinola/schema/enabled`
+Programmatically enable or disable all schema.org structured data output. Overrides the **Kinola > Settings** toggle.
+
+`kinola/schema/graph`
+Modify the array of schema.org nodes (the JSON-LD `@graph`) before it is rendered. Fires once per `<script>` block emitted, so on a page with several Kinola shortcodes it runs once per block.
+
+`kinola/schema/venue_address`
+Supply or override the address data used for a venue's MovieTheater structured data. Receives the stored address array (`street`, `locality`, `postcode`, `country`) and the venue term (a `WP_Term`).
+
+`kinola/schema/currency`
+Change the ISO currency code used for the price of free events (default `EUR`).
+
 ### Kinola API
 The plugin uses Kinola public API for fetching film and event data.
 Should you need to implement something that's not provided by the plugin, you can find the API docs here: https://YOUR_KINOLA_URL/api/public/v1/documentation
@@ -237,7 +314,7 @@ add_action( 'init', 'register_your_own_films_post_type' );
 If you need to change something this way, instead consider making a pull request to add filters to the relevant parts of the code base.
 
 ### Translations
-The plugin is fully translatable - a translation template is located in `translations` folder.
+The plugin is fully translatable - a translation template is located in the `languages/` folder.
 If you translate the plugin to your language, please make a pull request and share the translation po file!
 
 Note that many translatable strings have context "Admin" - these are strings that the end user will never see,

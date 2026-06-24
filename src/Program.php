@@ -31,8 +31,12 @@ class Program extends Model {
 
 	public function save_api_data( ApiProgram $program ) {
 		foreach ( $program->get_data() as $field => $value ) {
+			if ( $field === 'post_title' ) {
+				continue; // sets the WP post title (column), not stored as meta
+			}
 			$this->set_field( $field, $value );
 		}
+		$this->update_post_title( $program->get_field( 'post_title' ) );
 	}
 
 	public function get_events(): array {

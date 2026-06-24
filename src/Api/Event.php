@@ -12,16 +12,16 @@ class Event extends Api_Model {
         $unset = [
             'id',
             'production',
+            'program',
         ];
 
         $data[ \Kinola\KinolaWp\Event::FIELD_ID ] = $data['id'];
         $data[ \Kinola\KinolaWp\Film::FIELD_ID ]  = $data['production']['id'] ?? null;
         $data['production_title']                 = $data['production']['name'] ?? null;
         $data['production_poster']                = $data['production']['image']['src'] ?? null;
+        $data['venue_details']                    = is_array( $data['venue'] ?? null ) ? $data['venue'] : null;
         $data['venue']                            = $data['venue']['name'] ?? null;
         $data['room']                             = $data['room']['name'] ?? null;
-        // 'program' stores program name for backward compatibility
-        $data['program']                          = $data['program']['name'] ?? null;
         $data[ \Kinola\KinolaWp\Program::FIELD_ID ] = $data['program']['id'] ?? null;
         $data['checkout_url']                     = $data['checkout_url'] ?? null;
         $data['visibility']                       = $data['visibility'] ?? 'public';

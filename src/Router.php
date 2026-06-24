@@ -7,6 +7,10 @@ use Kinola\KinolaWp\Admin\Admin;
 class Router {
 
     public static function get_action_url( array $params ): string {
+        // Every action URL built here is an admin import trigger, so carry the nonce that
+        // Admin::should_run_import_action() verifies (CSRF protection for the import actions).
+        $params['_wpnonce'] = wp_create_nonce( Admin::ACTION_NONCE );
+
         return get_admin_url( null, '?' . http_build_query( $params ) );
     }
 
@@ -21,10 +25,6 @@ class Router {
     public static function redirect( string $url ) {
         wp_safe_redirect( $url );
         exit;
-    }
-
-    public static function get_local_film_edit_link( int $id ): string {
-        return get_edit_post_link( $id );
     }
 
     public static function get_kinola_film_edit_link( string $id ): string {

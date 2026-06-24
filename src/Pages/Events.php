@@ -6,10 +6,21 @@ use Kinola\KinolaWp\Event;
 use Kinola\KinolaWp\Event_Query;
 use Kinola\KinolaWp\Filter;
 use Kinola\KinolaWp\Helpers;
+use Kinola\KinolaWp\Schema\Schema_Manager;
 use Kinola\KinolaWp\View;
 
+/**
+ * @internal Instantiated by Bootstrap with a Schema_Manager; not part of the plugin's public
+ *           API. The required constructor argument means it is not safe to instantiate directly.
+ */
 class Events {
     protected string $template = 'events';
+
+    protected Schema_Manager $schema;
+
+    public function __construct( Schema_Manager $schema ) {
+        $this->schema = $schema;
+    }
 
     /**
      * Get rendered events page with optional venue filtering.
@@ -50,6 +61,6 @@ class Events {
         return View::get_rendered_template( $this->template, [
             'events'          => $events,
             'rendered_filter' => $filter->get_rendered_filter(),
-        ] );
+        ] ) . $this->schema->get_events_page_schema( $events );
     }
 }

@@ -1,33 +1,37 @@
-# Copyright (C) 2024 Kinola
+# Copyright (C) 2026 Kinola
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
 "Project-Id-Version: Kinola 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola-wp\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kinola\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-11T20:55:29+00:00\n"
+"POT-Creation-Date: 2026-06-23T15:42:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.6.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: kinola\n"
 
 #. Plugin Name of the plugin
 #. Author of the plugin
+#: kinola.php
 msgid "Kinola"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: kinola.php
 msgid "https://github.com/kinola-ee/kinola-wp"
 msgstr ""
 
 #. Description of the plugin
+#: kinola.php
 msgid "Kinola integration for WordPress."
 msgstr ""
 
 #. Author URI of the plugin
+#: kinola.php
 msgid "https://kinola.ee/"
 msgstr ""
 
@@ -76,45 +80,52 @@ msgctxt "Admin"
 msgid "Autoloader not found."
 msgstr ""
 
-#: src/Admin/Admin.php:41
+#: src/Admin/Admin.php:55
+#: src/Admin/Admin.php:70
 msgctxt "Admin"
 msgid "Import from Kinola"
 msgstr ""
 
-#: src/Admin/Admin.php:81
-#: src/Admin/Admin.php:82
+#: src/Admin/Admin.php:142
+#: src/Admin/Admin.php:143
+msgctxt "Admin"
+msgid "Kinola"
+msgstr ""
+
+#: src/Admin/Admin.php:155
+#: src/Admin/Admin.php:156
 msgctxt "Admin"
 msgid "Import films"
 msgstr ""
 
-#: src/Admin/Admin.php:105
+#: src/Admin/Admin.php:173
 msgctxt "Admin"
 msgid "Film data"
 msgstr ""
 
-#: src/Admin/Admin.php:121
+#: src/Admin/Admin.php:189
 msgctxt "Admin"
 msgid "Event data"
 msgstr ""
 
-#: src/Admin/Admin_Messenger.php:39
+#: src/Admin/Admin.php:205
 msgctxt "Admin"
-msgid "Film data imported successfully!"
+msgid "Program data"
 msgstr ""
 
-#: src/Admin/Admin_Messenger.php:49
+#: src/Admin/Admin_Messenger.php:42
 msgctxt "Admin"
-msgid "All future events imported successfully!"
+msgid "Import started in background. This may take a few minutes. Refresh to see the results."
 msgstr ""
 
 #: src/Admin/Film_Importer_List_Table.php:19
-#: src/Bootstrap.php:32
-#: src/Bootstrap.php:56
+#: src/Bootstrap.php:54
+#: src/Bootstrap.php:78
 msgid "Film"
 msgstr ""
 
 #: src/Admin/Film_Importer_List_Table.php:20
-#: src/Bootstrap.php:55
+#: src/Bootstrap.php:77
 msgid "Films"
 msgstr ""
 
@@ -140,40 +151,90 @@ msgctxt "Admin"
 msgid "Import"
 msgstr ""
 
-#: src/Bootstrap.php:57
+#: src/Admin/Settings.php:20
+#: src/Admin/Settings.php:75
+msgctxt "Admin"
+msgid "Kinola settings"
+msgstr ""
+
+#: src/Admin/Settings.php:21
+msgctxt "Admin"
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/Settings.php:48
+msgctxt "Admin"
+msgid "Structured data"
+msgstr ""
+
+#: src/Admin/Settings.php:64
+msgctxt "Admin"
+msgid "Add structured data (schema.org models: MovieTheater, ScreeningEvent and Movie) so search engines and AI agents can read your films, screenings and venues"
+msgstr ""
+
+#: src/Admin/Settings.php:67
+msgctxt "Admin"
+msgid "When enabled, structured metadata regarding screenings, events and cinema venues is added to your pages automatically, with nothing else to set up."
+msgstr ""
+
+#: src/Bootstrap.php:79
 msgctxt "Admin"
 msgid "Films"
 msgstr ""
 
-#: src/Bootstrap.php:64
-#: src/Bootstrap.php:88
+#: src/Bootstrap.php:86
+#: src/Bootstrap.php:110
 msgid "Event"
 msgstr ""
 
-#: src/Bootstrap.php:87
+#: src/Bootstrap.php:109
 msgid "Events"
 msgstr ""
 
-#: src/Bootstrap.php:89
+#: src/Bootstrap.php:111
 msgctxt "Admin"
 msgid "Events"
 msgstr ""
 
-#: src/Bootstrap.php:100
-#: src/Bootstrap.php:102
+#: src/Bootstrap.php:118
+#: src/Bootstrap.php:142
+msgid "Program"
+msgstr ""
+
+#: src/Bootstrap.php:141
+msgid "Programs"
+msgstr ""
+
+#: src/Bootstrap.php:143
+msgctxt "Admin"
+msgid "Programs"
+msgstr ""
+
+#: src/Bootstrap.php:154
+#: src/Bootstrap.php:156
 msgid "Venues"
 msgstr ""
 
-#: src/Bootstrap.php:101
+#: src/Bootstrap.php:155
 msgid "Venue"
 msgstr ""
 
-#: src/Bootstrap.php:182
+#: src/Bootstrap.php:265
 msgid "This shortcode requires a 'film' ID parameter."
 msgstr ""
 
-#: src/Bootstrap.php:189
+#. translators: %s is the film ID that was not found.
+#: src/Bootstrap.php:273
+#, php-format
 msgid "There is no film with ID %s."
+msgstr ""
+
+#: src/Bootstrap.php:315
+msgid "This event is coming soon and not yet available for booking."
+msgstr ""
+
+#: src/Bootstrap.php:316
+msgid "Event Not Available"
 msgstr ""
 
 #: src/Checkout.php:28
@@ -249,7 +310,7 @@ msgid "Sorry, the maximum number of tickets is limited"
 msgstr ""
 
 #: src/Checkout.php:46
-#: src/Checkout.php:123
+#: src/Checkout.php:120
 msgid "Total"
 msgstr ""
 
@@ -342,6 +403,8 @@ msgid "Something went wrong!"
 msgstr ""
 
 #: src/Checkout.php:71
+#: templates/events.php:50
+#: templates/film/screenings.php:29
 msgid "Register"
 msgstr ""
 
@@ -362,8 +425,8 @@ msgid "Buy more tickets"
 msgstr ""
 
 #: src/Checkout.php:76
-#: templates/events.php:39
-#: templates/film/screenings.php:18
+#: templates/events.php:40
+#: templates/film/screenings.php:19
 msgid "Sold out"
 msgstr ""
 
@@ -424,7 +487,7 @@ msgid "Unfortunately, you cannot buy such an expensive gift card through the web
 msgstr ""
 
 #: src/Checkout.php:94
-#: src/Checkout.php:104
+#: src/Checkout.php:101
 msgid "Your email"
 msgstr ""
 
@@ -437,180 +500,182 @@ msgid "Your gift card code is:"
 msgstr ""
 
 #: src/Checkout.php:97
-#: src/Checkout.php:107
+#: src/Checkout.php:104
 msgid "You can use it both on the cinema website and at the cashier."
 msgstr ""
 
-#: src/Checkout.php:101
+#: src/Checkout.php:98
 msgid "Serial ticket type"
 msgstr ""
 
-#: src/Checkout.php:102
+#: src/Checkout.php:99
 msgid "{count} uses"
 msgstr ""
 
-#: src/Checkout.php:103
+#: src/Checkout.php:100
 msgid "Valid until {date}"
 msgstr ""
 
-#: src/Checkout.php:105
+#: src/Checkout.php:102
 msgid "Serial ticket purchased!"
 msgstr ""
 
-#: src/Checkout.php:106
+#: src/Checkout.php:103
 msgid "Your serial ticket code is:"
 msgstr ""
 
-#: src/Checkout.php:108
+#: src/Checkout.php:105
 msgid "Tickets"
 msgstr ""
 
-#: src/Checkout.php:109
+#: src/Checkout.php:106
 msgid "Products"
 msgstr ""
 
-#: src/Checkout.php:110
+#: src/Checkout.php:107
 msgid "Confirm and pay"
 msgstr ""
 
-#: src/Checkout.php:111
+#: src/Checkout.php:108
 msgid "Choose products and pay"
 msgstr ""
 
-#: src/Checkout.php:112
+#: src/Checkout.php:109
 msgid "Complete purchase and pay"
 msgstr ""
 
-#: src/Checkout.php:113
+#: src/Checkout.php:110
 msgid "Back"
 msgstr ""
 
-#: src/Checkout.php:114
+#: src/Checkout.php:111
 msgid "All products"
 msgstr ""
 
-#: src/Checkout.php:115
+#: src/Checkout.php:112
 msgid "Search for a product..."
 msgstr ""
 
-#: src/Checkout.php:116
+#: src/Checkout.php:113
 msgid "Other products"
 msgstr ""
 
-#: src/Checkout.php:117
+#: src/Checkout.php:114
 msgid "My tickets"
 msgstr ""
 
-#: src/Checkout.php:118
+#: src/Checkout.php:115
 msgid "Change"
 msgstr ""
 
-#: src/Checkout.php:119
+#: src/Checkout.php:116
 msgid "No results found for your search."
 msgstr ""
 
-#: src/Checkout.php:120
+#: src/Checkout.php:117
 msgid "Try another search term or"
 msgstr ""
 
-#: src/Checkout.php:121
+#: src/Checkout.php:118
 msgid "remove filters"
 msgstr ""
 
-#: src/Checkout.php:122
+#: src/Checkout.php:119
 msgid "Ordering products is currently disabled."
 msgstr ""
 
-#: src/Checkout.php:124
+#: src/Checkout.php:121
 msgid "Add products"
 msgstr ""
 
-#: src/Checkout.php:125
+#: src/Checkout.php:122
 msgid "Order food and drinks to your seat!"
 msgstr ""
 
-#: src/Checkout.php:126
+#: src/Checkout.php:123
 msgid "If you haven't bought a ticket yet, check out our "
 msgstr ""
 
-#: src/Checkout.php:127
+#: src/Checkout.php:124
 msgid "schedule"
 msgstr ""
 
-#: src/Checkout.php:128
+#: src/Checkout.php:125
 msgid "."
 msgstr ""
 
-#: src/Checkout.php:129
+#: src/Checkout.php:126
 msgid "Choose the event you bought a ticket for"
 msgstr ""
 
-#: src/Checkout.php:130
+#: src/Checkout.php:127
 msgid "Choose the seat you bought a ticket for"
 msgstr ""
 
-#: src/Checkout.php:131
+#: src/Checkout.php:128
 msgid "Choose the movie"
 msgstr ""
 
-#: src/Checkout.php:132
+#: src/Checkout.php:129
 msgid "Choose the screening"
 msgstr ""
 
-#: src/Checkout.php:133
+#: src/Checkout.php:130
 msgid "Choose the row"
 msgstr ""
 
-#: src/Checkout.php:134
+#: src/Checkout.php:131
 msgid "Choose the seat"
 msgstr ""
 
-#: src/Checkout.php:135
+#: src/Checkout.php:132
 msgid "This screening does not have numbered seats. The ordered products will be associated with the buyer's name."
 msgstr ""
 
-#: src/Checkout.php:137
+#: src/Checkout.php:134
 msgid "Row"
 msgstr ""
 
-#: src/Checkout.php:138
+#: src/Checkout.php:135
 msgid "Seat"
 msgstr ""
 
-#: src/Checkout.php:139
+#: src/Checkout.php:136
 msgid "Your cart is empty. Add some products to your cart to place an order."
 msgstr ""
 
-#: src/Checkout.php:140
+#: src/Checkout.php:137
 msgid "You can ask for your tickets from the cashier."
 msgstr ""
 
-#: src/Checkout.php:141
+#: src/Checkout.php:138
 msgid "You can also download your tickets here:"
 msgstr ""
 
-#: src/Checkout.php:142
+#: src/Checkout.php:139
 msgid "Download tickets"
 msgstr ""
 
-#: src/Filter.php:35
+#: src/Filter.php:52
 msgid "All films"
 msgstr ""
 
-#: src/Filter.php:47
+#: src/Filter.php:69
 msgid "All venues"
 msgstr ""
 
-#: src/Filter.php:62
+#: src/Filter.php:101
 msgid "All dates"
 msgstr ""
 
-#: src/Filter.php:82
+#: src/Filter.php:121
 msgid "All times"
 msgstr ""
 
-#: src/Model.php:44
-msgid "The field '%s' does not a have a corresponding translation in Kinola for this website's configured language (%s)."
+#. translators: 1: the field name, 2: the website's configured language.
+#: src/Model.php:45
+#, php-format
+msgid "The field '%1$s' does not have a corresponding translation in Kinola for this website's configured language (%2$s)."
 msgstr ""
 
 #: src/Scheduler.php:26
@@ -648,24 +713,62 @@ msgctxt "Admin"
 msgid "Program"
 msgstr ""
 
-#: templates/admin/edit-event-meta-box.php:63
+#: templates/admin/edit-event-meta-box.php:71
+msgctxt "Admin"
+msgid "Event Type"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:77
+msgid "Paid"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:78
+msgid "Free with Registration"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:79
+msgid "Free Public"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:87
+msgctxt "Admin"
+msgid "Visibility"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:93
+msgid "Public"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:94
+msgid "Coming Soon"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:95
+msgid "Hidden Link"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:96
+msgid "Private"
+msgstr ""
+
+#: templates/admin/edit-event-meta-box.php:105
 #: templates/admin/edit-film-meta-box.php:61
 msgctxt "Admin"
 msgid "Languages"
 msgstr ""
 
-#: templates/admin/edit-event-meta-box.php:71
+#: templates/admin/edit-event-meta-box.php:113
 #: templates/admin/edit-film-meta-box.php:69
 msgctxt "Admin"
 msgid "Subtitles"
 msgstr ""
 
-#: templates/admin/edit-event-meta-box.php:86
+#: templates/admin/edit-event-meta-box.php:128
 msgctxt "Admin"
 msgid "Event ID in Kinola"
 msgstr ""
 
-#: templates/admin/edit-event-meta-box.php:96
+#: templates/admin/edit-event-meta-box.php:138
 msgctxt "Admin"
 msgid "Film ID in Kinola"
 msgstr ""
@@ -700,12 +803,62 @@ msgctxt "Admin"
 msgid "ID"
 msgstr ""
 
-#: templates/events.php:35
-#: templates/film/screenings.php:14
+#: templates/admin/edit-program-meta-box.php:12
+msgctxt "Admin"
+msgid "Name"
+msgstr ""
+
+#: templates/admin/edit-program-meta-box.php:20
+msgctxt "Admin"
+msgid "Description"
+msgstr ""
+
+#: templates/admin/edit-program-meta-box.php:35
+msgctxt "Admin"
+msgid "Upcoming Events"
+msgstr ""
+
+#: templates/admin/edit-program-meta-box.php:42
+msgctxt "Admin"
+msgid "event(s)"
+msgstr ""
+
+#: templates/admin/edit-program-meta-box.php:53
+msgctxt "Admin"
+msgid "Custom Fields"
+msgstr ""
+
+#: templates/admin/edit-program-meta-box.php:62
+msgctxt "Admin"
+msgid "View Image"
+msgstr ""
+
+#: templates/admin/edit-program-meta-box.php:81
+msgctxt "Admin"
+msgid "Program data is downloaded from Kinola web app. To change something, edit the program in Kinola and re-import."
+msgstr ""
+
+#: templates/admin/edit-program-meta-box.php:98
+msgctxt "Admin"
+msgid "Program ID in Kinola"
+msgstr ""
+
+#: templates/events.php:36
+#: templates/film/screenings.php:15
+msgid "Coming soon"
+msgstr ""
+
+#: templates/events.php:45
+#: templates/film/screenings.php:24
+msgid "Free"
+msgstr ""
+
+#: templates/events.php:52
+#: templates/film/screenings.php:31
 msgid "Buy ticket"
 msgstr ""
 
-#: templates/events.php:49
+#: templates/events.php:64
 msgid "No upcoming events."
 msgstr ""
 
@@ -734,7 +887,7 @@ msgstr ""
 msgid "Screenings"
 msgstr ""
 
-#: templates/film/screenings.php:24
+#: templates/film/screenings.php:39
 msgid "No upcoming screenings"
 msgstr ""
 

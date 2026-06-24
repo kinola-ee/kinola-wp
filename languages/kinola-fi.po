@@ -632,14 +632,6 @@ msgstr "Kaikki päivämäärät"
 msgid "All times"
 msgstr "Kaikki ajat"
 
-#: src/Model.php:44
-msgid ""
-"The field '%s' does not a have a corresponding translation in Kinola for "
-"this website's configured language (%s)."
-msgstr ""
-"Kentällä ‘%s’ ei ole vastaavaa käännöstä Kinolassa tämän sivuston "
-"määritetylle kielelle (%s)."
-
 #: src/Scheduler.php:26
 msgctxt "Admin"
 msgid "Every 15 minutes"

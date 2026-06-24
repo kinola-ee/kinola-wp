@@ -2,8 +2,8 @@
 /**
  * Plugin Name:          Kinola
  * Plugin URI:           https://github.com/kinola-ee/kinola-wp
- * Description:          Kinola integration for WordPress.
- * Version:              1.0
+ * Description:          Connects WordPress to Kinola, the cinema management software. Imports films and screenings through the Kinola API. Provides ways to present the infot to visitors and to sell tickets on your site.
+ * Version:              1.1
  * Author:               Kinola
  * Author URI:           https://kinola.ee/
  * License:              GPLv3

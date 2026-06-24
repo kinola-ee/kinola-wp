@@ -4,14 +4,14 @@
     <section class="kinola-film-gallery" id="kinola-film-gallery">
         <?php foreach ( $film->get_field( 'gallery' ) as $image ): ?>
             <a
-                href="<?php echo $image['src']; ?>"
-                data-pswp-width="<?php echo $image['width']; ?>"
-                data-pswp-height="<?php echo $image['height']; ?>"
+                href="<?php echo esc_url( $image['src'] ); ?>"
+                data-pswp-width="<?php echo esc_attr( $image['width'] ); ?>"
+                data-pswp-height="<?php echo esc_attr( $image['height'] ); ?>"
                 target="_blank"
             >
                 <img
-                    src="<?php echo $image['thumbnail']; ?>"
-                    alt="<?php echo $image['alt']; ?>"
+                    src="<?php echo esc_url( $image['thumbnail'] ); ?>"
+                    alt="<?php echo esc_attr( $image['alt'] ); ?>"
                 />
             </a>
         <?php endforeach; ?>

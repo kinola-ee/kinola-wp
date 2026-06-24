@@ -16,7 +16,14 @@ class Admin {
     public const IMPORT_PROGRAMS_ACTION = 'kinola_import_programs';
     public const MESSENGER_ACTION       = 'kinola_message';
 
+    // Nonce action shared by every admin import link (added in Router::get_action_url, verified in
+    // should_run_import_action) so a triggered import is a deliberate request from this admin, not a
+    // forged cross-site one.
+    public const ACTION_NONCE           = 'kinola_admin_action';
+
     public function __construct() {
+        new Settings();
+
         add_action( 'init', [ $this, 'handle_actions' ] );
         add_action( 'admin_menu', [ $this, 'register_main_menu' ] );
         add_action( 'admin_menu', [ $this, 'register_import_page' ] );
@@ -80,11 +87,14 @@ class Admin {
 
     public function handle_actions() {
         if ( $this->should_run_action( self::MESSENGER_ACTION ) ) {
-            ( new Admin_Messenger )->add_message( $_GET[ self::MESSENGER_ACTION ] );
+            $message = sanitize_text_field( wp_unslash( $_GET[ self::MESSENGER_ACTION ] ) );
+            if ( in_array( $message, Admin_Messenger::URL_MESSAGES, true ) ) {
+                ( new Admin_Messenger )->add_message( $message );
+            }
         }
 
-        if ( $this->should_run_action( self::IMPORT_FILM_ACTION ) ) {
-            $remote_id = $_GET[ self::IMPORT_FILM_ACTION ];
+        if ( $this->should_run_import_action( self::IMPORT_FILM_ACTION ) ) {
+            $remote_id = sanitize_text_field( wp_unslash( $_GET[ self::IMPORT_FILM_ACTION ] ) );
 
             // Schedule background import
             wp_schedule_single_event( time(), 'kinola_import_single_film_async', array( $remote_id ) );
@@ -106,7 +116,7 @@ class Admin {
             Router::redirect( $url );
         }
 
-        if ( $this->should_run_action( self::IMPORT_EVENTS_ACTION ) ) {
+        if ( $this->should_run_import_action( self::IMPORT_EVENTS_ACTION ) ) {
             // Schedule background import
             wp_schedule_single_event( time(), 'kinola_import_events_async' );
             spawn_cron(); // Trigger cron immediately
@@ -116,7 +126,7 @@ class Admin {
             Router::redirect( $url );
         }
 
-        if ( $this->should_run_action( self::IMPORT_PROGRAMS_ACTION ) ) {
+        if ( $this->should_run_import_action( self::IMPORT_PROGRAMS_ACTION ) ) {
             // Schedule background import
             wp_schedule_single_event( time(), 'kinola_import_programs_async' );
             spawn_cron(); // Trigger cron immediately
@@ -131,7 +141,7 @@ class Admin {
         add_menu_page(
             _x( 'Kinola', 'Admin', 'kinola' ),
             _x( 'Kinola', 'Admin', 'kinola' ),
-            'edit_posts',
+            self::IMPORT_CAPABILITY,
             'kinola',
             '',
             'dashicons-tickets-alt',
@@ -144,7 +154,7 @@ class Admin {
             'kinola',
             _x( 'Import films', 'Admin', 'kinola' ),
             _x( 'Import films', 'Admin', 'kinola' ),
-            'edit_posts',
+            self::IMPORT_CAPABILITY,
             'import_films',
             [ $this, 'render_import_page' ]
         );
@@ -155,12 +165,6 @@ class Admin {
         $page     = new Film_Importer_List_Table( $importer );
         $page->prepare_items();
         $page->display();
-    }
-
-    public function import_film(): Film {
-        $importer = new Film_Importer();
-
-        return $importer->import_film( $_GET[ self::IMPORT_FILM_ACTION ] );
     }
 
     public function register_edit_film_meta_box() {
@@ -280,5 +284,29 @@ class Admin {
         return is_admin() &&
                isset( $_GET[ $action ] ) &&
                $_GET[ $action ];
+    }
+
+    // Capability required to trigger or see the import UI. edit_others_posts (Editor and up) rather
+    // than edit_posts: an import schedules a background job that fetches from the Kinola API and
+    // writes the events/films/programs post types for the whole site, which is an editorial-scope
+    // action, not something an Author managing only their own posts should set off.
+    public const IMPORT_CAPABILITY = 'edit_others_posts';
+
+    /**
+     * An import action runs only for a user with the import capability and only with a valid nonce.
+     * The import links carry that nonce (Router::get_action_url), so a logged-in user without rights
+     * cannot trigger an import, and a forged cross-site request is rejected. A capable user with a
+     * missing/expired nonce stops at the standard WordPress "link has expired" screen
+     * (check_admin_referer); a user without the capability is silently ignored, revealing nothing
+     * about the endpoint.
+     */
+    protected function should_run_import_action( string $action ): bool {
+        if ( ! $this->should_run_action( $action ) || ! current_user_can( self::IMPORT_CAPABILITY ) ) {
+            return false;
+        }
+
+        check_admin_referer( self::ACTION_NONCE );
+
+        return true;
     }
 }

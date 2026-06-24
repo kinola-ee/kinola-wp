@@ -12,7 +12,7 @@
             <?php _ex( 'Title', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'title' ); ?>
+            <?php echo esc_html( $film->get_field( 'title' ) ); ?>
         </td>
     </tr>
     <tr>
@@ -21,7 +21,7 @@
             _ex( 'Original title', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'title_original' ); ?>
+            <?php echo esc_html( $film->get_field( 'title_original' ) ); ?>
         </td>
     </tr>
     <tr>
@@ -29,7 +29,7 @@
             <?php _ex( 'Runtime', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'runtime' ); ?> <?php _ex( 'min', 'Admin', 'kinola' ); ?>
+            <?php echo esc_html( $film->get_field( 'runtime' ) ); ?> <?php _ex( 'min', 'Admin', 'kinola' ); ?>
         </td>
     </tr>
     <tr>
@@ -37,7 +37,7 @@
             <?php _ex( 'Year', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'year' ) ?: '-'; ?>
+            <?php echo esc_html( $film->get_field( 'year' ) ?: '-' ); ?>
         </td>
     </tr>
     <tr>
@@ -45,7 +45,7 @@
             <?php _ex( 'Rating', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'rating' ) ?: '-'; ?>
+            <?php echo esc_html( $film->get_field( 'rating' ) ?: '-' ); ?>
         </td>
     </tr>
     <tr>
@@ -53,7 +53,7 @@
             <?php _ex( 'Distributor', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'distributor' ) ?: '-'; ?>
+            <?php echo esc_html( $film->get_field( 'distributor' ) ?: '-' ); ?>
         </td>
     </tr>
     <tr>
@@ -61,7 +61,7 @@
             <?php _ex( 'Languages', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'languages' ) ?: '-'; ?>
+            <?php echo esc_html( $film->get_field( 'languages' ) ?: '-' ); ?>
         </td>
     </tr>
     <tr>
@@ -69,7 +69,7 @@
             <?php _ex( 'Subtitles', 'Admin', 'kinola' ); ?>
         </td>
         <td class="kinola-admin__table_field_value">
-            <?php echo $film->get_field( 'subtitles' ) ?: '-'; ?>
+            <?php echo esc_html( $film->get_field( 'subtitles' ) ?: '-' ); ?>
         </td>
     </tr>
 </table>
@@ -80,9 +80,9 @@
         <?php _ex(
             sprintf(
                 'Film data is downloaded from Kinola web app. To change something, %s edit the film in Kinola %s and %s re-import %s.',
-                "<a href='{$film->get_kinola_edit_link()}' target='_blank'>",
+                "<a href='" . esc_url( $film->get_kinola_edit_link() ) . "' target='_blank'>",
                 '</a>',
-                "<a href='{$film->get_import_link()}'>",
+                "<a href='" . esc_url( $film->get_import_link() ) . "'>",
                 '</a>'
             ),
             'Admin',
@@ -103,8 +103,8 @@
                 <?php _ex( 'ID', 'Admin', 'kinola' ); ?>
             </td>
             <td class="kinola-admin__table_field_value">
-                <a href="<?php echo $film->get_api_url(); ?>" target="_blank">
-                    <?php echo $film->get_remote_id(); ?>
+                <a href="<?php echo esc_url( $film->get_api_url() ); ?>" target="_blank">
+                    <?php echo esc_html( $film->get_remote_id() ); ?>
                 </a>
             </td>
         </tr>

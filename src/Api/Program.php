@@ -16,8 +16,6 @@ class Program extends Api_Model {
 
 		$data[ \Kinola\KinolaWp\Program::FIELD_ID ] = $data['id'];
 		$data['post_title']                         = $this->resolve_post_title( $data['name'] );
-		$data['name']                               = $data['name'];
-		$data['description']                        = $data['description'];
 		$data['custom_fields']                      = $data['customFields'] ?? [];
 
 		foreach ( $unset as $field ) {

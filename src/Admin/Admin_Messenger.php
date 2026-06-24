@@ -5,6 +5,13 @@ namespace Kinola\KinolaWp\Admin;
 class Admin_Messenger {
     public const IMPORT_SCHEDULED  = 'import_scheduled';
 
+    /**
+     * Status codes that may arrive via the kinola_message URL param. The param carries a known code,
+     * not free text, so anything not in this list is ignored — a crafted link can't surface arbitrary
+     * content in an admin notice.
+     */
+    public const URL_MESSAGES = [ self::IMPORT_SCHEDULED ];
+
     protected array $messages = [];
 
     public function __construct() {
@@ -42,7 +49,7 @@ class Admin_Messenger {
         ?>
         <div class="notice notice-warning is-dismissible">
             <p>
-                Kinola: <?php echo $message; ?>
+                Kinola: <?php echo esc_html( $message ); ?>
             </p>
         </div>
         <?php

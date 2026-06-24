@@ -5,15 +5,15 @@
 ?>
 
 <div class="kinola-filters">
-    <form class="js-kinola-filters-form" data-nonce="<?php echo wp_create_nonce( 'kinola_filter_nonce' ); ?>" <?php if ( $film_id ): ?> data-film="<?php echo $film_id; ?>" <?php endif; ?> <?php if ( ! empty( $allowed_venues ) ): ?> data-allowed-venues="<?php echo esc_attr( implode( ',', $allowed_venues ) ); ?>" <?php endif; ?>>
+    <form class="js-kinola-filters-form" data-nonce="<?php echo esc_attr( wp_create_nonce( 'kinola_filter_nonce' ) ); ?>" <?php if ( $film_id ): ?> data-film="<?php echo esc_attr( $film_id ); ?>"<?php endif; ?> <?php if ( ! empty( $allowed_venues ) ): ?> data-allowed-venues="<?php echo esc_attr( implode( ',', $allowed_venues ) ); ?>" <?php endif; ?>>
         <?php if ( apply_filters( 'kinola/filters/film', true ) && ! $film_id ): ?>
             <select
                 class="js-kinola-film-filter kinola-film-filter"
                 name="<?php echo \Kinola\KinolaWp\Helpers::get_film_parameter_slug() ?>"
             >
                 <?php foreach ( $films as $key => $film ): ?>
-                    <option value="<?php echo $key; ?>" <?php selected( $key, $selected_film ); ?>>
-                        <?php echo html_entity_decode( $film, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); ?>
+                    <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $selected_film ); ?>>
+                        <?php echo esc_html( html_entity_decode( $film, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -25,8 +25,8 @@
                 name="<?php echo \Kinola\KinolaWp\Helpers::get_venue_parameter_slug() ?>"
             >
                 <?php foreach ( $venues as $key => $venue ): ?>
-                    <option value="<?php echo $key; ?>" <?php selected( $key, $selected_venue ); ?>>
-                        <?php echo html_entity_decode( $venue, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); ?>
+                    <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $selected_venue ); ?>>
+                        <?php echo esc_html( html_entity_decode( $venue, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -37,8 +37,8 @@
             name="<?php echo \Kinola\KinolaWp\Helpers::get_date_parameter_slug() ?>"
         >
             <?php foreach ( $dates as $key => $date ): ?>
-                <option value="<?php echo $key; ?>" <?php selected( $key, $selected_date ); ?>>
-                    <?php echo html_entity_decode( $date, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); ?>
+                <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $selected_date ); ?>>
+                    <?php echo esc_html( html_entity_decode( $date, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ); ?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -49,8 +49,8 @@
                 name="<?php echo \Kinola\KinolaWp\Helpers::get_time_parameter_slug() ?>"
             >
                 <?php foreach ( $times as $key => $time ): ?>
-                    <option value="<?php echo $key; ?>" <?php selected( $key, $selected_time ); ?>>
-                        <?php echo html_entity_decode( $time, ENT_QUOTES | ENT_HTML5, 'UTF-8' ); ?>
+                    <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $selected_time ); ?>>
+                        <?php echo esc_html( html_entity_decode( $time, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ); ?>
                     </option>
                 <?php endforeach; ?>
             </select>

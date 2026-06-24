@@ -5,8 +5,11 @@ namespace Kinola\KinolaWp;
 use Kinola\KinolaWp\Pages\Events;
 use Kinola\KinolaWp\Pages\Films;
 use Kinola\KinolaWp\Pages\Single_Film;
+use Kinola\KinolaWp\Schema\Schema_Manager;
 
 class Bootstrap {
+    protected Schema_Manager $schema;
+
     public function __construct() {
         add_action( 'init', [ $this, 'register_events_post_type' ], 1 );
         add_action( 'init', [ $this, 'register_films_post_type' ], 1 );
@@ -21,6 +24,11 @@ class Bootstrap {
 
         add_filter( 'the_title', [ $this, 'translate_post_title' ], 10, 2 );
 
+        // SEO: schema.org structured data for films and screenings. One instance, owned here and
+        // reused by the shortcode handlers, so any future per-request state lives in one place.
+        $this->schema = new Schema_Manager();
+        $this->schema->init();
+
         $scheduler = new Scheduler();
         $scheduler->schedule_events();
 
@@ -30,6 +38,15 @@ class Bootstrap {
         if (defined( 'KINOLA_TERMS_LINK' ) && (!KINOLA_TERMS_LINK || KINOLA_TERMS_LINK === 'https://[YOUR_URL_HERE]')) {
             wp_trigger_error('Helpers::get_checkout_terms_link', 'Please add a correct value for the constant KINOLA_TERMS_LINK or remove it entirely', E_USER_WARNING);
         }
+    }
+
+    /**
+     * The single Schema_Manager instance owned by the bootstrap. Exposed so the kinola_get_*_schema()
+     * template functions in helpers.php emit structured data through the same instance the shortcode
+     * handlers use, keeping any per-request schema state in one place.
+     */
+    public function schema(): Schema_Manager {
+        return $this->schema;
     }
 
     public function register_films_post_type() {
@@ -168,6 +185,7 @@ class Bootstrap {
         add_shortcode( 'kinola_gift_cards', [ $this, 'render_gift_cards' ] );
         add_shortcode( 'kinola_serial_tickets', [ $this, 'render_serial_tickets' ] );
         add_shortcode( 'kinola_products', [ $this, 'render_products' ] );
+        add_shortcode( 'kinola_venues_structured_data', [ $this, 'render_venue_schema' ] );
     }
 
     public function enqueue_scripts() {
@@ -203,7 +221,20 @@ class Bootstrap {
 
         $allowed_venues = $this->parse_venues_parameter( $atts['allowed_venues'] );
 
-        return ( new Events() )->get_rendered_events( $atts['show_dates'], $atts['limit'], $allowed_venues );
+        return ( new Events( $this->schema ) )->get_rendered_events( $atts['show_dates'], $atts['limit'], $allowed_venues );
+    }
+
+    /**
+     * Schema-only [kinola_venues_structured_data] shortcode: emits MovieTheater JSON-LD
+     * for the venue(s) so an admin can place it on whatever page their site has. Renders
+     * no visible output. 'name' attribute optionally limits to specific venues.
+     */
+    public function render_venue_schema( $atts ): string {
+        $atts = shortcode_atts( [
+            'name' => '',
+        ], $atts );
+
+        return $this->schema->get_venue_schema( $atts );
     }
 
     /**
@@ -238,6 +269,7 @@ class Bootstrap {
 
         if ( ! $film_post ) {
             return sprintf(
+                /* translators: %s is the film ID that was not found. */
                 __( "There is no film with ID %s.", 'kinola' ),
                 $atts['film']
             );
@@ -247,7 +279,12 @@ class Bootstrap {
         $single_film = new Single_Film( $film );
         $single_film->set_template( 'film_screenings' );
 
-        return $single_film->get_rendered_content( $atts['show_dates'] );
+        // Ride-along schema so a custom film page (using this shortcode instead of the
+        // film's own page) carries the same markup. Appended here, not in Single_Film,
+        // because get_rendered_content() also feeds the singular film page — which
+        // already emits its schema via wp_head, so doing it there would duplicate it.
+        return $single_film->get_rendered_content( $atts['show_dates'] )
+               . $this->schema->get_film_screenings_schema( $film );
     }
 
     public function render_gift_cards(): string

@@ -33,7 +33,7 @@ class Film_Importer_List_Table extends \WP_List_Table {
     public function column_default( $item, $column_name ) {
         switch ( $column_name ) {
             case 'actions':
-                $url = Router::get_action_url( [ Admin::IMPORT_FILM_ACTION => $item['id'] ] );
+                $url = esc_url( Router::get_action_url( [ Admin::IMPORT_FILM_ACTION => $item['id'] ] ) );
 
                 return "<a href='{$url}'>" . _x( 'Import', 'Admin', 'kinola' ) . "</a>";
             default:

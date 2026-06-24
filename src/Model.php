@@ -41,7 +41,8 @@ abstract class Model {
                 $value = '';
                 ( new Admin_Messenger )->add_message(
                     sprintf(
-                        __( "The field '%s' does not a have a corresponding translation in Kinola for this website's configured language (%s).", 'kinola' ),
+                        /* translators: 1: the field name, 2: the website's configured language. */
+                        __( "The field '%1\$s' does not have a corresponding translation in Kinola for this website's configured language (%2\$s).", 'kinola' ),
                         $name,
                         Helpers::get_language()
                     )
@@ -85,5 +86,20 @@ abstract class Model {
             $field,
             $value
         );
+    }
+
+    /**
+     * Update the WP post title (the post column, not meta) when it has actually changed.
+     * Keeps renamed remote entities in sync on re-import. Skips empty titles so an
+     * incomplete payload can't wipe the title, and preserves the existing slug.
+     */
+    protected function update_post_title( $title ): void {
+        if ( is_string( $title ) && $title !== '' && $title !== $this->post->post_title ) {
+            wp_update_post( [
+                'ID'         => $this->post->ID,
+                'post_title' => $title,
+            ] );
+            $this->post->post_title = $title;
+        }
     }
 }

@@ -11,6 +11,10 @@ class Event_Query {
         $this->params = [
             'post_type'      => Helpers::get_events_post_type(),
             'posts_per_page' => - 1,
+            // found_posts is never consumed by any caller (events are not paginated), so skip the
+            // SQL_CALC_FOUND_ROWS cost. Set in the constructor, it applies to every query built here
+            // — get(), get_ids(), and the limit()'d listing query alike.
+            'no_found_rows'  => true,
             'meta_key'       => 'time',
             'orderby'        => 'meta_value',
             'order'          => 'ASC',
@@ -26,15 +30,62 @@ class Event_Query {
     }
 
     public function upcoming(): Event_Query {
+        return $this->since( gmdate( self::DATE_FORMAT ) );
+    }
+
+    /**
+     * Restrict to events whose start time is at or after the given UTC datetime
+     * (self::DATE_FORMAT). Uses the same lexical ISO-8601 comparison as upcoming().
+     */
+    public function since( string $utc_datetime ): Event_Query {
         $this->params['meta_query'] = array_merge( [
             [
                 'key'     => 'time',
-                'value'   => gmdate( "Y-m-d\TH:i:s\Z" ),
+                'value'   => $utc_datetime,
                 'compare' => '>=',
             ],
         ], $this->params['meta_query'] ?? [] );
 
         return $this;
+    }
+
+    /**
+     * Post IDs of the events this query matches, without hydrating them into Event
+     * objects, for callers that only need IDs and then batch-load just the meta they
+     * want. This is the shared fields => 'ids' shortcut get_venue_term_ids() builds on.
+     *
+     * @return int[]
+     */
+    public function get_ids(): array {
+        $params           = $this->params;
+        $params['fields'] = 'ids';
+
+        return array_map( 'intval', ( new \WP_Query( $params ) )->posts );
+    }
+
+    /**
+     * Distinct venue term IDs among the events this query matches. Runs the query
+     * for IDs only, then resolves every venue in a single term query.
+     *
+     * @return int[]
+     */
+    public function get_venue_term_ids(): array {
+        $event_ids = $this->get_ids();
+        if ( empty( $event_ids ) ) {
+            return [];
+        }
+
+        $term_ids = wp_get_object_terms(
+            $event_ids,
+            Helpers::get_venue_taxonomy_name(),
+            [ 'fields' => 'ids' ]
+        );
+
+        if ( is_wp_error( $term_ids ) ) {
+            return [];
+        }
+
+        return array_values( array_unique( array_map( 'intval', $term_ids ) ) );
     }
 
     public function film( $film_remote_id ): Event_Query {
