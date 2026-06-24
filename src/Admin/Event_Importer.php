@@ -16,9 +16,10 @@ class Event_Importer {
         debug_log( "Event import: Fetching events from endpoint " . $this->get_endpoint() );
 
         $saved_event_ids = [];
-        $events          = $this->get_events( $this->get_endpoint() );
+        $fetch           = $this->fetch_all_events( $this->get_endpoint() );
+        $events          = $fetch['events'];
 
-        debug_log( "Event import: API returned a total of " . count( $events ) . " events." );
+        debug_log( "Event import: API returned a total of " . count( $events ) . " events (complete: " . ( $fetch['complete'] ? 'yes' : 'no' ) . ")." );
 
         foreach ( $events as $event ) {
             $saved_event_id = $this->save_event( new Api_Event( $event ) );
@@ -29,68 +30,100 @@ class Event_Importer {
 
         debug_log( "Event import: Saved a total of " . count( $saved_event_ids ) . " events." );
 
-        $this->deleted_event_cleanup( $saved_event_ids );
+        // Deletion is keyed on "absent from the fetched set", so it is only correct against a fetch
+        // we know is whole. A complete response is trusted as the source of truth — even an empty one
+        // legitimately means "no events" and is acted on. Only an incomplete fetch (API outage,
+        // mid-pagination failure, page cap, or an unexpected payload) withholds deletion, so events
+        // that were simply not fetched are not mistaken for deleted ones. Upserts are always safe.
+        if ( $fetch['complete'] ) {
+            $this->deleted_event_cleanup( $saved_event_ids );
+        } else {
+            debug_log( "Event import: fetch incomplete; skipping deletion cleanup so unfetched events are not removed." );
+        }
+
+        // Independent of the API: prunes events whose start time has passed, by local meta only.
         $this->past_event_cleanup();
 
-        debug_log( "Event import: Completed successfully." );
+        debug_log( "Event import: Completed." );
     }
 
-    protected function get_events( $url = null, $recursion_depth = 0 ): array {
+    /**
+     * Fetch every page of upcoming events, reporting whether the whole set was retrieved.
+     *
+     * Returns [ 'events' => array, 'complete' => bool ]. 'complete' is true only when every page
+     * — through the last one (no next link) — was fetched and decoded successfully. Any failure
+     * (API/network error, unexpected payload) or hitting the page cap marks the whole fetch
+     * incomplete and propagates that up, so the caller can withhold deletion. Partial events are
+     * still returned: upserting what did arrive is harmless; only deletion needs a whole set.
+     */
+    protected function fetch_all_events( string $url, int $recursion_depth = 0 ): array {
         if ( $recursion_depth > 20 ) {
-            debug_log( "Event import: Reached maximum recursion depth of 20 pages. Stopping pagination." );
-            return [];
+            debug_log( "Event import: reached the 20-page pagination cap; marking the fetch incomplete so events beyond it are not treated as deleted." );
+
+            return [ 'events' => [], 'complete' => false ];
         }
 
         try {
             $response = Kinola_Api::get( $url, false );
-            $events   = $response->get_data();
-
-            if ( $response->has_next_link() ) {
-                $next_url = $response->get_next_link();
-                
-                // Preserve original query parameters in pagination URLs
-                $original_params = [];
-                
-                // Handle both full URLs and endpoint strings
-                if ( $url ) {
-                    if ( filter_var( $url, FILTER_VALIDATE_URL ) ) {
-                        $original_query = parse_url( $url, PHP_URL_QUERY );
-                    } else {
-                        $parts = explode( '?', $url, 2 );
-                        $original_query = isset( $parts[1] ) ? $parts[1] : '';
-                    }
-                    
-                    if ( $original_query ) {
-                        parse_str( $original_query, $original_params );
-                    }
-                }
-                
-                // Parse next URL and merge with original parameters
-                $next_parts = parse_url( $next_url );
-                $next_params = [];
-                if ( isset( $next_parts['query'] ) ) {
-                    parse_str( $next_parts['query'], $next_params );
-                }
-                
-                // Preserve important parameters from original request
-                if ( isset( $original_params['limit'] ) && ! isset( $next_params['limit'] ) ) {
-                    $next_params['limit'] = $original_params['limit'];
-                }
-                if ( isset( $original_params['time_from'] ) && ! isset( $next_params['time_from'] ) ) {
-                    $next_params['time_from'] = $original_params['time_from'];
-                }
-                
-                // Rebuild URL with merged parameters
-                $next_url = $next_parts['scheme'] . '://' . $next_parts['host'] . $next_parts['path'] . '?' . http_build_query( $next_params );
-                
-                $events = array_merge( $events, $this->get_events( $next_url, $recursion_depth + 1 ) );
-            }
-
-            return $events;
         } catch ( \Exception $e ) {
-            debug_log( "Event import: Error fetching events at recursion depth {$recursion_depth}: " . $e->getMessage() );
-            return [];
+            debug_log( "Event import: error fetching events at page {$recursion_depth}: " . $e->getMessage() );
+
+            return [ 'events' => [], 'complete' => false ];
         }
+
+        $events = $response->get_data();
+        if ( ! is_array( $events ) ) {
+            debug_log( "Event import: non-array event data at page {$recursion_depth}; marking the fetch incomplete." );
+
+            return [ 'events' => [], 'complete' => false ];
+        }
+
+        if ( ! $response->has_next_link() ) {
+            return [ 'events' => $events, 'complete' => true ];
+        }
+
+        $next = $this->fetch_all_events(
+            $this->build_next_url( $url, $response->get_next_link() ),
+            $recursion_depth + 1
+        );
+
+        return [
+            'events'   => array_merge( $events, $next['events'] ),
+            'complete' => $next['complete'],
+        ];
+    }
+
+    /**
+     * Build the next page URL, carrying forward the query parameters the API may drop from its
+     * own "next" link (notably limit and time_from), so pagination keeps the original window.
+     */
+    protected function build_next_url( string $url, string $next_url ): string {
+        $original_params = [];
+
+        if ( filter_var( $url, FILTER_VALIDATE_URL ) ) {
+            $original_query = parse_url( $url, PHP_URL_QUERY );
+        } else {
+            $parts          = explode( '?', $url, 2 );
+            $original_query = $parts[1] ?? '';
+        }
+
+        if ( $original_query ) {
+            parse_str( $original_query, $original_params );
+        }
+
+        $next_parts  = parse_url( $next_url );
+        $next_params = [];
+        if ( isset( $next_parts['query'] ) ) {
+            parse_str( $next_parts['query'], $next_params );
+        }
+
+        foreach ( [ 'limit', 'time_from' ] as $param ) {
+            if ( isset( $original_params[ $param ] ) && ! isset( $next_params[ $param ] ) ) {
+                $next_params[ $param ] = $original_params[ $param ];
+            }
+        }
+
+        return $next_parts['scheme'] . '://' . $next_parts['host'] . $next_parts['path'] . '?' . http_build_query( $next_params );
     }
 
     protected function get_endpoint(): string {
