@@ -32,6 +32,69 @@ Make sure you replace `your-cinema` with the name of your cinema. It should be t
 8. (Optional) In your wp-config.php, add constant to change default newsletter checked status in checkout:
 `define( 'KINOLA_NEWSLETTER_CHECKED_BY_DEFAULT', true );`
 
+### Tracking consent
+If your cinema has Meta (Facebook/Instagram) tracking enabled in Kinola admin, the checkout needs to know what each shopper agreed to in your cookie banner. Declare one getter per purpose on `window.kinolaConsent`, and the Kinola checkout, gift-card and serial-ticket embeds all read it:
+
+```php
+// In your (child) theme's functions.php
+add_action( 'wp_head', function () { ?>
+<script>
+    window.kinolaConsent = {
+        marketing: () => myBanner.accepted('marketing'),
+        analytics: () => myBanner.accepted('analytics'),
+    }
+</script>
+<?php } );
+```
+
+Replace both getters with a reading of your own cookie banner. Drop-in versions for the common ones:
+
+```js
+// CookieYes — the choice is stored in the cookieyes-consent cookie:
+const cookieYes = (category) => {
+    const raw = document.cookie.match(/(?:^|; )cookieyes-consent=([^;]*)/)
+    if (!raw) return false  // banner not loaded, or no choice made yet
+    return decodeURIComponent(raw[1]).includes(category + ':yes')
+}
+window.kinolaConsent = {
+    marketing: () => cookieYes('advertisement'),
+    analytics: () => cookieYes('analytics'),
+}
+
+// Complianz:
+window.kinolaConsent = {
+    marketing: () => window.cmplz_has_consent?.('marketing') === true,
+    analytics: () => window.cmplz_has_consent?.('statistics') === true,
+}
+
+// Cookiebot:
+window.kinolaConsent = {
+    marketing: () => window.Cookiebot?.consent?.marketing === true,
+    analytics: () => window.Cookiebot?.consent?.statistics === true,
+}
+
+// OneTrust — marketing is commonly group C0004, analytics C0002:
+window.kinolaConsent = {
+    marketing: () => (window.OnetrustActiveGroups || '').includes('C0004'),
+    analytics: () => (window.OnetrustActiveGroups || '').includes('C0002'),
+}
+
+// Your own banner sets a flag:
+window.kinolaConsent = {
+    marketing: () => localStorage.getItem('cookie_marketing') === 'yes',
+    analytics: () => localStorage.getItem('cookie_analytics') === 'yes',
+}
+```
+
+Check the category names against your own banner's configuration — they are renameable in most of these tools, and the defaults above are only the usual ones.
+
+Rules:
+
+- Each getter must be a function returning `true` or `false`, and the reading has to happen *inside* the function. It is called again every time Kinola is about to track, which is what lets it follow a shopper who agrees, or withdraws, after the page has loaded. Assigning the banner's answer to a variable first has the same bug: it captures one moment.
+- Return `false` while the banner is still loading or the shopper has not chosen yet — at that point the honest answer is no. Anything other than `true` means no tracking.
+- `window.kinolaConsent` must exist by the time the Kinola embed runs, or it is not picked up at all for that page load — the object is read once, and only the answers it gives are re-read afterwards. `wp_head` guarantees this, since the embed is printed further down the page; `wp_footer` is too late, and a Google Tag Manager tag may be, as GTM loads asynchronously. There is nothing to wait for: the snippet only declares the functions, and your banner is read later, inside them.
+- Enabling Meta tracking itself is done by the cinema in Kinola admin, under Settings > Marketing Integrations. This snippet only reports what the shopper agreed to.
+
 ### Using the plugin
 The plugin creates two menu items in the admin menu - Films and Events. New Film or Event posts cannot be created or edited via WordPress - they must be imported
 from Kinola instead. This way, there is a single source of truth for both. If you need to make any changes to an already imported Film or Event, the changes must be made inside Kinola and then re-imported to WordPress.
